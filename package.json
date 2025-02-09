@@ -1,0 +1,16 @@
+{
+  "name": "parky",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "license": "MIT",
+  "author": "",
+  "keywords": [],
+  "workspaces": [
+    "apps/*", 
+    "libs/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
