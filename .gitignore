@@ -6,3 +6,7 @@ dist
 
 # System files
 .DS_Store
+
+# nx files
+.nx/cache
+.nx/workspace-data
