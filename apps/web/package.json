@@ -10,7 +10,6 @@
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@parky/sample-lib": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next": "15.1.6"

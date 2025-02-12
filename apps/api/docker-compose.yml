@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: postgres-parky_api
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: parky_api
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5434:5432
+    restart: unless-stopped
+    
+volumes:
+  postgres:
+    driver: local
