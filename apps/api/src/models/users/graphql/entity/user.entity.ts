@@ -7,6 +7,8 @@ export class User implements RestrictProperties<User, UserType> {
   uid: string
   @Field({ nullable: true })
   name: string
+  @Field({ nullable: true })
+  image: string
   createdAt: Date
   updatedAt: Date
 
