@@ -77,6 +77,7 @@ export const authOptions: NextAuthOptions = {
         throw new Error('Token is undefined')
       }
       const { sub, ...tokenProps } = token
+
       // Get the current date in seconds since the epoch
       const nowInSeconds = Math.floor(Date.now() / 1000)
       // Calculate the expiration timestamp
