@@ -1856,6 +1856,7 @@ export type SearchGaragesQuery = {
     __typename?: 'Garage'
     id: number
     images: Array<string>
+    displayName?: string | null
     address?: {
       __typename?: 'Address'
       lat: number
@@ -2401,6 +2402,7 @@ export const SearchGaragesDocument = {
                   },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'images' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'displayName' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'availableSlots' },

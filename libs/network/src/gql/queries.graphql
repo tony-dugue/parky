@@ -87,6 +87,7 @@ query SearchGarages(
       address
     }
     images
+    displayName
     availableSlots(dateFilter: $dateFilter, slotsFilter: $slotsFilter) {
       type
       pricePerHour

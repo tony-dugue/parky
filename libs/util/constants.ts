@@ -30,3 +30,5 @@ export const majorCitiesLocationInfo: LocationInfo[] = [
   { placeName: 'Moscow, Russia', latLng: [55.7558, 37.6176] },
   { placeName: 'Beijing, China', latLng: [39.9042, 116.4074] },
 ]
+
+export const VALET_CHARGE_PER_METER = 0.005
