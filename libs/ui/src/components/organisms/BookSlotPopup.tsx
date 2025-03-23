@@ -223,6 +223,25 @@ export const createBookingSession = async (
   totalPriceObj: TotalPrice,
   bookingData: CreateBookingInput,
 ) => {
+  if (process.env.NEXT_PUBLIC_STRIPE_ACTIVATE === 'false') {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + '/stripe/fake-payment',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          totalPriceObj,
+          uid,
+          bookingData,
+        }),
+      },
+    )
+    const res = await response.json()
+    return (window.location.href = res.redirectUrl)
+  }
+
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
     method: 'POST',
     headers: {
