@@ -1,11 +1,15 @@
 'use client'
-import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
+import {
+  CreateBookingInput,
+  SearchGaragesQuery,
+} from '@parky/network/src/gql/generated'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { Form } from '../atoms/Form'
 import { Badge } from '../atoms/Badge'
 import { AutoImageChanger } from './AutoImageChanger'
 import { DateRangeBookingInfo } from '../molecules/DateRangeBookingInfo'
 import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
+import { loadStripe } from '@stripe/stripe-js'
 import { HtmlLabel } from '../atoms/HtmlLabel'
 import { Radio, RadioGroup } from '@headlessui/react'
 import { IconTypes } from '../molecules/IconTypes'
@@ -16,12 +20,16 @@ import { CostTitleValue } from '../molecules/CostTitleValue'
 import { useTotalPrice } from '@parky/util/hooks/price'
 import { Button } from '../atoms/Button'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { TotalPrice } from '@parky/util/types'
 
 export const BookSlotPopup = ({
   garage,
 }: {
   garage: SearchGaragesQuery['searchGarages'][0]
 }) => {
+  const session = useSession()
+  const uid = session.data?.user?.uid
   const {
     control,
     register,
@@ -44,13 +52,43 @@ export const BookSlotPopup = ({
     totalPriceObj.valetChargeDropoff +
     totalPriceObj.valetChargePickup
 
-  const [booking] = useState(false)
+  const [booking, setBooking] = useState(false)
 
   return (
     <div className="flex gap-2 text-left border-t-2 border-white bg-white/50 backdrop-blur-sm">
       <Form
-        onSubmit={handleSubmit((data) => {
+        onSubmit={handleSubmit(async (data) => {
           console.log('formData: ', data)
+          if (!uid) {
+            alert('You are not logged in.')
+            return
+          }
+          const bookingData: CreateBookingInput = {
+            phoneNumber: data.phoneNumber,
+            customerId: uid,
+            endTime: data.endTime,
+            startTime: data.startTime,
+            type: data.type,
+            garageId: garage.id,
+            vehicleNumber: data.vehicleNumber,
+            totalPrice,
+            pricePerHour,
+            ...(data.valet?.pickupInfo && data.valet?.dropoffInfo
+              ? {
+                  valetAssignment: {
+                    pickupLat: data.valet?.pickupInfo?.lat,
+                    pickupLng: data.valet?.pickupInfo?.lng,
+                    returnLat: data.valet?.dropoffInfo?.lat,
+                    returnLng: data.valet?.dropoffInfo?.lng,
+                  },
+                }
+              : null),
+          }
+
+          setBooking(true)
+          // Create booking session
+          await createBookingSession(uid!, totalPriceObj, bookingData)
+          setBooking(false)
         })}
       >
         <div className="flex items-start gap-2">
@@ -178,4 +216,32 @@ export const BookSlotPopup = ({
       </Form>
     </div>
   )
+}
+
+export const createBookingSession = async (
+  uid: string,
+  totalPriceObj: TotalPrice,
+  bookingData: CreateBookingInput,
+) => {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      totalPriceObj,
+      uid,
+      bookingData,
+    }),
+  })
+  const checkoutSession = await response.json()
+
+  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+
+  const stripe = await loadStripe(publishableKey || '')
+  const result = await stripe?.redirectToCheckout({
+    sessionId: checkoutSession.sessionId,
+  })
+
+  return result
 }
