@@ -1,4 +1,12 @@
-import { BadRequestException, Body, Controller, Get, Post, Query, Res } from '@nestjs/common'
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Res,
+} from '@nestjs/common'
 import StripeService from './stripe.service'
 import { BookingsService } from '../bookings/graphql/bookings.service'
 import { CreateStripeDto } from './dto/create-stripe-session.dto'
@@ -27,7 +35,8 @@ export class StripeController {
     if (!sessionId) {
       throw new BadRequestException('Session id missing.')
     }
-    const session = await this.stripeService.stripe.checkout.sessions.retrieve(sessionId)
+    const session =
+      await this.stripeService.stripe.checkout.sessions.retrieve(sessionId)
     const { bookingData } = session.metadata
 
     const bookingInput: CreateBookingInput = JSON.parse(bookingData)
@@ -36,8 +45,11 @@ export class StripeController {
   }
 
   @Post('fake-payment')
-  async createFakePayment(@Body() createStripeDto: CreateStripeDto, @Res() res: Response) {
+  async createFakePayment(
+    @Body() createStripeDto: CreateStripeDto,
+    @Res() res: Response,
+  ) {
     await this.stripeMockService.createStripeSession(createStripeDto)
-    return res.json({ redirectUrl: process.env.BOOKINGS_REDIRECT_URL });
+    return res.json({ redirectUrl: process.env.BOOKINGS_REDIRECT_URL })
   }
 }

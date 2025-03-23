@@ -1,4 +1,4 @@
-import { Injectable, Res } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { CreateStripeDto } from './dto/create-stripe-session.dto'
 import { BookingsService } from '../bookings/graphql/bookings.service'
 import { CreateBookingInput } from '../bookings/graphql/dtos/create-booking.input'
@@ -7,7 +7,11 @@ import { CreateBookingInput } from '../bookings/graphql/dtos/create-booking.inpu
 export class StripeMockService {
   constructor(private readonly bookingService: BookingsService) {}
 
-  async createStripeSession({ totalPriceObj, uid, bookingData }: CreateStripeDto) {
+  async createStripeSession({
+    totalPriceObj,
+    uid,
+    bookingData,
+  }: CreateStripeDto) {
     const totalPriceCalculated =
       totalPriceObj.parkingCharge +
       totalPriceObj.valetChargeDropoff +

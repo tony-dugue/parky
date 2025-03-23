@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvider'
 import { ApolloProvider } from '@parky/network/src/config/apollo'
 import { MenuItem } from '@parky/util/types'
+import { ToastContainer } from '@parky/ui/src/components/molecules/Toast'
 
 // Charger Header uniquement côté client
 const Header = dynamic(
@@ -30,6 +31,7 @@ export default function ClientLayout({
       <ApolloProvider>
         <Header menuItems={MENUITEMS} />
         {children}
+        <ToastContainer />
       </ApolloProvider>
     </SessionProvider>
   )
