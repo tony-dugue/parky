@@ -1182,12 +1182,14 @@ input CreateCompanyInput {
   displayName: String
   description: String
   managerId: String!
+  managerName: String
 }
 
 input UpdateCompanyInput {
   displayName: String
   description: String
   managerId: String
+  managerName: String
   id: Float!
 }
 
