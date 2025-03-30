@@ -130,6 +130,11 @@ export type AdminWhereUniqueInput = {
   uid: Scalars['String']['input']
 }
 
+export type AggregateCountOutput = {
+  __typename?: 'AggregateCountOutput'
+  count: Scalars['Float']['output']
+}
+
 export type AuthProvider = {
   __typename?: 'AuthProvider'
   type: AuthProviderType
@@ -403,6 +408,7 @@ export type CreateCompanyInput = {
   description?: InputMaybe<Scalars['String']['input']>
   displayName?: InputMaybe<Scalars['String']['input']>
   managerId: Scalars['String']['input']
+  managerName?: InputMaybe<Scalars['String']['input']>
 }
 
 export type CreateCustomerInput = {
@@ -561,6 +567,7 @@ export type Garage = {
   displayName?: Maybe<Scalars['String']['output']>
   id: Scalars['Float']['output']
   images: Array<Scalars['String']['output']>
+  slotCounts: Array<SlotTypeCount>
   slots: Array<Slot>
   updatedAt: Scalars['DateTime']['output']
   verification?: Maybe<Verification>
@@ -975,6 +982,7 @@ export type Query = {
   customers: Array<Customer>
   garage: Garage
   garages: Array<Garage>
+  garagesCount: AggregateCountOutput
   getAuthProvider?: Maybe<AuthProvider>
   manager: Manager
   managers: Array<Manager>
@@ -1090,6 +1098,10 @@ export type QueryGaragesArgs = {
   orderBy?: InputMaybe<Array<GarageOrderByWithRelationInput>>
   skip?: InputMaybe<Scalars['Float']['input']>
   take?: InputMaybe<Scalars['Float']['input']>
+  where?: InputMaybe<GarageWhereInput>
+}
+
+export type QueryGaragesCountArgs = {
   where?: InputMaybe<GarageWhereInput>
 }
 
@@ -1349,6 +1361,12 @@ export enum SlotType {
   Heavy = 'HEAVY',
 }
 
+export type SlotTypeCount = {
+  __typename?: 'SlotTypeCount'
+  count?: Maybe<Scalars['Float']['output']>
+  type: SlotType
+}
+
 export type SlotWhereInput = {
   AND?: InputMaybe<Array<SlotWhereInput>>
   Bookings?: InputMaybe<BookingListRelationFilter>
@@ -1439,6 +1457,7 @@ export type UpdateCompanyInput = {
   displayName?: InputMaybe<Scalars['String']['input']>
   id: Scalars['Float']['input']
   managerId?: InputMaybe<Scalars['String']['input']>
+  managerName?: InputMaybe<Scalars['String']['input']>
 }
 
 export type UpdateCustomerInput = {
@@ -1915,12 +1934,48 @@ export type CreateCompanyMutation = {
   createCompany: { __typename?: 'Company'; id: number }
 }
 
+export type GaragesQueryVariables = Exact<{
+  skip?: InputMaybe<Scalars['Float']['input']>
+  take?: InputMaybe<Scalars['Float']['input']>
+  cursor?: InputMaybe<GarageWhereUniqueInput>
+  orderBy?: InputMaybe<
+    Array<GarageOrderByWithRelationInput> | GarageOrderByWithRelationInput
+  >
+  where?: InputMaybe<GarageWhereInput>
+}>
+
+export type GaragesQuery = {
+  __typename?: 'Query'
+  garages: Array<{
+    __typename?: 'Garage'
+    id: number
+    displayName?: string | null
+    description?: string | null
+    images: Array<string>
+    verification?: { __typename?: 'Verification'; verified: boolean } | null
+    address?: {
+      __typename?: 'Address'
+      id: number
+      lat: number
+      lng: number
+      address: string
+    } | null
+    slotCounts: Array<{
+      __typename?: 'SlotTypeCount'
+      type: SlotType
+      count?: number | null
+    }>
+  }>
+  garagesCount: { __typename?: 'AggregateCountOutput'; count: number }
+}
+
 export const namedOperations = {
   Query: {
     GetAuthProvider: 'GetAuthProvider',
     Companies: 'Companies',
     SearchGarages: 'SearchGarages',
     myCompany: 'myCompany',
+    Garages: 'Garages',
   },
   Mutation: {
     RegisterWithCredentials: 'RegisterWithCredentials',
@@ -2625,3 +2680,184 @@ export const CreateCompanyDocument = {
   CreateCompanyMutation,
   CreateCompanyMutationVariables
 >
+export const GaragesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'Garages' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'take' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'cursor' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'GarageWhereUniqueInput' },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'orderBy' },
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: { kind: 'Name', value: 'GarageOrderByWithRelationInput' },
+              },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'where' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'GarageWhereInput' },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'garages' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'skip' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'skip' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'take' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'take' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'cursor' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'cursor' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'orderBy' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'orderBy' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'where' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'displayName' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'images' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'verification' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'verified' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'address' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'lat' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'lng' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'address' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'slotCounts' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'garagesCount' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'where' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GaragesQuery, GaragesQueryVariables>
