@@ -379,6 +379,12 @@ export type CreateAddressInput = {
   lng: Scalars['Float']['input']
 }
 
+export type CreateAddressInputWithoutGarageId = {
+  address: Scalars['String']['input']
+  lat: Scalars['Float']['input']
+  lng: Scalars['Float']['input']
+}
+
 export type CreateAdminInput = {
   uid: Scalars['String']['input']
 }
@@ -417,7 +423,8 @@ export type CreateCustomerInput = {
 }
 
 export type CreateGarageInput = {
-  companyId: Scalars['Float']['input']
+  Address: CreateAddressInputWithoutGarageId
+  Slots: Array<CreateSlotInputWithoutGarageId>
   description?: InputMaybe<Scalars['String']['input']>
   displayName?: InputMaybe<Scalars['String']['input']>
   images: Array<Scalars['String']['input']>
@@ -438,6 +445,16 @@ export type CreateReviewInput = {
 export type CreateSlotInput = {
   displayName?: InputMaybe<Scalars['String']['input']>
   garageId: Scalars['Float']['input']
+  height?: InputMaybe<Scalars['Float']['input']>
+  length?: InputMaybe<Scalars['Float']['input']>
+  pricePerHour: Scalars['Float']['input']
+  type: SlotType
+  width?: InputMaybe<Scalars['Float']['input']>
+}
+
+export type CreateSlotInputWithoutGarageId = {
+  count: Scalars['Float']['input']
+  displayName?: InputMaybe<Scalars['String']['input']>
   height?: InputMaybe<Scalars['Float']['input']>
   length?: InputMaybe<Scalars['Float']['input']>
   pricePerHour: Scalars['Float']['input']
@@ -1466,7 +1483,8 @@ export type UpdateCustomerInput = {
 }
 
 export type UpdateGarageInput = {
-  companyId?: InputMaybe<Scalars['Float']['input']>
+  Address?: InputMaybe<CreateAddressInputWithoutGarageId>
+  Slots?: InputMaybe<Array<CreateSlotInputWithoutGarageId>>
   description?: InputMaybe<Scalars['String']['input']>
   displayName?: InputMaybe<Scalars['String']['input']>
   id: Scalars['Float']['input']
@@ -1969,6 +1987,15 @@ export type GaragesQuery = {
   garagesCount: { __typename?: 'AggregateCountOutput'; count: number }
 }
 
+export type CreateGarageMutationVariables = Exact<{
+  createGarageInput: CreateGarageInput
+}>
+
+export type CreateGarageMutation = {
+  __typename?: 'Mutation'
+  createGarage: { __typename?: 'Garage'; id: number }
+}
+
 export const namedOperations = {
   Query: {
     GetAuthProvider: 'GetAuthProvider',
@@ -1982,6 +2009,7 @@ export const namedOperations = {
     Login: 'Login',
     RegisterWithProvider: 'RegisterWithProvider',
     CreateCompany: 'CreateCompany',
+    CreateGarage: 'CreateGarage',
   },
 }
 
@@ -2861,3 +2889,57 @@ export const GaragesDocument = {
     },
   ],
 } as unknown as DocumentNode<GaragesQuery, GaragesQueryVariables>
+export const CreateGarageDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'CreateGarage' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'createGarageInput' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'CreateGarageInput' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'createGarage' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'createGarageInput' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'createGarageInput' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CreateGarageMutation,
+  CreateGarageMutationVariables
+>

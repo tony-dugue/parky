@@ -5,6 +5,8 @@ import {
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { useQuery } from '@apollo/client'
 import { ShowData } from './ShowData'
+import Link from 'next/link'
+import { IconPlus } from '@tabler/icons-react'
 
 export const ListGarages = ({
   companyId,
@@ -29,6 +31,17 @@ export const ListGarages = ({
         setSkip,
         setTake,
       }}
+      title={
+        <div className="flex items-center gap-4">
+          <div>Garages</div>
+          <Link
+            href="/new-garage"
+            className="rounded-full border border-black p-0.5"
+          >
+            <IconPlus />
+          </Link>
+        </div>
+      }
     >
       {data?.garages.map((garage) => (
         <div key={garage.id}>{garage.id}</div>

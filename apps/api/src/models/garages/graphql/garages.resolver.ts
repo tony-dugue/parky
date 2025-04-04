@@ -41,8 +41,20 @@ export class GaragesResolver {
 
   @AllowAuthenticated('manager')
   @Mutation(() => Garage)
-  createGarage(@Args('createGarageInput') args: CreateGarageInput) {
-    return this.garagesService.create(args)
+  async createGarage(
+    @Args('createGarageInput') args: CreateGarageInput,
+    @GetUser() user: GetUserType,
+  ) {
+    const company = await this.prisma.company.findFirst({
+      where: { Managers: { some: { uid: user.uid } } },
+    })
+    if (!company?.id) {
+      throw new BadRequestException(
+        'No company associated with the manager id.',
+      )
+    }
+
+    return this.garagesService.create({ ...args, companyId: company.id })
   }
 
   @Query(() => [Garage], { name: 'garages' })

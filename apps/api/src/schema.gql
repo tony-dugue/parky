@@ -553,6 +553,17 @@ type SlotTypeCount {
   count: Float
 }
 
+type Address {
+  garageId: Float
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  address: String!
+  lat: Float!
+  lng: Float!
+  garage: Garage
+}
+
 type Slot {
   displayName: String
   length: Float
@@ -566,17 +577,6 @@ type Slot {
   garageId: Float!
   garage: Garage!
   bookings: [Booking!]!
-}
-
-type Address {
-  garageId: Float
-  id: Float!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  address: String!
-  lat: Float!
-  lng: Float!
-  garage: Garage
 }
 
 type MinimalSlotGroupBy {
@@ -1208,14 +1208,32 @@ input CreateGarageInput {
   displayName: String
   description: String
   images: [String!]!
-  companyId: Float!
+  Address: CreateAddressInputWithoutGarageId!
+  Slots: [CreateSlotInputWithoutGarageId!]!
+}
+
+input CreateAddressInputWithoutGarageId {
+  address: String!
+  lat: Float!
+  lng: Float!
+}
+
+input CreateSlotInputWithoutGarageId {
+  displayName: String
+  length: Float
+  width: Float
+  height: Float
+  type: SlotType!
+  pricePerHour: Float!
+  count: Float!
 }
 
 input UpdateGarageInput {
   displayName: String
   description: String
   images: [String!]
-  companyId: Float
+  Address: CreateAddressInputWithoutGarageId
+  Slots: [CreateSlotInputWithoutGarageId!]
   id: Float!
 }
 

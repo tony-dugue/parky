@@ -25,6 +25,10 @@ const config: Config = {
       spacing: spacingConfig,
       animation: animationConfig,
       keyframes: keyframesConfig,
+
+      fontFamily: {
+        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],
