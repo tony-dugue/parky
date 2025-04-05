@@ -22,6 +22,7 @@ import { BookingTimelinesModule } from './models/booking-timelines/booking-timel
 import { ReviewsModule } from './models/reviews/reviews.module'
 import { VerificationsModule } from './models/verifications/verifications.module'
 import { StripeModule } from './models/stripe/stripe.module'
+import { FileUploadModule } from './models/file-upload/file-upload.module'
 
 // Todo: Move this to util lib.
 const MAX_AGE = 24 * 60 * 60
@@ -58,6 +59,7 @@ const MAX_AGE = 24 * 60 * 60
     BookingTimelinesModule,
     ReviewsModule,
     VerificationsModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

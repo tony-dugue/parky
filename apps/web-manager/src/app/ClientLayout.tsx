@@ -15,7 +15,7 @@ const Header = dynamic(
 )
 
 const MENUITEMS: MenuItem[] = [
-  { label: 'New Garage', href: '/createGarage' },
+  { label: 'New Garage', href: '/new-garage' },
   { label: 'Valets', href: '/valet' },
 ]
 

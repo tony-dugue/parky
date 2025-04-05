@@ -8,7 +8,8 @@ import {
   namedOperations,
 } from '@parky/network/src/gql/generated'
 import { useMutation } from '@apollo/client'
-import { useCloudinaryUpload } from '@parky/util/hooks/cloudinary'
+//import { useCloudinaryUpload } from '@parky/util/hooks/cloudinary'
+import { useLocalFileUpload } from '@parky/util/hooks/fileUpload'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Form } from '../atoms/Form'
 import { HtmlLabel } from '../atoms/HtmlLabel'
@@ -39,7 +40,8 @@ const CreateGarageContent = () => {
 
   const { images } = watch()
 
-  const { uploading, upload } = useCloudinaryUpload()
+  //const { uploading, upload } = useCloudinaryUpload()
+  const { uploading, upload } = useLocalFileUpload()
 
   const [createGarage, { data, loading }] = useMutation(CreateGarageDocument, {
     refetchQueries: [namedOperations.Query.Garages],
@@ -47,7 +49,8 @@ const CreateGarageContent = () => {
       reset()
       toast('Garage created successfully.')
     },
-    onError() {
+    onError(err) {
+      console.log(err)
       toast('Action failed.')
     },
   })
