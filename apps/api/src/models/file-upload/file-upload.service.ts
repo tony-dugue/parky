@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { FileUpload } from './entity/file-upload.entity'
-import * as fs from 'fs'
-import * as path from 'path'
+import fs from 'fs'
+import sharp from 'sharp'
+import path from 'path'
 
 @Injectable()
 export class FileUploadService {
@@ -22,12 +23,17 @@ export class FileUploadService {
     const maxSize = 5 * 1024 * 1024
     if (file.size > maxSize) throw new BadRequestException('file is too large!')
 
-    const uploadDir = path.join(__dirname, '../../../uploads')
+    const uploadDir = path.join(process.cwd(), 'uploads')
+
     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true })
 
     const filename = `${Date.now()}-${file.originalname.replace(/\s+/g, '_')}`
     const filePath = path.join(uploadDir, filename)
-    fs.writeFileSync(filePath, file.buffer)
+    const compressedImageBuffer = await sharp(file.buffer)
+      .webp({ quality: 75 })
+      .toBuffer()
+
+    fs.writeFileSync(filePath, compressedImageBuffer)
 
     return { filename }
   }

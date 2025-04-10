@@ -1,10 +1,21 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
+import * as path from 'path'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { existsSync, mkdirSync } from 'fs'
+import * as express from 'express'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+  const uploadDir = path.join(process.cwd(), 'uploads')
+
+  if (!existsSync(uploadDir)) {
+    mkdirSync(uploadDir, { recursive: true })
+  }
+
   app.enableCors()
+
+  app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
 
   const config = new DocumentBuilder()
     .setTitle('Parky | Tony Dugue')
