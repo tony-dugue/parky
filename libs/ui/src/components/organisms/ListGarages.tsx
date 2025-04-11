@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client'
 import { ShowData } from './ShowData'
 import Link from 'next/link'
 import { IconPlus } from '@tabler/icons-react'
+import { GarageCard } from './GarageCard'
 
 export const ListGarages = ({
   companyId,
@@ -44,8 +45,7 @@ export const ListGarages = ({
       }
     >
       {data?.garages.map((garage) => (
-        <div key={garage.id}>{garage.id}</div>
-        // TODO: add garage Card
+        <GarageCard key={garage.id} garage={garage} />
       ))}
     </ShowData>
   )

@@ -165,3 +165,9 @@ mutation CreateGarage($createGarageInput: CreateGarageInput!) {
     id
   }
 }
+
+mutation CreateManySlots($createSlotInput: CreateSlotInput!, $count: Float!) {
+  createManySlots(createSlotInput: $createSlotInput, count: $count) {
+    count
+  }
+}
