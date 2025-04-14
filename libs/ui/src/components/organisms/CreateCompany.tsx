@@ -1,3 +1,4 @@
+'use client'
 import { useFormCreateCompany } from '@parky/forms/src/createCompany'
 import { Button } from '../atoms/Button'
 import { Dialog } from '../atoms/Dialog'

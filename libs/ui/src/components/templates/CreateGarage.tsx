@@ -43,7 +43,7 @@ const CreateGarageContent = () => {
   //const { uploading, upload } = useCloudinaryUpload()
   const { uploading, upload } = useLocalFileUpload()
 
-  const [createGarage, { data, loading }] = useMutation(CreateGarageDocument, {
+  const [createGarage, { loading }] = useMutation(CreateGarageDocument, {
     refetchQueries: [namedOperations.Query.Garages],
     onCompleted: () => {
       reset()
@@ -67,7 +67,6 @@ const CreateGarageContent = () => {
               location,
               slotTypes,
             }) => {
-              console.log('data', data)
               const uploadedImages = await upload(images)
 
               await createGarage({
