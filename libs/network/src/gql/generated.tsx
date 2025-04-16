@@ -148,6 +148,7 @@ export enum AuthProviderType {
 
 export type Booking = {
   __typename?: 'Booking'
+  bookingTimeline: Array<BookingTimeline>
   createdAt: Scalars['DateTime']['output']
   customer: Customer
   customerId: Scalars['String']['output']
@@ -2051,6 +2052,11 @@ export type BookingFieldsFragment = {
   vehicleNumber: string
   passcode?: string | null
   status: BookingStatus
+  bookingTimeline: Array<{
+    __typename?: 'BookingTimeline'
+    status: BookingStatus
+    timestamp: any
+  }>
   valetAssignment?: {
     __typename?: 'ValetAssignment'
     pickupValet?: {
@@ -2105,6 +2111,11 @@ export type BookingsForGarageQuery = {
     vehicleNumber: string
     passcode?: string | null
     status: BookingStatus
+    bookingTimeline: Array<{
+      __typename?: 'BookingTimeline'
+      status: BookingStatus
+      timestamp: any
+    }>
     valetAssignment?: {
       __typename?: 'ValetAssignment'
       pickupValet?: {
@@ -2218,6 +2229,17 @@ export const BookingFieldsFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'vehicleNumber' } },
           { kind: 'Field', name: { kind: 'Name', value: 'passcode' } },
           { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bookingTimeline' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'timestamp' } },
+              ],
+            },
+          },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'valetAssignment' },
@@ -3540,6 +3562,17 @@ export const BookingsForGarageDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'vehicleNumber' } },
           { kind: 'Field', name: { kind: 'Name', value: 'passcode' } },
           { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bookingTimeline' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'timestamp' } },
+              ],
+            },
+          },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'valetAssignment' },
