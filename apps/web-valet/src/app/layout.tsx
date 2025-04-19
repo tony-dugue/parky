@@ -11,15 +11,12 @@ import { Container } from '@parky/ui/src/components/atoms/Container'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Parky | Manager',
+  title: 'Parky | Valet',
   description:
-    'Valet parking management and reservation application - Manager space',
+    'Valet parking management and reservation application - Valet space',
 }
 
-const MENUITEMS: MenuItem[] = [
-  { label: 'New Garage', href: '/new-garage' },
-  { label: 'Valets', href: '/valets' },
-]
+const MENUITEMS: MenuItem[] = [{ label: 'My Trips', href: '/my-trips' }]
 
 export default function RootLayout({
   children,
