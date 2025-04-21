@@ -662,6 +662,7 @@ type Query {
   slots(omit: [String!], distinct: [SlotScalarFieldEnum!], where: SlotWhereInput, orderBy: [SlotOrderByWithRelationInput!], cursor: SlotWhereUniqueInput, take: Float, skip: Float): [Slot!]!
   slot(where: SlotWhereUniqueInput!): Slot!
   bookings(omit: [String!], distinct: [BookingScalarFieldEnum!], where: BookingWhereInput, orderBy: [BookingOrderByWithRelationInput!], cursor: BookingWhereUniqueInput, take: Float, skip: Float): [Booking!]!
+  bookingsForValet(omit: [String!], distinct: [BookingScalarFieldEnum!], where: BookingWhereInput, orderBy: [BookingOrderByWithRelationInput!], cursor: BookingWhereUniqueInput, take: Float, skip: Float): [Booking!]!
   bookingsForCustomer(omit: [String!], distinct: [BookingScalarFieldEnum!], where: BookingWhereInput, orderBy: [BookingOrderByWithRelationInput!], cursor: BookingWhereUniqueInput, take: Float, skip: Float): [Booking!]!
   bookingsForGarage(omit: [String!], distinct: [BookingScalarFieldEnum!], where: BookingWhereInput, orderBy: [BookingOrderByWithRelationInput!], cursor: BookingWhereUniqueInput, take: Float, skip: Float): [Booking!]!
   bookingsCount(where: BookingWhereInput): AggregateCountOutput!
