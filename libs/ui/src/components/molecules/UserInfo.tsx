@@ -11,7 +11,9 @@ export const UserInfo = ({ children, className }: BaseComponent) => {
   return (
     <div className={`flex gap-2 ${className}`}>
       <Image
-        src={image || '/user.png'}
+        src={
+          image ? process.env.NEXT_PUBLIC_API_URL_UPLOAD + image : '/user.png'
+        }
         alt=""
         width={300}
         height={300}

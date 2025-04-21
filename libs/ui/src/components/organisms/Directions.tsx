@@ -19,6 +19,8 @@ export const Directions = ({
 
   const originDebounced = useDebounce(origin, 400)
   const destinationDebounced = useDebounce(destination, 400)
+  const prevOriginRef = useRef<LatLng | undefined>(undefined)
+  const prevDestinationRef = useRef<Partial<LatLng> | undefined>(undefined)
 
   // Transformer en string pour éviter la recréation d'objets qui déclenche useEffect
   const originKey = originDebounced
@@ -29,10 +31,21 @@ export const Directions = ({
     : ''
 
   useEffect(() => {
-    if (!originDebounced || !destinationDebounced) {
-      setCoordinates([])
+    if (
+      !originDebounced ||
+      !destinationDebounced ||
+      (prevOriginRef.current &&
+        prevOriginRef.current.lat === originDebounced.lat &&
+        prevOriginRef.current.lng === originDebounced.lng &&
+        prevDestinationRef.current &&
+        prevDestinationRef.current.lat === destinationDebounced.lat &&
+        prevDestinationRef.current.lng === destinationDebounced.lng)
+    ) {
       return
     }
+
+    prevOriginRef.current = originDebounced
+    prevDestinationRef.current = destinationDebounced
 
     const controller = new AbortController()
     const { signal } = controller
@@ -65,8 +78,6 @@ export const Directions = ({
     }
 
     fetchRoute()
-
-    return () => controller.abort() // Annule la requête si l'effet est relancé
   }, [originKey, destinationKey]) // Utilisation des clés pour éviter les références instables
 
   const dataOne = useMemo(
