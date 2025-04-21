@@ -1382,11 +1382,9 @@ input UpdateReviewInput {
 input CreateVerificationInput {
   garageId: Float!
   verified: Boolean!
-  adminId: String!
 }
 
 input UpdateVerificationInput {
   garageId: Float!
   verified: Boolean
-  adminId: String
 }

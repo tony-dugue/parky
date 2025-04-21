@@ -1,9 +1,12 @@
 import { IsAdmin } from '@parky/ui/src/components/organisms/IsAdmin'
+import { AdminHome } from '@parky/ui/src/components/templates/AdminHome'
 
 export default function Home() {
   return (
     <main>
-      <IsAdmin>Hello admin app</IsAdmin>
+      <IsAdmin>
+        <AdminHome />
+      </IsAdmin>
     </main>
   )
 }
