@@ -638,6 +638,7 @@ type Query {
   admins(omit: [String!], distinct: [AdminScalarFieldEnum!], where: AdminWhereInput, orderBy: [AdminOrderByWithRelationInput!], cursor: AdminWhereUniqueInput, take: Float, skip: Float): [Admin!]!
   admin(where: AdminWhereUniqueInput!): Admin!
   adminMe: Admin!
+  adminsCount(where: AdminWhereInput): Float!
   customers(omit: [String!], distinct: [CustomerScalarFieldEnum!], where: CustomerWhereInput, orderBy: [CustomerOrderByWithRelationInput!], cursor: CustomerWhereUniqueInput, take: Float, skip: Float): [Customer!]!
   customer(where: CustomerWhereUniqueInput!): Customer!
   managers(omit: [String!], distinct: [ManagerScalarFieldEnum!], where: ManagerWhereInput, orderBy: [ManagerOrderByWithRelationInput!], cursor: ManagerWhereUniqueInput, take: Float, skip: Float): [Manager!]!
