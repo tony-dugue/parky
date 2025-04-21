@@ -280,12 +280,17 @@ query ValetMe {
   }
 }
 
+query AdminMe {
+  adminMe {
+    uid
+  }
+}
+
 mutation CreateValet($createValetInput: CreateValetInput!) {
   createValet(createValetInput: $createValetInput) {
     uid
   }
 }
-
 
 query companyValets(
   $distinct: [ValetScalarFieldEnum!]

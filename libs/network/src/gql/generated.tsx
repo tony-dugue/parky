@@ -1005,6 +1005,7 @@ export type Query = {
   address: Address
   addresses: Array<Address>
   admin: Admin
+  adminMe: Admin
   admins: Array<Admin>
   booking: Booking
   bookingTimeline: BookingTimeline
@@ -2293,6 +2294,13 @@ export type ValetMeQuery = {
   } | null
 }
 
+export type AdminMeQueryVariables = Exact<{ [key: string]: never }>
+
+export type AdminMeQuery = {
+  __typename?: 'Query'
+  adminMe: { __typename?: 'Admin'; uid: string }
+}
+
 export type CreateValetMutationVariables = Exact<{
   createValetInput: CreateValetInput
 }>
@@ -2499,6 +2507,7 @@ export const namedOperations = {
     BookingsForCustomer: 'BookingsForCustomer',
     BookingsForGarage: 'BookingsForGarage',
     ValetMe: 'ValetMe',
+    AdminMe: 'AdminMe',
     companyValets: 'companyValets',
     valetPickups: 'valetPickups',
     valetDrops: 'valetDrops',
@@ -4416,6 +4425,31 @@ export const ValetMeDocument = {
     },
   ],
 } as unknown as DocumentNode<ValetMeQuery, ValetMeQueryVariables>
+export const AdminMeDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'AdminMe' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'adminMe' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AdminMeQuery, AdminMeQueryVariables>
 export const CreateValetDocument = {
   kind: 'Document',
   definitions: [
