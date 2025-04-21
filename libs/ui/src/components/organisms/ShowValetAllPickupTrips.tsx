@@ -1,8 +1,12 @@
-import { ValetPickupsDocument } from '@parky/network/src/gql/generated'
+import {
+  BookingStatus,
+  ValetPickupsDocument,
+} from '@parky/network/src/gql/generated'
 import { useQuery } from '@apollo/client'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { ShowData } from './ShowData'
 import { ValetTripCard } from './ValetTripCard'
+import { AssignValetButton } from './AssignValetButton'
 
 export const ShowValetAllPickupTrips = () => {
   const { loading, data } = useQuery(ValetPickupsDocument)
@@ -32,7 +36,14 @@ export const ShowValetAllPickupTrips = () => {
             lng: booking.valetAssignment?.pickupLng,
           }}
           end={booking.slot.garage.address}
-        ></ValetTripCard>
+        >
+          <AssignValetButton
+            bookingId={booking.id}
+            status={BookingStatus.ValetAssignedForCheckIn}
+          >
+            Accept
+          </AssignValetButton>
+        </ValetTripCard>
       ))}
     </ShowData>
   )
