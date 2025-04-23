@@ -21,7 +21,7 @@ export const RegisterForm = ({}: ISignupFormProps) => {
     formState: { errors },
   } = useFormRegister()
 
-  const [registerWithCredentials, {}] = useMutation(
+  const [registerWithCredentials, { loading }] = useMutation(
     RegisterWithCredentialsDocument,
   )
 
@@ -29,9 +29,7 @@ export const RegisterForm = ({}: ISignupFormProps) => {
     <Form
       onSubmit={handleSubmit(async (formData) => {
         const { data, errors } = await registerWithCredentials({
-          variables: {
-            registerWithCredentialsInput: formData,
-          },
+          variables: { registerWithCredentialsInput: formData },
         })
 
         if (errors) {
@@ -71,11 +69,11 @@ export const RegisterForm = ({}: ISignupFormProps) => {
         />
       </HtmlLabel>
       {Object.keys(errors).length ? (
-        <div className="text-xs text-gray-600">
+        <div className="text-xs text-red-500">
           Please fix the above {Object.keys(errors).length} errors
         </div>
       ) : null}
-      <Button type="submit" fullWidth>
+      <Button type="submit" fullWidth loading={loading}>
         Register
       </Button>
       <div className="mt-4 text-sm ">
