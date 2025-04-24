@@ -33,8 +33,9 @@ model Admin {
   uid  String @id
   User User   @relation(fields: [uid], references: [uid])
 
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   Verifications Verification[]
 }
 
@@ -255,11 +256,11 @@ model Review {
 model Verification {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   verified Boolean @default(false)
 
-  adminId  String
-  Admin    Admin   @relation(fields: [adminId], references: [uid])
+  adminId String
+  Admin   Admin  @relation(fields: [adminId], references: [uid])
 
   garageId Int    @id
   Garage   Garage @relation(fields: [garageId], references: [id])

@@ -46,7 +46,11 @@ export const LoginForm = ({}: ILoginFormProps) => {
       })}
     >
       <HtmlLabel title="Email" error={errors.email?.message}>
-        <HtmlInput {...register('email')} placeholder="email" />
+        <HtmlInput
+          {...register('email')}
+          className="text-black"
+          placeholder="email"
+        />
       </HtmlLabel>
       <HtmlLabel title="Password" error={errors.password?.message}>
         <HtmlInput

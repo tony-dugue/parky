@@ -23,7 +23,10 @@
     "entity:rest": "npx nestjs-prisma-codegen --rest",
     "entity:complete": "npx nestjs-prisma-codegen --complete",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate deploy"
+    "docker:restart": "docker compose down -v --remove-orphans && docker compose up -d",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "db:reset": "npm run docker:restart && sleep 5 && npm run prisma:migrate && npm run prisma:seed"
   },
   "dependencies": {
     "@apollo/server": "^4.11.3",
