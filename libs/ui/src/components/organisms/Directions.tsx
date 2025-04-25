@@ -41,7 +41,7 @@ export const Directions = ({
     prevDestinationRef.current = destinationDebounced
     ;(async () => {
       const response = await fetch(
-        `https://routing.openstreetmap.de/routed-foot/route/v1/foot/${originDebounced.lng},${originDebounced.lat};${destinationDebounced.lng},${destinationDebounced.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`,
+        `https://routing.openstreetmap.de/routed-car/route/v1/driving/${originDebounced.lng},${originDebounced.lat};${destinationDebounced.lng},${destinationDebounced.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`,
       )
 
       const data = await response.json()
