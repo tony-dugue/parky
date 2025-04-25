@@ -7,13 +7,18 @@ export const useSearchLocation = () => {
   const [loading, setLoading] = useState(false)
   const [locationInfo, setLocationInfo] = useState<LocationInfo[]>(() => [])
 
-  const debouncedSearchText = useDebounce(searchText, 400)
+  const [debouncedSearchText] = useDebounce(searchText, 400)
 
   useEffect(() => {
+    if (!debouncedSearchText) {
+      setLocationInfo([])
+      return
+    }
+
     setLoading(true)
 
     fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchText)}`,
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(debouncedSearchText)}`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -21,10 +26,14 @@ export const useSearchLocation = () => {
           placeName: x.display_name,
           latLng: [x.lat, x.lon],
         }))
-
         setLocationInfo(filtered)
+      })
+      .catch((err) => {
+        console.error('Error fetching location:', err)
+        setLocationInfo([])
       })
       .finally(() => setLoading(false))
   }, [debouncedSearchText])
+
   return { loading, setLoading, searchText, setSearchText, locationInfo }
 }

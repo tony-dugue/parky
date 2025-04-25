@@ -17,18 +17,11 @@ export const Directions = ({
   const [coordinates, setCoordinates] = useState<LngLatTuple[]>([])
   const prevDistanceRef = useRef<number | undefined>(undefined)
 
-  const originDebounced = useDebounce(origin, 400)
-  const destinationDebounced = useDebounce(destination, 400)
   const prevOriginRef = useRef<LatLng | undefined>(undefined)
   const prevDestinationRef = useRef<Partial<LatLng> | undefined>(undefined)
 
-  // Transformer en string pour éviter la recréation d'objets qui déclenche useEffect
-  const originKey = originDebounced
-    ? `${originDebounced.lat},${originDebounced.lng}`
-    : ''
-  const destinationKey = destinationDebounced
-    ? `${destinationDebounced.lat},${destinationDebounced.lng}`
-    : ''
+  const [originDebounced] = useDebounce(origin, 400)
+  const [destinationDebounced] = useDebounce(destination, 400)
 
   useEffect(() => {
     if (
@@ -46,39 +39,28 @@ export const Directions = ({
 
     prevOriginRef.current = originDebounced
     prevDestinationRef.current = destinationDebounced
+    ;(async () => {
+      const response = await fetch(
+        `https://routing.openstreetmap.de/routed-foot/route/v1/foot/${originDebounced.lng},${originDebounced.lat};${destinationDebounced.lng},${destinationDebounced.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`,
+      )
 
-    const controller = new AbortController()
-    const { signal } = controller
+      const data = await response.json()
 
-    const fetchRoute = async () => {
-      try {
-        const url = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/${originDebounced.lng},${originDebounced.lat};${destinationDebounced.lng},${destinationDebounced.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`
+      const coordinates =
+        data?.routes[0]?.legs[0]?.steps?.map(
+          (step: { maneuver: { location: unknown } }) => step.maneuver.location,
+        ) || []
 
-        const response = await fetch(url, { signal })
-        if (!response.ok) throw new Error(`Erreur HTTP ${response.status}`)
+      const newDistance = data.routes[0].distance || 0
 
-        const data = await response.json()
-        const newCoordinates = data?.routes?.[0]?.geometry?.coordinates || []
-        const newDistance = data.routes?.[0]?.distance || 0
+      setCoordinates(coordinates)
 
-        // Mettre à jour seulement si les données sont différentes
-        setCoordinates((prev) =>
-          JSON.stringify(prev) !== JSON.stringify(newCoordinates)
-            ? newCoordinates
-            : prev,
-        )
-
-        if (newDistance !== prevDistanceRef.current && setDistance) {
-          setDistance(newDistance)
-          prevDistanceRef.current = newDistance
-        }
-      } catch (error) {
-        console.error('Erreur lors de la récupération du trajet :', error)
+      if (newDistance !== prevDistanceRef.current && setDistance) {
+        setDistance(newDistance)
+        prevDistanceRef.current = newDistance
       }
-    }
-
-    fetchRoute()
-  }, [originKey, destinationKey]) // Utilisation des clés pour éviter les références instables
+    })()
+  }, [originDebounced, destinationDebounced, setDistance])
 
   const dataOne = useMemo(
     () => ({

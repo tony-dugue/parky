@@ -90,7 +90,7 @@ Des données de test sont disponibles dans l'application API :
 
 ```
 cd apps/api
-npm run db:reset
+yarn db:reset
 ```
 
 ### 7. Démarrer les Applications
@@ -103,7 +103,7 @@ Accédez au répertoire apps/api et démarrez le serveur API.
 
 ```
 cd apps/api
-yarn dev
+yarn start
 ```
 
 Le projet sera visible dans le navigateur à l'adresse (en mode développeur) :
@@ -169,14 +169,16 @@ yarn validate
 
 ### Librairies et outils principaux
 
-Framework react : [NextJS](https://nextjs.org/)<br />
-Langage : [TypeScript](https://www.typescriptlang.org/)<br />
+
+
 CSS Utility Framework  : [TailwindCss](https://tailwindcss.com/)<br />
 Librairie de composants UI : [@mui/material](https://mui.com/material-ui/)<br />
 Linter : [EsLint](https://eslint.org/)<br />
 Formateur de code : [Prettier](https://prettier.io/)<br />
 Git Hooks : [Husky](https://typicode.github.io/husky/)<br />
 Gestionnaire de paquets : [Yarn](https://yarnpkg.com/)<br />
-Gestionnaire de paiement en ligne : [Stripe](https://www.stripe.com/)<br />
+Paiement en ligne : [Stripe](https://www.stripe.com/)<br />
 Cartographie : [mapLibre-gl](https://maplibre.org/maplibre-gl-js/docs/)<br />
 Notifications toast : [react-toastify](https://github.com/fkhadra/react-toastify)<br />
+Gestionnaire `multipart/form-data` : [multer](https://github.com/expressjs/multer)<br />
+Redimensionnement d’images : [sharp](https://github.com/lovell/sharp)<br />

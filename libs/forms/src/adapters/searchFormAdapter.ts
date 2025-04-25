@@ -1,7 +1,11 @@
 import { SearchGaragesQueryVariables } from '@parky/network/src/gql/generated'
 import { FormTypeSearchGarage } from '../searchGarages'
 import { useState, useEffect } from 'react'
-import { FieldNamesMarkedBoolean, useFormContext } from 'react-hook-form'
+import {
+  FieldNamesMarkedBoolean,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form'
 import { useDebounce } from '@parky/util/hooks/async'
 import { intFilter } from './util'
 
@@ -24,17 +28,20 @@ type FormData = Partial<
 export const useConvertSearchFormToVariables = () => {
   const [variables, setVariables] =
     useState<SearchGaragesQueryVariables | null>(null)
+
   const {
     formState: { dirtyFields },
     watch,
   } = useFormContext<FormTypeSearchGarage>()
-  const formData = watch()
-  const debouncedFormData = useDebounce(formData, 1000)
+
+  const formData = useWatch<FormTypeSearchGarage>()
+
+  const [debouncedFormData, { debouncing }] = useDebounce(formData, 300)
 
   useEffect(() => {
     const {
-      endTime,
-      startTime,
+      endTime = '',
+      startTime = '',
       locationFilter,
       length,
       width,
@@ -45,10 +52,16 @@ export const useConvertSearchFormToVariables = () => {
       take,
     } = debouncedFormData
 
+    if (!startTime || !endTime || !locationFilter) {
+      return
+    }
+
     const dateFilter: SearchGaragesQueryVariables['dateFilter'] = {
       start: startTime,
       end: endTime,
     }
+
+    const { ne_lat = 0, ne_lng = 0, sw_lat = 0, sw_lng = 0 } = locationFilter
 
     const slotsFilter = createSlotsFilter(dirtyFields, {
       length,
@@ -60,23 +73,15 @@ export const useConvertSearchFormToVariables = () => {
 
     const garagesFilter = createGaragesFilter(dirtyFields, { skip, take })
 
-    const newVariables = {
+    setVariables({
       dateFilter,
-      locationFilter,
+      locationFilter: { ne_lat, ne_lng, sw_lat, sw_lng },
       ...(Object.keys(slotsFilter).length && { slotsFilter }),
       ...(Object.keys(garagesFilter).length && { garagesFilter }),
-    }
-
-    // Vérifie si les nouvelles variables sont différentes des anciennes
-    setVariables((prevVariables) => {
-      if (JSON.stringify(prevVariables) !== JSON.stringify(newVariables)) {
-        return newVariables
-      }
-      return prevVariables
     })
-  }, [debouncedFormData, dirtyFields])
+  }, [debouncedFormData])
 
-  return { variables }
+  return { variables, debouncing }
 }
 
 export const createSlotsFilter = (

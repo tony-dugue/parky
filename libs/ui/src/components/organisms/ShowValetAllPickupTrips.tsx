@@ -11,7 +11,7 @@ import { AssignValetButton } from './AssignValetButton'
 export const ShowValetAllPickupTrips = () => {
   const { loading, data } = useQuery(ValetPickupsDocument)
   const { setSkip, setTake, skip, take } = useTakeSkip()
-  console.log(setSkip, setTake, skip, take)
+
   return (
     <ShowData
       loading={loading}
