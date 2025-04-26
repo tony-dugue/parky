@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { MathUtils } from 'three'
 import { BUILDING_SETS } from '../util/buildingSets'
 import { radians, randExp } from '../util'
@@ -12,24 +12,26 @@ export const BuildingSet = ({
   minHeight?: number
   maxHeight?: number
 }) => {
-  const [buildingSetIndex, setBuildingSetIndex] = useState<number>(0)
+  const [buildingSet, setBuildingSet] = useState<(typeof BUILDING_SETS)[0]>([])
   const [floors, setFloors] = useState<number[]>([])
 
   useEffect(() => {
-    setBuildingSetIndex(MathUtils.randInt(0, BUILDING_SETS.length - 1))
+    const randomSet =
+      BUILDING_SETS[MathUtils.randInt(0, BUILDING_SETS.length - 1)]
+    setBuildingSet(randomSet)
 
     setFloors(
-      BUILDING_SETS[buildingSetIndex].map(() => {
+      randomSet.map(() => {
         const randHeight = randExp(minHeight, maxHeight, 7)
         return Math.floor(randHeight)
       }),
     )
-  }, [])
+  }, [minHeight, maxHeight])
 
   return (
     <group>
-      {BUILDING_SETS[buildingSetIndex].map(({ length, position, width }, i) => (
-        <>
+      {buildingSet.map(({ length, position, width }, i) => (
+        <Fragment key={`${position.join('-')}`}>
           <Building
             position={
               position.map((pos) => pos * 2) as [number, number, number]
@@ -50,7 +52,7 @@ export const BuildingSet = ({
             <planeGeometry args={[width * 2, length * 2]} />
             <meshBasicMaterial color={'black'} transparent opacity={0.6} />
           </mesh>
-        </>
+        </Fragment>
       ))}
     </group>
   )
