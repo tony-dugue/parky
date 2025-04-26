@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.30.0",
+    "i18next": "^25.0.1",
     "next": "15.2.4",
     "next-auth": "^4.24.11",
+    "next-i18next": "^15.4.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.5.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

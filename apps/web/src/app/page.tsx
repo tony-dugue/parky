@@ -2,8 +2,11 @@
 import { CarScene } from '@parky/3d/src/scenes/CarScene'
 import { IconSearch } from '@tabler/icons-react'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 export default function Home() {
+  const { t } = useTranslation()
+
   return (
     <main className="h-[calc(100vh-4rem)] ">
       <div className="absolute top-16 bottom-0 left-0 right-0">
@@ -19,7 +22,8 @@ export default function Home() {
           href="/search"
           className="z-10 flex items-center gap-2 px-3 py-2 text-xl font-medium text-black underline underline-offset-4 bg-primary"
         >
-          <IconSearch /> Search now
+          <IconSearch />
+          {t('search-now')}
         </Link>
       </div>
     </main>

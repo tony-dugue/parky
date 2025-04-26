@@ -7,6 +7,7 @@ import { MenuItem } from '@parky/util/types'
 import { ToastContainer } from '@parky/ui/src/components/molecules/Toast'
 import { Header } from '@parky/ui/src/components/organisms/Header'
 import { Container } from '@parky/ui/src/components/atoms/Container'
+import { Providers } from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,15 +28,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <SessionProvider>
-        <ApolloProvider>
-          <body className={`${inter.className} bg-gray-25`}>
-            <Header menuItems={MENUITEMS} />
-            <Container>{children}</Container>
-            <ToastContainer />
-          </body>
-        </ApolloProvider>
-      </SessionProvider>
+      <Providers>
+        <SessionProvider>
+          <ApolloProvider>
+            <body className={`${inter.className} bg-gray-25`}>
+              <Header menuItems={MENUITEMS} />
+              <Container>{children}</Container>
+              <ToastContainer />
+            </body>
+          </ApolloProvider>
+        </SessionProvider>
+      </Providers>
     </html>
   )
 }
