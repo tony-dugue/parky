@@ -20,7 +20,7 @@ export const useMapDirections = (
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://routing.openstreetmap.de/routed-car/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`,
+          `http://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=simplified&geometries=geojson&alternatives=false&steps=true`,
         )
         const data = await response.json()
         const coordinates =

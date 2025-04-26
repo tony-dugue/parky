@@ -23,6 +23,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { TotalPrice } from '@parky/util/types'
 import { ManageValets } from './ManageValets'
+import { toast } from 'react-toastify'
 
 export const BookSlotPopup = ({
   garage,
@@ -85,10 +86,16 @@ export const BookSlotPopup = ({
               : null),
           }
 
-          setBooking(true)
-          // Create booking session
-          await createBookingSession(uid!, totalPriceObj, bookingData)
-          setBooking(false)
+          try {
+            setBooking(true)
+            // Create booking session
+            await createBookingSession(uid!, totalPriceObj, bookingData)
+          } catch (err) {
+            console.log('err', err)
+            toast('An error occurred while creating the booking session')
+          } finally {
+            setBooking(false)
+          }
         })}
       >
         <div className="flex items-start gap-2">
@@ -244,25 +251,30 @@ export const createBookingSession = async (
     return (window.location.href = res.redirectUrl)
   }
 
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      totalPriceObj,
-      uid,
-      bookingData,
-    }),
-  })
-  const checkoutSession = await response.json()
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        totalPriceObj,
+        uid,
+        bookingData,
+      }),
+    })
+    const checkoutSession = await response.json()
 
-  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 
-  const stripe = await loadStripe(publishableKey || '')
-  const result = await stripe?.redirectToCheckout({
-    sessionId: checkoutSession.sessionId,
-  })
+    const stripe = await loadStripe(publishableKey || '')
+    const result = await stripe?.redirectToCheckout({
+      sessionId: checkoutSession.sessionId,
+    })
 
-  return result
+    return result
+  } catch (error) {
+    console.error('Error creating booking session:', error)
+    throw error
+  }
 }
