@@ -30,7 +30,6 @@ export const LoginForm = ({}: ILoginFormProps) => {
         setLoading(true)
 
         const result = await signIn('credentials', {
-          //const result = await signIn('google', {
           email,
           password,
           redirect: false,

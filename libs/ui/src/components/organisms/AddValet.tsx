@@ -10,7 +10,10 @@ import { HtmlLabel } from '../atoms/HtmlLabel'
 //import { useCloudinaryUpload } from '@parky/util/hooks/cloudinary'
 import { useLocalFileUpload } from '@parky/util/hooks/fileUpload'
 import { useMutation } from '@apollo/client'
-import { CreateValetDocument } from '@parky/network/src/gql/generated'
+import {
+  CreateValetDocument,
+  namedOperations,
+} from '@parky/network/src/gql/generated'
 import { toast } from '../molecules/Toast'
 
 export const AddValet = () => {
@@ -32,6 +35,8 @@ export const AddValet = () => {
       reset()
       setOpen(false)
     },
+    awaitRefetchQueries: true,
+    refetchQueries: [namedOperations.Query.companyValets],
   })
 
   //const { uploading, upload } = useCloudinaryUpload()
