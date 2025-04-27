@@ -5,9 +5,9 @@ import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvi
 import { ApolloProvider } from '@parky/network/src/config/apollo'
 import { MenuItem } from '@parky/util/types'
 import { ToastContainer } from '@parky/ui/src/components/molecules/Toast'
-import { Header } from '@parky/ui/src/components/organisms/Header'
 import { Container } from '@parky/ui/src/components/atoms/Container'
 import { Providers } from './providers'
+import HeaderWithTranslation from './HeaderWithTranslation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'Valet parking management and reservation application - Valet space',
 }
 
-const MENUITEMS: MenuItem[] = [{ label: 'My Trips', href: '/my-trips' }]
+const MENUITEMS: MenuItem[] = [{ label: 'my-trips-label', href: '/my-trips' }]
 
 export default function RootLayout({
   children,
@@ -30,7 +30,7 @@ export default function RootLayout({
         <Providers>
           <SessionProvider>
             <ApolloProvider>
-              <Header type="valet" menuItems={MENUITEMS} />
+              <HeaderWithTranslation menuItems={MENUITEMS} />
               <Container>{children}</Container>
             </ApolloProvider>
           </SessionProvider>

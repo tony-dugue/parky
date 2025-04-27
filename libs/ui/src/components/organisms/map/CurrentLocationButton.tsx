@@ -2,8 +2,6 @@ import { IconCurrentLocation } from '@tabler/icons-react'
 import { useMap } from 'react-map-gl/maplibre'
 import { Button } from '../../atoms/Button'
 
-//export interface ICurrentLocationButtonProps {}
-
 export const CurrentLocationButton = () => {
   const { current: map } = useMap()
 

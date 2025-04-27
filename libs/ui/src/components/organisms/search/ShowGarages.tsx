@@ -9,8 +9,11 @@ import { useConvertSearchFormToVariables } from '@parky/forms/src/adapters/searc
 import { Panel } from '../map/Panel'
 import { Loader } from '../../molecules/Loader'
 import { IconInfoCircle } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
 
 export const ShowGarages = () => {
+  const { t } = useTranslation()
+
   const { variables, debouncing } = useConvertSearchFormToVariables()
 
   const [
@@ -54,7 +57,7 @@ export const ShowGarages = () => {
       >
         <div className="flex items-center justify-center gap-2 ">
           <IconInfoCircle />
-          <div>No parking slots found in this area.</div>
+          <div>{t('message.no-parking')}</div>
         </div>
       </Panel>
     )

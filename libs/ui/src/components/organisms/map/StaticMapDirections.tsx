@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useMemo, useRef } from 'react'
 import Map, { Marker, Source, Layer, MapRef } from 'react-map-gl/maplibre'
 import type { LatLng } from '@parky/util/types'

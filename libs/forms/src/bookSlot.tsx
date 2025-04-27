@@ -4,6 +4,9 @@ import { isEndTimeValid, isStartTimeValid } from './util'
 import { DefaultValues, FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+
+type Translator = (key: string) => string
 
 export const locationInfo = z.object({
   lat: z.number(),
@@ -18,38 +21,51 @@ export const formSchemaValet = z.object({
   differentLocations: z.boolean().optional(),
 })
 
-export const formSchemaBookSlot = z
-  .object({
-    startTime: z.string(),
-    endTime: z.string(),
-    vehicleNumber: z.string().min(1, { message: 'Vehicle number is required' }),
-    phoneNumber: z.string().min(1, { message: 'Phone number is required' }),
-    type: z.nativeEnum(SlotType, {
-      required_error: 'Slot type is required',
-    }),
-    valet: formSchemaValet.optional(),
-  })
-  .refine(({ startTime }) => isStartTimeValid(startTime), {
-    message: 'Start time should be greater than current time',
-    path: ['startTime'],
-  })
-  .refine(({ endTime, startTime }) => isEndTimeValid({ endTime, startTime }), {
-    message: 'End time should be greater than start time',
-    path: ['endTime'],
-  })
+export const buildFormSchemaBookSlot = (t: Translator) =>
+  z
+    .object({
+      startTime: z.string(),
+      endTime: z.string(),
+      vehicleNumber: z.string().min(1, {
+        message: t('form.validation.vehicule-number-required'),
+      }),
+      phoneNumber: z.string().min(1, {
+        message: t('form.validation.phone-number-required'),
+      }),
+      type: z.nativeEnum(SlotType, {
+        required_error: t('form.validation.slot-type-required'),
+      }),
+      valet: formSchemaValet.optional(),
+    })
+    .refine(({ startTime }) => isStartTimeValid(startTime), {
+      message: t('form.validation.start-time-invalid'),
+      path: ['startTime'],
+    })
+    .refine(
+      ({ endTime, startTime }) => isEndTimeValid({ endTime, startTime }),
+      {
+        message: t('form.validation.end-time-invalid'),
+        path: ['endTime'],
+      },
+    )
 
-export type FormTypeBookSlot = z.infer<typeof formSchemaBookSlot>
+export type FormTypeBookSlot = z.infer<
+  ReturnType<typeof buildFormSchemaBookSlot>
+>
 
 export const userFormBookSlot = ({
   defaultValues,
 }: {
   defaultValues: DefaultValues<FormTypeBookSlot>
-}) =>
-  useForm<FormTypeBookSlot>({
-    resolver: zodResolver(formSchemaBookSlot),
+}) => {
+  const { t } = useTranslation()
+
+  return useForm<FormTypeBookSlot>({
+    resolver: zodResolver(buildFormSchemaBookSlot(t)),
     defaultValues,
     mode: 'onChange',
   })
+}
 
 export const FormProviderBookSlot = ({
   children,

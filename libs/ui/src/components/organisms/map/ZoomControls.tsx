@@ -2,8 +2,6 @@ import { MouseEventHandler, ReactNode } from 'react'
 import { IconMinus, IconParking, IconPlus } from '@tabler/icons-react'
 import { useMap } from 'react-map-gl/maplibre'
 
-//export interface IZoomControlsProps {}
-
 const MapControls = ({ children }: { children: ReactNode }) => (
   <div className="flex flex-col overflow-hidden gap-0.5 space-y rounded shadow-lg divide-primary-800 backdrop-blur-sm">
     {children}

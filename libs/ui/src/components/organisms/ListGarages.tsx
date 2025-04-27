@@ -8,12 +8,15 @@ import { ShowData } from './ShowData'
 import Link from 'next/link'
 import { IconPlus } from '@tabler/icons-react'
 import { GarageCard } from './GarageCard'
+import { useTranslation } from 'react-i18next'
 
 export const ListGarages = ({
   companyId,
 }: {
   companyId: MyCompanyQuery['myCompany']['id']
 }) => {
+  const { t } = useTranslation()
+
   const { setSkip, setTake, skip, take } = useTakeSkip()
 
   const { data, loading, error } = useQuery(GaragesDocument, {
@@ -35,7 +38,7 @@ export const ListGarages = ({
       childrenClassName="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3"
       title={
         <div className="flex items-center gap-4">
-          <div>Garages</div>
+          <div>{t('message.garages')}</div>
           <Link
             href="/new-garage"
             className="rounded-full border border-black p-0.5"

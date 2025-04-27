@@ -1,4 +1,5 @@
 'use client'
+import { useTranslation } from 'react-i18next'
 import { useFormLogin } from '@parky/forms/src/login'
 import { Form } from '../atoms/Form'
 import { HtmlLabel } from '../atoms/HtmlLabel'
@@ -14,6 +15,8 @@ export interface ILoginFormProps {
 }
 
 export const LoginForm = ({}: ILoginFormProps) => {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -40,38 +43,41 @@ export const LoginForm = ({}: ILoginFormProps) => {
           replace('/')
         }
         if (result?.error) {
-          alert('Login failed. Try again.')
+          alert(t('auth.login-failed'))
         }
       })}
     >
-      <HtmlLabel title="Email" error={errors.email?.message}>
+      <HtmlLabel title={t('form.title.email')} error={errors.email?.message}>
         <HtmlInput
           {...register('email')}
           className="text-black"
-          placeholder="email"
+          placeholder={t('form.placeholder.email')}
         />
       </HtmlLabel>
-      <HtmlLabel title="Password" error={errors.password?.message}>
+      <HtmlLabel
+        title={t('form.title.password')}
+        error={errors.password?.message}
+      >
         <HtmlInput
           className="text-black"
           type="password"
           {...register('password')}
-          placeholder="******"
+          placeholder={t('form.placeholder.password')}
         />
       </HtmlLabel>
       <Button type="submit" loading={loading}>
-        Submit
+        {t('button.submit')}
       </Button>
       <div className="mt-4 text-sm">
-        Do not have an autospace account?
+        {t('auth.not-account')}
         <br />
         <Link
           href="/register"
           className="font-bold underline underline-offset-4"
         >
-          Create one
+          {t('button.create-one')}
         </Link>{' '}
-        now.
+        {t('button.now')}
       </div>
     </Form>
   )

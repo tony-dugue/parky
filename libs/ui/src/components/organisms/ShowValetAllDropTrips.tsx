@@ -1,14 +1,16 @@
+import { useQuery } from '@apollo/client'
+import { useTranslation } from 'react-i18next'
 import {
   BookingStatus,
   ValetDropsDocument,
 } from '@parky/network/src/gql/generated'
-import { useQuery } from '@apollo/client'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { ShowData } from './ShowData'
 import { ValetTripCard } from './ValetTripCard'
 import { AssignValetButton } from './AssignValetButton'
 
 export const ShowValetAllDropTrips = () => {
+  const { t } = useTranslation()
   const { loading, data } = useQuery(ValetDropsDocument)
   const { setSkip, setTake, skip, take } = useTakeSkip()
   return (
@@ -40,7 +42,7 @@ export const ShowValetAllDropTrips = () => {
             bookingId={booking.id}
             status={BookingStatus.ValetAssignedForCheckOut}
           >
-            Accept
+            {t('button.accept')}
           </AssignValetButton>
         </ValetTripCard>
       ))}

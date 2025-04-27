@@ -7,6 +7,7 @@ import { ReactNode } from 'react'
 import { useMutation } from '@apollo/client'
 import { toast } from '../molecules/Toast'
 import { Button } from '../atoms/Button'
+import { useTranslation } from 'react-i18next'
 
 export const AssignValetButton = ({
   bookingId,
@@ -17,6 +18,8 @@ export const AssignValetButton = ({
   status: BookingStatus
   children: ReactNode
 }) => {
+  const { t } = useTranslation()
+
   const [assignPickup, { loading }] = useMutation(AssignValetDocument, {
     awaitRefetchQueries: true,
     refetchQueries: [
@@ -26,7 +29,7 @@ export const AssignValetButton = ({
       namedOperations.Query.myPickupTrips,
     ],
     onCompleted(data) {
-      toast(`Action successful.ID: ${data.assignValet.id}`)
+      toast(`${t('toast.action-successful')} ${data.assignValet.id}`)
     },
   })
 

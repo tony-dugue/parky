@@ -1,5 +1,6 @@
 import { Role } from '@parky/util/types'
 import { BrandIcon } from './BrandIcon'
+import { useTranslation } from 'react-i18next'
 
 export interface IBrandProps {
   className?: string
@@ -12,22 +13,24 @@ export const Brand = ({
   className,
   type = undefined,
 }: IBrandProps) => {
+  const { t } = useTranslation()
+
   return (
     <div className={`grid place-items-center z-50 ${className}`}>
       <div className="text-xl ">
         {shortForm ? (
           <div className="flex gap-1">
-            <BrandIcon /> P.
+            <BrandIcon /> {t('brand.icon')}
           </div>
         ) : (
           <div className="flex items-center gap-2 font-medium tracking-tighter font-playfair">
             <BrandIcon />
             <div>
               <div className="flex gap-1">
-                <div>Parky</div>
+                <div>{t('brand.name')}</div>
                 {type ? <span className="text-xs">{type}</span> : null}
               </div>
-              <div className="text-xs text-gray">Book Parking Online</div>
+              <div className="text-xs text-gray">{t('brand.description')}</div>
             </div>
           </div>
         )}

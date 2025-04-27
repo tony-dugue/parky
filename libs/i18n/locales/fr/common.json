@@ -1,3 +1,293 @@
 {
-  "search-now": "Rechercher maintenant"
+  "web": {
+    "general": {
+      "menu-items": {
+        "search-label": "Rechercher",
+        "bookings-label": "Réservations"
+      }
+    },
+    "homepage": {
+      "search-cta-1": "Besoin d'un",
+      "search-cta-2": "parking ?"
+    },
+    "booking-failed": {
+      "message": "Échec de la réservation."
+    }
+  },
+  "web-admin": {
+    "general": {
+      "menu-items": {
+        "garages-label": "Parkings",
+        "admins-label": "Administrateurs"
+      }
+    }
+  },
+  "web-manager": {
+    "general": {
+      "menu-items": {
+        "new-garage-label": "Nouveau parking",
+        "valets-label": "Voituriers"
+      }
+    }
+  },
+  "web-valet": {
+    "general": {
+      "menu-items": {
+        "my-trips-label": "Mes trajets"
+      }
+    }
+  },
+  "3d-scene": {
+    "comments": {
+      "frustrated": [
+        "Besoin d'une place de parking ou je commence \nun covoiturage sur le toit.",
+        "Pourquoi toutes les routes mènent à aucun parking' ?",
+        "À la recherche de mon lieu de bonheur... \nAKA une place de parking.",
+        "J'aurais dû acheter un hélicoptère à la place.",
+        "Si j'avais une pièce pour chaque place prise, \nj'aurais acheté tout le parking.",
+        "Je reviens, je fais le tour du parking pour la 100e fois.",
+        "Trouver une âme sœur semble plus facile \nque trouver une place de parking.",
+        "Je suis venu, j'ai vu... J'ai tourné dans le parking.",
+        "En couple avec le panneau 'P'.",
+        "Je vieillis à attendre une place de parking.",
+        "La quête du Saint Graal était probablement plus facile.",
+        "Si le parking était un sport olympique, \nje serais toujours dernier.",
+        "À la recherche d'une place, \nenvoyez de l'aide.",
+        "Je commence à regretter mon vieux tricycle.",
+        "La prochaine fois, je prends une voiture \navec sa propre place de parking.",
+        "Envie de jouer à 'Chasse à la place de parking' ?",
+        "Voiture à vendre : passe plus de temps \nà chercher une place qu'à conduire.",
+        "Y a-t-il un code pour un parking instantané ?",
+        "Réunion ? Haha. Je n'ai même pas trouvé de place.",
+        "Je n'avais pas signé pour cet épisode de \n'Parking Spot Wars'.",
+        "Chérie, je vais être en retard. \nJe suis coincé dans une saga de parking.",
+        "Je suis sûr que ma voiture apprécie ce \ntour du parking.",
+        "On ne gare pas simplement une voiture dans une \nville animée.",
+        "Qui a besoin d'une salle de sport quand on a \nune séance de parking ?",
+        "Ce n'est pas du parking, \nc'est cache-cache pour voitures !",
+        "Je n'ai pas choisi la vie du parking. \nC'est le parking qui m'a choisi.",
+        "Excusez-moi, je vais garer ma voiture dans un autre fuseau horaire.",
+        "Le parking : Le test ultime de patience.",
+        "Un petit pas pour l'homme, \nun grand saut pour trouver une place.",
+        "C'est l'heure de mon jeu quotidien de \nRepérer la place de parking.",
+        "Je parie que je vais trouver une place avant de me rendre.",
+        "Si j'avais une pièce pour chaque minute \npassée à chercher une place, \nje serais millionnaire.",
+        "Mon GPS dit 'Vous êtes arrivés à destination', \nmais où est le parking ?!",
+        "J'ai tellement tourné que \nje suis tout étourdi. \nOù est cette place ?",
+        "Je me demande si ma voiture est aussi fatiguée que \nmoi de chercher une place.",
+        "Chercher une place, c'est la cardio préférée de ma voiture.",
+        "Un jour, je raconterai à mes petits-enfants \nl'odyssée du parking.",
+        "Je crois que je viens de voir une herbe folle passer...",
+        "Siri, trouve-moi la place de parking la plus proche, \ns'il te plaît !",
+        "C'est l'heure de mon jeu préféré : \nroulette de parking.",
+        "J'ai 99 problèmes, \nmais le parking est tous les miens.",
+        "Je jure, les places de parking jouent \naux chaises musicales sans moi.",
+        "Si je passe encore plus de temps à chercher, \nje vais devoir refaire le plein.",
+        "Je pense adopter un pigeon voyageur \npour trouver des places à ma place.",
+        "Il n'y a pas de 'je' dans 'parker', \nmais il y en a un dans 'tourner autour du parking pour la cinquième fois'.",
+        "Je parie que même Christophe Colomb a trouvé l'Amérique plus vite \nque je trouve une place.",
+        "Si je me gare plus loin, \nje serai dans la ville voisine.",
+        "On dirait qu'il est temps de jouer à mon bingo de parking.",
+        "Je cherche un tapis magique, \nparce qu'Aladdin n'a jamais eu de problèmes de parking.",
+        "Devinez qui part en \nsafari parking inattendu !",
+        "Les parkings, c'est juste une version adulte \ndes chaises musicales.",
+        "Est-ce que toutes les places de parking sont parties \nen vacances ou quoi ?",
+        "Il y a deux types de personnes : \nceux qui trouvent une place, \net ceux qui ne trouvent pas. \nDevinez qui je suis.",
+        "Garez-vous n'importe où, ils ont dit. \nÇa sera facile, ils ont dit.",
+        "J'ai vu des licornes, \nle monstre du Loch Ness, \nmais une place libre ? Jamais.",
+        "\"Siri, trouve-moi la place la plus proche, s'il te plaît !\" \nSiri : \"Hmm, il y a une place à 200 kilomètres. Prêt pour un road trip ?\""
+      ]
+    }
+  },
+  "button": {
+    "search-now": "Rechercher maintenant",
+    "create": "Créer",
+    "create-admin": "Créer un administrateur",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "submit": "Envoyer",
+    "accept": "Accepter",
+    "pickup": "Prise en charge",
+    "drop": "Dépot",
+    "reset": "Réinitialiser",
+    "loading": "Chargement...",
+    "create-valet": "Créer un voiturier",
+    "create-company": "Créer une société",
+    "create-slots": "Créer des emplacements",
+    "book-now": "Réserver maintenant",
+    "remove-slot-type": "Supprimer un type d'emplacement",
+    "add-slots": "Ajouter des emplacements",
+    "verification": "Vérifier",
+    "bookings": "Réservations",
+    "register": "S'inscrire",
+    "login": "Se connecter",
+    "unlist": "Retirer de la liste",
+    "check-in": "PRISE EN CHARGE",
+    "check-out": "RESTITUTION",
+    "create-one": "Crée un",
+    "now": "maintenant.",
+    "register-account": "Créer le compte"
+  },
+  "form": {
+    "validation": {
+      "vehicule-number-required": "Le numéro d'immatriculation du véhicule est requis",
+      "phone-number-required": "Le numéro de téléphone est requis",
+      "slot-type-required": "Le type d'emplacement est requis",
+      "start-time-invalid": "L'heure de début doit être supérieure à l'heure actuelle",
+      "end-time-invalid": "L'heure de fin doit être supérieure à l'heure de début",
+      "company-name-required": "Le nom de la société est requis",
+      "manager-id-required": "L'ID du manager est requis",
+      "address-required": "L'adresse est requise",
+      "minimum-count": "Le nombre minimum est 1",
+      "maximum-count": "Le nombre maximum est 10",
+      "display-name-required": "Le nom d'affichage est requis",
+      "description-required": "La description est requise",
+      "number-invalid": "Veuillez entrer un nombre valide",
+      "valet-uid-required": "L'UID du voiturier est requis",
+      "valet-name-required": "Le nom du voiturier est requis",
+      "valet-licence-required": "La licence du voiturier est requise"
+    },
+    "input": {
+      "uid": "UID"
+    },
+    "placeholder": {
+      "search": "Rechercher...",
+      "valet-uid": "UID du voiturier",
+      "name-valet": "Nom du voiturier",
+      "licence-id": "ID de la licence du voiturier",
+      "vehicle-number": "AB123CD",
+      "phone-number": "0612345678",
+      "company-name": "Nom de la société",
+      "description": "Décrire votre société de parking",
+      "manager-id": "ID du manager",
+      "manager-name": "Nom du manager",
+      "vehicule-type": "Type de véhicule",
+      "price-per-hour": "Entrez le prix par heure",
+      "number-slots": "Entrez le nombre d'emplacements",
+      "length": "Entrez la longueur en pieds",
+      "width": "Entrez la largeur en pieds",
+      "height": "Entrez la hauteur en pieds",
+      "slot-type": "Type d'emplacement",
+      "search-vehicle": "Rechercher une immatriculation de véhicule",
+      "garage-name": "Nom du garage",
+      "address": "123, rue ...",
+      "email": "Saisir votre email",
+      "password": "******",
+      "username": "Saisir votre nom"
+    },
+    "title": {
+      "vehicle-type": "Type de véhicule",
+      "price-per-hour": "Prix par heure",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "length": "Longueur",
+      "name-valet": "Nom du voiturier",
+      "uid": "Identifiant",
+      "licence-id": "Numéro de licence",
+      "slot-type": "Type d'emplacement",
+      "start-time": "Heure de début",
+      "end-time": "Heure de fin",
+      "vehicle-number": "Immatriculation du véhicule",
+      "phone-number": "Téléphone",
+      "company-name": "Nom de la société",
+      "description": "Description",
+      "manager-id": "ID du manager",
+      "manager-name": "Nom du manager",
+      "vehicule-type": "Type de véhicule",
+      "number-slots": "Nombre d'emplacements",
+      "garage-name": "Nom du garage",
+      "Address": "Adresse",
+      "email": "Email",
+      "password": "Mot de passe",
+      "username": "Nom d'utilisateur"
+    },
+    "message": {
+      "set-slot-type": "Choisir un type d'emplacement",
+      "open": "disponible",
+      "opens": "disponibles",
+      "parking": "Stationnement",
+      "valet-pickup": "Prise en charge par voiturier",
+      "valet-dropoff": "Dépose par voiturier",
+      "total": "Total",
+      "address": "Adresse :"
+    }
+  },
+  "unit-label": {
+    "per-hour": "/h"
+  },
+  "brand": {
+    "icon": "P.",
+    "name": "Parky",
+    "description": "Réservez votre parking en ligne"
+  },
+  "auth": {
+    "continue-with": "Ou, continuez avec",
+    "back-home": "Retour à l'accueil",
+    "logout": "Se déconnecter",
+    "not-an-admin": "Vous n'êtes pas administrateur.",
+    "not-logged-in": "Vous n'êtes pas connecté",
+    "login": "Se connecter",
+    "login-failed": "Echec de l'authentification. Réessayez plus tard.",
+    "not-account": "Vous n'avez pas encore de compte sur Parky ?",
+    "already-account": "Vous avez déjà un compte sur Parky ?"
+  },
+  "message": {
+    "no-result": "Aucun résultat",
+    "no-options": "Aucune option.",
+    "type-something": "Tapez quelque chose...",
+    "no-parking": "Aucun emplacement de parking trouvé dans cette zone.",
+    "no-images": "Aucune images.",
+    "clear-all": "Tout effacer",
+    "loading-user": "Chargement utilisateur...",
+    "loading-company": "Chargement entreprise...",
+    "no-company": "Vous n'avez pas encore d'entreprise.",
+    "not-an-admin": "Vous n'êtes pas administrateur.",
+    "not-a-valet-1": "Vous n'êtes pas un voiturier.",
+    "not-a-valet-2": "Veuillez contacter les managers de l'entreprise avec votre identifiant.",
+    "garages": "Parkings",
+    "vehicle-number": "Immatriculation du véhicule",
+    "slot": "Emplacement",
+    "status": "Statut",
+    "code": "Code",
+    "something-wrong": "Une erreur s'est produite.",
+    "valet": "Voiturier",
+    "valet-description": "Nos voituriers emmèneront votre voiture à son emplacement réservé et vous la ramèneront quand vous serez prêt. C’est comme de la magie, mais avec des voitures !",
+    "need-valet": "Besoin d'un voiturier ?",
+    "valet-description-dropoff": "Vous souhaitez que votre voiture soit livrée ailleurs ? Pas de problème ! Choisissez un autre point de dépôt et nous nous assurerons que votre véhicule vous y attendra.",
+    "add-different-dropoff": "Ajouter un autre lieu de dépôt ?",
+    "dropoff": "Dépôt",
+    "open-main-menu": "Ouvrir le menu principal",
+    "start-end-locations-not-set": "Les lieux de départ et d'arrivée ne sont pas définis.",
+    "bookings": "réservations",
+    "fix-errors": " Veuillez corriger les erreurs suivantes : "
+  },
+  "status": {
+    "past": "PASSÉ",
+    "on-going": "EN COURS",
+    "in": "PRISE EN CHARGE",
+    "out": "LIVRE",
+    "resolved": "TERMINE"
+  },
+  "toast": {
+    "valet-created": "Valet créé. 🎉",
+    "user-created": "Utilisateur créé.🎉",
+    "action-successful": "Action réussie. ID : ",
+    "action-failed": "Échec de l'action.",
+    "not-loggin": "Vous n'êtes pas connecté.",
+    "error-creating-booking": "Une erreur est survenue lors de la création de la session de réservation.",
+    "slots-created-successful": "Emplacements créés avec succès.",
+    "garage-location-not-yet": "Emplacement du garage non défini.",
+    "garage-successful": "Garage créé avec succès."
+  },
+  "badge": {
+    "verified": "Vérifié",
+    "not-verified": "Non vérifié"
+  },
+  "admin": {
+    "you": "Vous",
+    "since": "Depuis le",
+    "verification": "Vérifications.",
+    "remove-admin": "Êtes-vous sûr de vouloir supprimer cette âme innocente du royaume des administrateurs ?",
+    "delete": "Supprimer un admin"
+  }
 }

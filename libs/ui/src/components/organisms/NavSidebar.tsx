@@ -1,18 +1,21 @@
 'use client'
 import { IconMenu2 } from '@tabler/icons-react'
-import { Sidebar } from './Sidebar'
-import { useDialogState } from '@parky/util/hooks/dialog'
+import { useTranslation } from 'react-i18next'
 
+import { useDialogState } from '@parky/util/hooks/dialog'
 import { MenuItem } from '@parky/util/types'
 import { LogoutButton } from '../molecules/LogoutButton'
 import { UserInfo } from '../molecules/UserInfo'
 import { Menus } from './Menus'
+import { Sidebar } from './Sidebar'
 
 export interface INavSidebarProps {
   menuItems: MenuItem[]
 }
 
 export const NavSidebar = ({ menuItems }: INavSidebarProps) => {
+  const { t } = useTranslation()
+
   const [open, setOpen] = useDialogState()
 
   return (
@@ -21,7 +24,7 @@ export const NavSidebar = ({ menuItems }: INavSidebarProps) => {
         type="button"
         onClick={() => setOpen((state) => !state)}
         className="p-2"
-        aria-label="Open main menu"
+        aria-label={t('message.open-main-menu')}
       >
         <IconMenu2 className="w-5 h-5" />
       </button>

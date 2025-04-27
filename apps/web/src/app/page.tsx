@@ -13,17 +13,19 @@ export default function Home() {
         <CarScene />
       </div>
 
-      <div className="flex flex-col items-start space-y-2 font-black text-8xl">
-        <div className="z-10 inline-block px-3 bg-primary mt-2">Need</div>{' '}
+      <div className="flex flex-col items-start space-y-2 font-black text-7xl">
+        <div className="z-10 inline-block px-3 bg-primary mt-2">
+          {t('web.homepage.search-cta-1')}
+        </div>{' '}
         <div className="z-10 inline-block w-full max-w-md px-3 bg-primary ">
-          parking?
+          {t('web.homepage.search-cta-2')}
         </div>
         <Link
           href="/search"
           className="z-10 flex items-center gap-2 px-3 py-2 text-xl font-medium text-black underline underline-offset-4 bg-primary"
         >
           <IconSearch />
-          {t('search-now')}
+          {t('button.search-now')}
         </Link>
       </div>
     </main>

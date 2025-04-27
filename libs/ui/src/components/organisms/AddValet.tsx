@@ -15,8 +15,10 @@ import {
   namedOperations,
 } from '@parky/network/src/gql/generated'
 import { toast } from '../molecules/Toast'
+import { useTranslation } from 'react-i18next'
 
 export const AddValet = () => {
+  const { t } = useTranslation()
   const {
     register,
     resetField,
@@ -31,7 +33,7 @@ export const AddValet = () => {
 
   const [createValet, { loading }] = useMutation(CreateValetDocument, {
     onCompleted() {
-      toast('Valet created.🎉')
+      toast(t('toast.valet-created'))
       reset()
       setOpen(false)
     },
@@ -44,12 +46,12 @@ export const AddValet = () => {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Create Valet</Button>
+      <Button onClick={() => setOpen(true)}>{t('button.create-valet')}</Button>
       <Dialog
         widthClassName="max-w-xl"
         open={open}
         setOpen={setOpen}
-        title={'Create Valet'}
+        title={t('button.create-valet')}
       >
         <Form
           onSubmit={handleSubmit(async ({ image, ...data }) => {
@@ -59,20 +61,29 @@ export const AddValet = () => {
             })
           })}
         >
-          <HtmlLabel title="UID" error={errors.uid?.message}>
-            <HtmlInput placeholder="uid of the valet" {...register('uid')} />
+          <HtmlLabel title={t('form.title.uid')} error={errors.uid?.message}>
+            <HtmlInput
+              placeholder={t('form.placeholder.valet-uid')}
+              {...register('uid')}
+            />
           </HtmlLabel>
 
-          <HtmlLabel title="Display Name" error={errors.displayName?.message}>
+          <HtmlLabel
+            title={t('form.title.name-valet')}
+            error={errors.displayName?.message}
+          >
             <HtmlInput
-              placeholder="Name of the valet"
+              placeholder={t('form.placeholder.name-valet')}
               {...register('displayName')}
             />
           </HtmlLabel>
 
-          <HtmlLabel title="Licence ID" error={errors.licenceID?.message}>
+          <HtmlLabel
+            title={t('form.title.licence-id')}
+            error={errors.licenceID?.message}
+          >
             <HtmlInput
-              placeholder="Licence ID of the valet"
+              placeholder={t('form.placeholder.licence-id')}
               {...register('licenceID')}
             />
           </HtmlLabel>
@@ -93,7 +104,7 @@ export const AddValet = () => {
           </ImagePreview>
 
           <Button loading={uploading || loading} type="submit">
-            Create valet
+            {t('button.create')}
           </Button>
         </Form>
       </Dialog>

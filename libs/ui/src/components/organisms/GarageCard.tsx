@@ -3,12 +3,15 @@ import { AutoImageChanger } from './AutoImageChanger'
 import Link from 'next/link'
 import { IconTypes } from '../molecules/IconTypes'
 import { CreateManySlotsDialog } from './CreateManySlotsDialog'
+import { useTranslation } from 'react-i18next'
 
 export interface IGarageCardProps {
   garage: GaragesQuery['garages'][number]
 }
 
 export const GarageCard = ({ garage }: IGarageCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <div className="overflow-hidden bg-white shadow-lg flex flex-col">
       <AutoImageChanger images={garage.images || []} durationPerImage={5000} />
@@ -21,14 +24,14 @@ export const GarageCard = ({ garage }: IGarageCardProps) => {
               className="text-sm underline underline-offset-4"
               href={{ pathname: 'bookings', query: { garageId: garage.id } }}
             >
-              Bookings
+              {t('button.bookings')}
             </Link>
           </div>
           <p className="text-gray-500 text-sm my-2 line-clamp-2 ">
             {garage.description}
           </p>
           <p className="text-sm text-gray-400">
-            Address: {garage.address?.address}
+            {t('message.address')} {garage.address?.address}
           </p>
         </div>
         <div className="flex gap-2 mt-auto">

@@ -1,4 +1,5 @@
 'use client'
+import { useTranslation } from 'react-i18next'
 import { Role } from '@parky/util/types'
 import { useFormRegister } from '@parky/forms/src/register'
 import { useMutation } from '@apollo/client'
@@ -15,6 +16,8 @@ export interface ISignupFormProps {
   role?: Role
 }
 export const RegisterForm = ({}: ISignupFormProps) => {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -37,7 +40,9 @@ export const RegisterForm = ({}: ISignupFormProps) => {
         }
 
         if (data) {
-          alert(`User ${data.registerWithCredentials.uid} created. 🎉`)
+          alert(
+            `${t('auth.login-failed')} : ${data.registerWithCredentials.uid}`,
+          )
           signIn('credentials', {
             email: formData.email,
             password: formData.password,
@@ -46,43 +51,46 @@ export const RegisterForm = ({}: ISignupFormProps) => {
         }
       })}
     >
-      <HtmlLabel title="Email" error={errors.email?.message}>
+      <HtmlLabel title={t('form.title.email')} error={errors.email?.message}>
         <HtmlInput
           className="text-black"
-          placeholder="Enter the email."
+          placeholder={t('form.placeholder.email')}
           {...register('email')}
         />
       </HtmlLabel>
-      <HtmlLabel title="Password" error={errors.password?.message}>
+      <HtmlLabel
+        title={t('form.title.password')}
+        error={errors.password?.message}
+      >
         <HtmlInput
           className="text-black"
           type="password"
-          placeholder="······"
+          placeholder={t('form.placeholder.password')}
           {...register('password')}
         />
       </HtmlLabel>
-      <HtmlLabel title="Display name" error={errors.name?.message}>
+      <HtmlLabel title={t('form.title.username')} error={errors.name?.message}>
         <HtmlInput
           className="text-black"
-          placeholder="Enter your name."
+          placeholder={t('form.placeholder.username')}
           {...register('name')}
         />
       </HtmlLabel>
       {Object.keys(errors).length ? (
         <div className="text-xs text-red-500">
-          Please fix the above {Object.keys(errors).length} errors
+          {t('message.fix-errors')} : {Object.keys(errors).length}
         </div>
       ) : null}
       <Button type="submit" fullWidth loading={loading}>
-        Register
+        {t('button.register-account')}
       </Button>
       <div className="mt-4 text-sm ">
-        Already have an autospace account?
+        {t('auth.already-account')}
         <br />
         <Link href="/login" className="font-bold underline underline-offset-4">
-          Login
+          {t('button.login')}
         </Link>{' '}
-        now.
+        {t('button.now')}
       </div>
     </Form>
   )

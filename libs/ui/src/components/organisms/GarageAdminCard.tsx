@@ -2,6 +2,7 @@ import { GaragesQuery } from '@parky/network/src/gql/generated'
 import { ReactNode } from 'react'
 import { MapLink } from '../molecules/MapLink'
 import { IconTypes } from '../molecules/IconTypes'
+import { useTranslation } from 'react-i18next'
 
 export const GarageAdminCard = ({
   children,
@@ -10,6 +11,8 @@ export const GarageAdminCard = ({
   children: ReactNode
   garage: GaragesQuery['garages'][0]
 }) => {
+  const { t } = useTranslation()
+
   return (
     <div className="p-2 bg-white flex flex-col gap-2">
       <p className="text-xs ">#{garage.id}</p>
@@ -18,11 +21,11 @@ export const GarageAdminCard = ({
         <div>
           {garage.verification?.verified ? (
             <span className="px-1 py-0.5 shadow text-xs bg-green-50 ">
-              Verified
+              {t('badge.verified')}
             </span>
           ) : (
             <span className="px-1 py-0.5 shadow text-xs bg-red-50 ">
-              Not Verified
+              {t('badge.not-verified')}
             </span>
           )}
         </div>

@@ -13,6 +13,7 @@ import {
   CreateCompanyDocument,
   namedOperations,
 } from '@parky/network/src/gql/generated'
+import { useTranslation } from 'react-i18next'
 
 export const CreateCompany = () => {
   const {
@@ -23,6 +24,7 @@ export const CreateCompany = () => {
   } = useFormCreateCompany()
 
   const session = useSession()
+  const { t } = useTranslation()
   const uid = session.data?.user?.uid
   const managerName = session.data?.user?.name
 
@@ -39,8 +41,10 @@ export const CreateCompany = () => {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Create Company</Button>
-      <Dialog open={open} setOpen={setOpen} title="Create company">
+      <Button onClick={() => setOpen(true)}>
+        {t('button.create-company')}
+      </Button>
+      <Dialog open={open} setOpen={setOpen} title={t('button.create-company')}>
         <Form
           onSubmit={handleSubmit(async (data) => {
             await createCompany({
@@ -52,37 +56,49 @@ export const CreateCompany = () => {
             })
           })}
         >
-          <HtmlLabel title="Company name" error={errors.displayName?.message}>
+          <HtmlLabel
+            title={t('form.title.company-name')}
+            error={errors.displayName?.message}
+          >
             <HtmlInput
-              placeholder="Company name"
+              placeholder={t('form.placeholder.company-name')}
               {...register('displayName')}
             />
           </HtmlLabel>
 
-          <HtmlLabel title="Description" error={errors.displayName?.message}>
+          <HtmlLabel
+            title={t('form.title.description')}
+            error={errors.description?.message}
+          >
             <HtmlTextArea
-              placeholder="Describe your parking company"
+              placeholder={t('form.placeholder.description')}
               {...register('description')}
             />
           </HtmlLabel>
 
-          <HtmlLabel title="Manager ID" error={errors.managerId?.message}>
+          <HtmlLabel
+            title={t('form.title.manager-id')}
+            error={errors.managerId?.message}
+          >
             <HtmlInput
-              placeholder="Manager ID"
+              placeholder={t('form.placeholder.manager-id')}
               {...register('managerId')}
               readOnly
             />
           </HtmlLabel>
 
-          <HtmlLabel title="Manager name" error={errors.managerName?.message}>
+          <HtmlLabel
+            title={t('form.title.manager-name')}
+            error={errors.managerName?.message}
+          >
             <HtmlInput
-              placeholder="Manager name"
+              placeholder={t('form.placeholder.manager-name')}
               {...register('managerName')}
             />
           </HtmlLabel>
 
           <Button loading={loading} type="submit">
-            Submit
+            {t('button.create')}
           </Button>
         </Form>
       </Dialog>

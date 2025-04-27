@@ -1,11 +1,11 @@
 import { Color } from '@react-three/fiber'
 import { Euler, MathUtils, Vector3 } from 'three'
 import { useEffect, useState } from 'react'
-import { getRamdomComment } from '../util/comments'
 import { Box, Html } from '@react-three/drei'
 import { radians } from '../util'
 import { BlinkingParkingSlot } from './BlinkingParkingSlot'
 import { GradientPlane } from './GradientPlane'
+import { useTranslation } from 'react-i18next'
 
 interface CarProps {
   color?: Color
@@ -26,6 +26,8 @@ export const Car: React.FC<CarProps> = ({
   comment = false,
   size,
 }) => {
+  const { t } = useTranslation()
+
   const [vehicleSize, setVehicleSize] = useState<[number, number, number]>([
     0, 0, 0,
   ])
@@ -39,16 +41,29 @@ export const Car: React.FC<CarProps> = ({
     setVehicleSize(newSize)
   }, [size])
 
-  const [randomComment, setRandomComment] = useState(() => getRamdomComment())
+  const [randomComment, setRandomComment] = useState<string>('')
+
+  // Fonction pour récupérer un commentaire au hasard depuis la traduction
+  const pickRandomComment = () => {
+    const comments = t('3d-scene.comments.frustrated', {
+      returnObjects: true,
+    }) as string[] // cast en tableau de string
+    if (!Array.isArray(comments) || comments.length === 0) {
+      return ''
+    }
+    const randomIndex = Math.floor(Math.random() * comments.length)
+    return comments[randomIndex]
+  }
 
   useEffect(() => {
+    setRandomComment(pickRandomComment())
     const interval = setInterval(() => {
-      setRandomComment(getRamdomComment())
+      setRandomComment(pickRandomComment())
     }, 16000)
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, [t]) // dépend de t au cas où la langue change
 
   return (
     <>
@@ -59,13 +74,10 @@ export const Car: React.FC<CarProps> = ({
       >
         <meshBasicMaterial color={color} />
       </Box>
-      {searching ? (
-        <>
-          <BlinkingParkingSlot position={[0, 2, 0]} />
-        </>
-      ) : null}
 
-      {comment ? (
+      {searching && <BlinkingParkingSlot position={[0, 2, 0]} />}
+
+      {comment && (
         <Html
           position={[0, 10, 0]}
           center
@@ -87,9 +99,10 @@ export const Car: React.FC<CarProps> = ({
             {randomComment}
           </div>
         </Html>
-      ) : null}
-      {trail ? (
-        forward ? (
+      )}
+
+      {trail &&
+        (forward ? (
           <GradientPlane
             position={new Vector3(vehicleSize[2] / 1.3, -0.02, position.z)}
             size={[3, 2]}
@@ -100,8 +113,7 @@ export const Car: React.FC<CarProps> = ({
             position={new Vector3(-(vehicleSize[2] / 1.3), -0.02, position.z)}
             size={[3, vehicleSize[0]]}
           />
-        )
-      ) : null}
+        ))}
     </>
   )
 }

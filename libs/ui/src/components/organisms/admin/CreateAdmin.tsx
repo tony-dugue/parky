@@ -10,8 +10,10 @@ import {
   CreateAdminDocument,
   namedOperations,
 } from '@parky/network/src/gql/generated'
+import { useTranslation } from 'react-i18next'
 
 export const CreateAdmin = () => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { register, handleSubmit } = useFormUid()
   const [createAdmin, { loading }] = useMutation(CreateAdminDocument, {
@@ -20,8 +22,8 @@ export const CreateAdmin = () => {
   })
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Create admin</Button>
-      <Dialog open={open} setOpen={setOpen} title={'Create admin'}>
+      <Button onClick={() => setOpen(true)}>{t('button.create-admin')}</Button>
+      <Dialog open={open} setOpen={setOpen} title={t('button.create-admin')}>
         <Form
           onSubmit={handleSubmit(async ({ uid }) => {
             await createAdmin({
@@ -30,12 +32,12 @@ export const CreateAdmin = () => {
             setOpen(false)
           })}
         >
-          <HtmlLabel title="uid">
-            <HtmlInput placeholder="uid" {...register('uid')} />
+          <HtmlLabel title={t('form.input.uid')}>
+            <HtmlInput placeholder={t('form.input.uid')} {...register('uid')} />
           </HtmlLabel>
 
           <Button loading={loading} type="submit">
-            Create
+            {t('button.create')}
           </Button>
         </Form>
       </Dialog>

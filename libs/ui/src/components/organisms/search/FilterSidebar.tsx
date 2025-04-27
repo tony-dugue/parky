@@ -15,8 +15,10 @@ import {
 } from '../../molecules/ToggleButtonGroup'
 import { FilterHeading } from '../../molecules/FilterHeading'
 import { IconTypes } from '../../molecules/IconTypes'
+import { useTranslation } from 'react-i18next'
 
 export const FilterSidebar = () => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const {
     control,
@@ -48,13 +50,16 @@ export const FilterSidebar = () => {
             }) => {
               return (
                 <div>
-                  <FilterHeading dirty={isDirty} title="Vehicle type" />
+                  <FilterHeading
+                    dirty={isDirty}
+                    title={t('form.title.vehicle-type')}
+                  />
                   <ToggleButtonGroup
                     value={value}
                     onChange={(_, value) => {
                       onChange(value.sort())
                     }}
-                    aria-label="text formatting"
+                    aria-label=""
                   >
                     {defaultValues?.types?.map((val) => {
                       if (!val) return null
@@ -83,7 +88,10 @@ export const FilterSidebar = () => {
             }) => {
               return (
                 <div className="w-full">
-                  <FilterHeading dirty={isDirty} title="Price per hour" />
+                  <FilterHeading
+                    dirty={isDirty}
+                    title={t('form.title.price-per-hour')}
+                  />
                   <RangeSlider
                     min={defaultValues?.pricePerHour?.[0]}
                     max={defaultValues?.pricePerHour?.[1]}
@@ -109,7 +117,10 @@ export const FilterSidebar = () => {
             }) => {
               return (
                 <div className="w-full">
-                  <FilterHeading dirty={isDirty} title="Width" />
+                  <FilterHeading
+                    dirty={isDirty}
+                    title={t('form.title.width')}
+                  />
                   <RangeSlider
                     min={defaultValues?.width?.[0]}
                     max={defaultValues?.width?.[1]}
@@ -134,7 +145,10 @@ export const FilterSidebar = () => {
             }) => {
               return (
                 <div className="w-full">
-                  <FilterHeading dirty={isDirty} title="Height" />
+                  <FilterHeading
+                    dirty={isDirty}
+                    title={t('form.title.height')}
+                  />
                   <RangeSlider
                     min={defaultValues?.height?.[0]}
                     max={defaultValues?.height?.[1]}
@@ -159,7 +173,10 @@ export const FilterSidebar = () => {
             }) => {
               return (
                 <div className="w-full">
-                  <FilterHeading dirty={isDirty} title="Length" />
+                  <FilterHeading
+                    dirty={isDirty}
+                    title={t('form.title.length')}
+                  />
                   <RangeSlider
                     min={defaultValues?.length?.[0]}
                     max={defaultValues?.length?.[1]}
@@ -180,7 +197,7 @@ export const FilterSidebar = () => {
             }
             disabled={!Object.values(dirtyFields).length}
           >
-            Reset
+            {t('button.reset')}
           </Button>
         </div>
       </Sidebar>

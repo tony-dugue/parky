@@ -23,7 +23,8 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { TotalPrice } from '@parky/util/types'
 import { ManageValets } from './ManageValets'
-import { toast } from 'react-toastify'
+import { toast } from '../molecules/Toast'
+import { useTranslation } from 'react-i18next'
 
 export const BookSlotPopup = ({
   garage,
@@ -31,6 +32,7 @@ export const BookSlotPopup = ({
   garage: SearchGaragesQuery['searchGarages'][0]
 }) => {
   const session = useSession()
+  const { t } = useTranslation()
   const uid = session.data?.user?.uid
   const {
     control,
@@ -61,7 +63,7 @@ export const BookSlotPopup = ({
       <Form
         onSubmit={handleSubmit(async (data) => {
           if (!uid) {
-            alert('You are not logged in.')
+            toast(t('toast.not-loggin'))
             return
           }
           const bookingData: CreateBookingInput = {
@@ -92,7 +94,7 @@ export const BookSlotPopup = ({
             await createBookingSession(uid!, totalPriceObj, bookingData)
           } catch (err) {
             console.log('err', err)
-            toast('An error occurred while creating the booking session')
+            toast(t('toast.error-creating-booking'))
           } finally {
             setBooking(false)
           }
@@ -102,11 +104,11 @@ export const BookSlotPopup = ({
           <div className="mb-2 text-lg font-bold">{garage.displayName}</div>
           {garage.verification?.verified ? (
             <Badge variant="green" size="sm">
-              Verified
+              {t('badge.verified')}
             </Badge>
           ) : (
             <Badge variant="gray" size="sm">
-              Not verified
+              {t('badge.not-verified')}
             </Badge>
           )}
         </div>
@@ -124,7 +126,10 @@ export const BookSlotPopup = ({
         <DateRangeBookingInfo startTime={startTime} endTime={endTime} />
 
         <div className="flex flex-wrap gap-2 mt-2">
-          <HtmlLabel title="Slot type" error={errors.type?.message}>
+          <HtmlLabel
+            title={t('form.title.slot-type')}
+            error={errors.type?.message}
+          >
             <Controller
               name="type"
               control={control}
@@ -156,12 +161,17 @@ export const BookSlotPopup = ({
                                   <span className="text-lg font-bold">
                                     ${slot.pricePerHour}
                                   </span>
-                                  /hr
+                                  {t('unit-label.per-hour')}
                                 </div>
                               </div>
 
                               <div className="text-gray-600">
-                                {slot.count} open
+                                {slot.count}{' '}
+                                {t(
+                                  slot.count > 1
+                                    ? 'form.message.opens'
+                                    : 'form.message.open',
+                                )}
                               </div>
                             </div>
                           )}
@@ -174,16 +184,25 @@ export const BookSlotPopup = ({
             />
           </HtmlLabel>
         </div>
-        {!type ? <FormError error="Set type" /> : null}
 
-        <HtmlLabel title="Start time" error={errors.startTime?.message}>
+        {!type && !errors.type?.message ? (
+          <FormError error={t('form.message.set-slot-type')} />
+        ) : null}
+
+        <HtmlLabel
+          title={t('form.title.start-time')}
+          error={errors.startTime?.message}
+        >
           <HtmlInput
             type="datetime-local"
             min={toLocalISOString(new Date()).slice(0, 16)}
             {...register('startTime')}
           />
         </HtmlLabel>
-        <HtmlLabel title="End time" error={errors.endTime?.message}>
+        <HtmlLabel
+          title={t('form.title.end-time')}
+          error={errors.endTime?.message}
+        >
           <HtmlInput
             min={toLocalISOString(new Date()).slice(0, 16)}
             type="datetime-local"
@@ -191,12 +210,24 @@ export const BookSlotPopup = ({
           />
         </HtmlLabel>
 
-        <HtmlLabel title="Vehicle number" error={errors.vehicleNumber?.message}>
-          <HtmlInput placeholder="KA01AB1234" {...register('vehicleNumber')} />
+        <HtmlLabel
+          title={t('form.title.vehicle-number')}
+          error={errors.vehicleNumber?.message}
+        >
+          <HtmlInput
+            placeholder={t('form.placeholder.vehicle-number')}
+            {...register('vehicleNumber')}
+          />
         </HtmlLabel>
 
-        <HtmlLabel title="Phone number" error={errors.phoneNumber?.message}>
-          <HtmlInput placeholder="+910000000000" {...register('phoneNumber')} />
+        <HtmlLabel
+          title={t('form.title.phone-number')}
+          error={errors.phoneNumber?.message}
+        >
+          <HtmlInput
+            placeholder={t('form.placeholder.phone-number')}
+            {...register('phoneNumber')}
+          />
         </HtmlLabel>
 
         <ManageValets garage={garage} />
@@ -204,23 +235,26 @@ export const BookSlotPopup = ({
         {totalPriceObj ? (
           <div className="mt-4">
             <CostTitleValue
-              title="Parking"
+              title={t('form.message.parking')}
               price={totalPriceObj.parkingCharge}
             />
             <CostTitleValue
-              title="Valet Pickup"
+              title={t('form.message.valet-pickup')}
               price={totalPriceObj.valetChargePickup}
             />
             <CostTitleValue
-              title="Valet Dropoff"
+              title={t('form.message.valet-dropoff')}
               price={totalPriceObj.valetChargeDropoff}
             />
-            <CostTitleValue title="Total" price={totalPrice} />
+            <CostTitleValue
+              title={t('form.message.total')}
+              price={totalPrice}
+            />
           </div>
         ) : null}
 
         <Button loading={booking} type="submit" className="w-full mt-2">
-          Book now
+          {t('button.book-now')}
         </Button>
       </Form>
     </div>

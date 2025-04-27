@@ -1,3 +1,293 @@
 {
-  "search-now": "Search now"
+  "web": {
+    "general": {
+      "menu-items": {
+        "search-label": "Search",
+        "bookings-label": "Bookings"
+      }
+    },
+    "homepage": {
+      "search-cta-1": "Need",
+      "search-cta-2": "parking?"
+    },
+    "booking-failed": {
+      "message": "Booked failed."
+    }
+  },
+  "web-admin": {
+    "general": {
+      "menu-items": {
+        "garages-label": "Garages",
+        "admins-label": "Admins"
+      }
+    }
+  },
+  "web-manager": {
+    "general": {
+      "menu-items": {
+        "new-garage-label": "New garage",
+        "valets-label": "Valets"
+      }
+    }
+  },
+  "web-valet": {
+    "general": {
+      "menu-items": {
+        "my-trips-label": "My trips"
+      }
+    }
+  },
+  "3d-scene": {
+    "comments": {
+      "frustrated": [
+        "Need parking space or I'm starting \na carpool on the roof.",
+        "Why do all roads lead to 'no parking'?",
+        "In search of my happy place... \nAKA a parking spot.",
+        "Should've bought a helicopter instead.",
+        "If I had a dime for every spot taken, \nI'd own the parking lot.",
+        "Brb, circling the lot for the 100th time.",
+        "Finding a soulmate seems easier \nthan finding a parking spot.",
+        "I came, I saw... I circled the lot.",
+        "In a relationship with the 'P' sign.",
+        "Growing old waiting for a parking spot.",
+        "The quest for the holy grail was probably easier.",
+        "If parking was an Olympic sport, \nI'd still be in last place.",
+        "Looking for a parking spot, \nsend help.",
+        "Starting to miss my old tricycle.",
+        "Next time, I'm buying a car \nthat comes with its own parking spot.",
+        "Fancy a game of Parking Spot Hunt?",
+        "Car for sale: spends more time \nlooking for parking than driving.",
+        "Is there a cheat code for instant parking?",
+        "Meeting? Haha. I haven't even found a parking.",
+        "I didn't sign up for this episode of \n'Parking Spot Wars'.",
+        "Honey, I'll be late. \nI'm stuck in a parking saga.",
+        "I'm sure my car is enjoying this \ntour of the parking lot.",
+        "One does not simply park in a \nbustling city.",
+        "Who needs a gym when you've got \na parking lot workout?",
+        "This isn't parking, \nit's car hide-and-seek!",
+        "I didn't choose the parking life. \nThe parking life chose me.",
+        "Pardon me while I park my car in another timezone.",
+        "Parking: The ultimate test of patience.",
+        "One small step for man, \none giant leap to find a parking spot.",
+        "Time for my daily game of \nSpot the Parking Spot.",
+        "Accepting bets on whether \nI'll find a spot first, or retire.",
+        "If I had a penny for every minute \nI've spent looking for parking, \nI'd be a millionaire.",
+        "My GPS says 'you have reached your destination', \nbut where's the parking?!",
+        "I've circled so much, \nI'm getting dizzy. \nWhere's that parking spot?",
+        "I wonder if my car gets as tired as \nI do searching for a spot.",
+        "Looking for parking is my car's \nfavorite cardio workout.",
+        "One day, I'll tell my grandkids about \nthe great parking lot odyssey.",
+        "I think I just saw a tumbleweed roll by…",
+        "Siri, find me the nearest parking spot, \nplease!",
+        "Time to play my least favorite game: \nparking lot roulette.",
+        "I've got 99 problems, \nand parking is all of them.",
+        "I swear, the parking spots are playing \nmusical chairs without me.",
+        "If I spend any longer searching, \nI'm going to need to refuel.",
+        "Thinking about adopting a homing pigeon \nto find parking spots for me.",
+        "There's no 'I' in 'park', \nbut there is an 'I' in 'circle \nthe parking lot for the fifth time'.",
+        "I bet even Columbus found America faster \nthan I can find a parking spot.",
+        "If I park any further away, \nI'll be in the next town over.",
+        "Guess it's time for my daily game of \nparking spot bingo.",
+        "Wanted: a magic carpet, \nbecause Aladdin never had parking issues.",
+        "Guess who's going on an \nunexpected parking safari!",
+        "Parking lots are just adult versions \nof musical chairs.",
+        "Did all the parking spaces go on \nvacation or something?",
+        "There are two types of people: \nthose who find parking, \nand those who don't. \nGuess which one I am.",
+        "Park anywhere, they said. \nIt'll be easy, they said.",
+        "I've seen unicorns, \nthe Loch Ness monster, \nbut a free parking spot? Never.",
+        "\"Siri, find me the nearest parking spot, please!\" \nSiri: \"Hmm, there's a spot 200 miles away. Ready for a road trip?\""
+      ]
+    }
+  },
+  "button": {
+    "search-now": "Search now",
+    "create": "Create",
+    "create-admin": "Create admin",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "submit": "Submit",
+    "accept": "Accept",
+    "pickup": "Pickup",
+    "drop": "Drop",
+    "reset": "Reset",
+    "loading": "Loading...",
+    "create-valet": "Create valet",
+    "create-company": "Create company",
+    "create-slots": "Create slots",
+    "book-now": "Book now",
+    "remove-slot-type": "Remove slot type",
+    "add-slots": "Add slots",
+    "verification": "Verify",
+    "bookings": "Bookings",
+    "register": "Register",
+    "login": "Log in",
+    "unlist": "Unlist",
+    "check-in": "CHECK IN",
+    "check-out": "CHECK OUT",
+    "create-one": "Create one",
+    "now": "now.",
+    "register-account": "Create account"
+  },
+  "form": {
+    "validation": {
+      "vehicule-number-required": "Vehicle number is required",
+      "phone-number-required": "Phone number is required",
+      "slot-type-required": "Slot type is required",
+      "start-time-invalid": "Start time should be greater than current time",
+      "end-time-invalid": "End time should be greater than start time",
+      "company-name-required": "Company name is required",
+      "manager-id-required": "Manager ID is required",
+      "address-required": "Address is required",
+      "minimum-count": "The minimum number is 1",
+      "maximum-count": "The maximum number is 10",
+      "display-name-required": "Display name is required",
+      "description-required": "Description is required",
+      "number-invalid": "Please enter a valid number",
+      "valet-uid-required": "Valet uid is required",
+      "valet-name-required": "Valet name is required",
+      "valet-licence-required": "Valet licence is required"
+    },
+    "input": {
+      "uid": "uid"
+    },
+    "placeholder": {
+      "search": "Search...",
+      "valet-uid": "Uid of the valet",
+      "name-valet": "Name of the valet",
+      "licence-id": "Licence ID of the valet",
+      "vehicle-number": "AB123CD",
+      "phone-number": "0612345678",
+      "company-name": "Company name",
+      "description": "Describe your parking company",
+      "manager-id": "Manager ID",
+      "manager-name": "Manager name",
+      "vehicule-type": "Vehicle type",
+      "price-per-hour": "Price per hour",
+      "number-slots": "Enter the number of slots",
+      "length": "Enter the length in ft",
+      "width": "Enter the width in ft",
+      "height": "Enter the height in ft",
+      "slot-type": "Slot type",
+      "search-vehicle": "Search vehicle number",
+      "garage-name": "Garage name",
+      "address": "123, street name",
+      "email": "Enter the email.",
+      "password": "******",
+      "username": "Enter your name"
+    },
+    "title": {
+      "vehicle-type": "Vehicle type",
+      "price-per-hour": "Price per hour",
+      "price-hr": "Price/hr",
+      "width": "Width",
+      "height": "Height",
+      "length": "Length",
+      "name-valet": "Name of the valet",
+      "uid": "Uid",
+      "licence-id": "Licence ID",
+      "slot-type": "Slot type",
+      "start-time": "Start time",
+      "end-time": "End time",
+      "vehicle-number": "Vehicle number",
+      "phone-number": "Phone number",
+      "company-name": "Company name",
+      "description": "Description",
+      "manager-id": "Manager ID",
+      "manager-name": "Manager name",
+      "vehicule-type": "Vehicle type",
+      "number-slots": "Number of slots",
+      "garage-name": "Garage name",
+      "Address": "Address",
+      "email": "Email",
+      "password": "Password",
+      "username": "Username"
+    },
+    "message": {
+      "set-slot-type": "Set slot type",
+      "open": "open",
+      "opens": "open",
+      "parking": "Parking",
+      "valet-pickup": "Valet Pickup",
+      "valet-dropoff": "Valet Dropoff",
+      "total": "Total",
+      "address": "Address:"
+    }
+  },
+  "unit-label": {
+    "per-hour": "/hr"
+  },
+  "brand": {
+    "icon": "P.",
+    "name": "Parky",
+    "description": "Book Parking Online"
+  },
+  "auth": {
+    "continue-with": "Or, continue with",
+    "back-home": "Back to home",
+    "logout": "Logout",
+    "not-an-admin": "You are not an admin.",
+    "not-logged-in": "You are not logged in.",
+    "login": "Login",
+    "login-failed": "Login failed. Try again.",
+    "not-account": "Do not have an parky account?",
+    "already-account": "Already have an autospace account?"
+  },
+  "message": {
+    "no-result": "No result",
+    "no-options": "No options.",
+    "type-something": "Type something...",
+    "no-parking": "No parking slots found in this area.",
+    "no-images": "No images.",
+    "clear-all": "Clear all",
+    "loading-user": "Loading user...",
+    "loading-company": "Loading company...",
+    "no-company": "You don't have a company yet.",
+    "not-a-valet-1": "You are not a valet.",
+    "not-a-valet-2": "Please contact the company's managers with your ID.",
+    "garages": "Garages",
+    "vehicle-number": "Vehicle number",
+    "slot": "Slot",
+    "status": "Status",
+    "code": "Code",
+    "something-wrong": "Oops. Something went wrong.",
+    "valet": "Valet",
+    "valet-description": "Our valets will whisk your car away to its reserved spot and bring it back when you're ready. It's like magic, but with cars!",
+    "need-valet": "Need valet?",
+    "valet-description-dropoff": "  Want your car delivered somewhere else? No problem! Choose a different drop-off point and we'll make sure your ride is there waiting for you.",
+    "add-different-dropoff": "Add a different drop off location?",
+    "dropoff": "Drop off",
+    "open-main-menu": "Open main menu",
+    "start-end-locations-not-set": "Start end locations not set.",
+    "bookings": "bookings",
+    "fix-errors": "  Please fix the above errors : "
+  },
+  "status": {
+    "past": "PAST",
+    "on-going": "ON GOING",
+    "in": "IN",
+    "out": "OUT",
+    "resolved": "RESOLVED"
+  },
+  "toast": {
+    "valet-created": "Valet created.🎉",
+    "user-created": "User created.🎉",
+    "action-successful": "Action successful. ID: ",
+    "action-failed": "Action failed.",
+    "not-loggin": "You are not logged in.",
+    "error-creating-booking": "An error occurred while creating the booking session.",
+    "slots-created-successful": "Slots created successfully.",
+    "garage-location-not-yet": "Garage location not set.",
+    "garage-successful": "Garage created successfully."
+  },
+  "badge": {
+    "verified": "Verified",
+    "not-verified": "Not verified"
+  },
+  "admin": {
+    "you": "You",
+    "since": "Since",
+    "verification": "Verifications.",
+    "remove-admin": "Are you sure you want to delete this innocent soul from the admin realm?",
+    "delete": "Delete admin"
+  }
 }

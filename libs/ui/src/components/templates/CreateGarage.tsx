@@ -1,4 +1,5 @@
 'use client'
+import { useTranslation } from 'react-i18next'
 import {
   FormProviderCreateGarage,
   FormTypeCreateGarage,
@@ -38,6 +39,8 @@ const CreateGarageContent = () => {
     resetField,
   } = useFormContext<FormTypeCreateGarage>()
 
+  const { t } = useTranslation()
+
   const { images } = watch()
 
   //const { uploading, upload } = useCloudinaryUpload()
@@ -47,11 +50,11 @@ const CreateGarageContent = () => {
     refetchQueries: [namedOperations.Query.Garages],
     onCompleted: () => {
       reset()
-      toast('Garage created successfully.')
+      toast(t('message.garage-successful'))
     },
     onError(err) {
       console.log(err)
-      toast('Action failed.')
+      toast(t('message.action-failed'))
     },
   })
 
@@ -83,23 +86,35 @@ const CreateGarageContent = () => {
             },
           )}
         >
-          <HtmlLabel error={errors.displayName?.message} title="Display Name">
-            <HtmlInput {...register('displayName')} placeholder="Garage name" />
-          </HtmlLabel>
-
-          <HtmlLabel title="Description" error={errors.description?.message}>
-            <HtmlTextArea
-              cols={5}
-              {...register('description')}
-              placeholder="Describe..."
+          <HtmlLabel
+            error={errors.displayName?.message}
+            title={t('form.title.garage-name')}
+          >
+            <HtmlInput
+              {...register('displayName')}
+              placeholder={t('form.placeholder.garage-name')}
             />
           </HtmlLabel>
 
-          <HtmlLabel title="Address" error={errors.location?.address?.message}>
+          <HtmlLabel
+            title={t('form.title.description')}
+            error={errors.description?.message}
+          >
+            <HtmlTextArea
+              cols={5}
+              {...register('description')}
+              placeholder={t('form.placeholder.description')}
+            />
+          </HtmlLabel>
+
+          <HtmlLabel
+            title={t('form.title.address')}
+            error={errors.location?.address?.message}
+          >
             <HtmlTextArea
               cols={5}
               {...register('location.address')}
-              placeholder="123, street name"
+              placeholder={t('form.placeholder.address')}
             />
           </HtmlLabel>
 
@@ -122,7 +137,7 @@ const CreateGarageContent = () => {
           <AddSlots />
 
           <Button loading={uploading || loading} type="submit">
-            Submit
+            {t('button.create')}
           </Button>
         </Form>
       </div>

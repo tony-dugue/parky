@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { useQuery } from '@apollo/client'
 import {
@@ -11,6 +12,8 @@ import { Reveal } from '../molecules/Reveal'
 import { AssignValetButton } from './AssignValetButton'
 
 export const ShowValetMyPickupTrips = ({ uid }: { uid: string }) => {
+  const { t } = useTranslation()
+
   const { setSkip, setTake, skip, take } = useTakeSkip()
 
   const { data, loading } = useQuery(MyPickupTripsDocument, {
@@ -80,7 +83,7 @@ export const ShowValetMyPickupTrips = ({ uid }: { uid: string }) => {
                 bookingId={booking.id}
                 status={BookingStatus.ValetPickedUp}
               >
-                Pickup
+                {t('button.pickup')}
               </AssignValetButton>
             ) : null}
           </div>

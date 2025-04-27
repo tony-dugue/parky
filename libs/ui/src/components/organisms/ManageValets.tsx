@@ -11,12 +11,15 @@ import { IconUser } from '@tabler/icons-react'
 import { Directions } from './Directions'
 import { Panel } from './map/Panel'
 import { DefaultZoomControls } from './map/ZoomControls'
+import { useTranslation } from 'react-i18next'
 
 export const ManageValets = ({
   garage,
 }: {
   garage: SearchGaragesQuery['searchGarages'][number]
 }) => {
+  const { t } = useTranslation()
+
   const [showValet, setShowValet] = useState(false)
 
   const { setValue } = useFormContext<FormTypeBookSlot>()
@@ -26,17 +29,14 @@ export const ManageValets = ({
   const lng = garage.address?.lng
 
   if (!lat || !lng) {
-    toast('Garage location not set.')
-    return <div>Something went wrong.</div>
+    toast(t('toast.garage-location-not-yet'))
+    return <div>{t('message.something-wrong')}</div>
   }
 
   return (
     <div className="p-2 space-y-3 bg-gray-25">
-      <div className="text-xl font-bold">Valet</div>
-      <p className="text-sm text-gray">
-        Our valets will whisk your car away to its reserved spot and bring it
-        back when you&apos;re ready. It&apos;s like magic, but with cars!
-      </p>
+      <div className="text-xl font-bold">{t('message.valet')}</div>
+      <p className="text-sm text-gray">{t('message.valet-description')}</p>
 
       <Switch
         checked={showValet}
@@ -59,16 +59,14 @@ export const ManageValets = ({
             })
           }
         }}
-        label={'Need valet?'}
+        label={t('message.need-valet')}
       />
 
       {showValet ? (
         <div>
           <div className="mb-6 space-y-3">
             <p className="text-sm text-gray">
-              Want your car delivered somewhere else? No problem! Choose a
-              different drop-off point and we&apos;ll make sure your ride is
-              there waiting for you.
+              {t('message.valet-description-dropoff')}
             </p>
             <Switch
               checked={valet?.differentLocations || false}
@@ -86,7 +84,7 @@ export const ManageValets = ({
                   })
                 }
               }}
-              label={'Add a different drop off location?'}
+              label={t('message.add-different-dropoff')}
             />
           </div>
           <Map
@@ -158,7 +156,7 @@ export const ManageValets = ({
                 >
                   <div className="flex flex-col items-center">
                     <IconUser />
-                    <span>Drop off</span>
+                    <span>{t('message.dropoff')}</span>
                   </div>
                 </Marker>
                 <Directions

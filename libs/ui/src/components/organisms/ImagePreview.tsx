@@ -1,6 +1,7 @@
 import { BaseComponent } from '@parky/util/types'
 import { IconTrash } from '@tabler/icons-react'
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next'
 
 export interface IImageUploadProps extends BaseComponent {
   srcs?: FileList
@@ -12,6 +13,8 @@ export const ImagePreview = ({
   clearImage,
   children,
 }: IImageUploadProps) => {
+  const { t } = useTranslation()
+
   if (srcs && srcs?.length > 0) {
     return (
       <div className="grid grid-cols-2 gap-2 relative">
@@ -19,7 +22,7 @@ export const ImagePreview = ({
           onClick={() => clearImage()}
           className="absolute z-10 p-2 text-white bg-red/80 flex gap-2 items-center rounded left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
-          <IconTrash /> Clear all
+          <IconTrash /> {t('message.clear-all')}
         </button>
         {Array.from(srcs)?.map((src, index) => (
           <Image

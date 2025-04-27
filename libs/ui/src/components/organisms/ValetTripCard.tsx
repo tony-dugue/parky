@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useMapDirections } from '@parky/util/hooks/directions'
 import { LatLng } from '@parky/util/types'
 import { isLatLng } from '@parky/util'
@@ -23,13 +24,16 @@ export const ValetTripCard = ({
   booking,
   children,
 }: IValetTripCardProps) => {
+  const { t } = useTranslation()
   const { data, distance } = useMapDirections(start, end)
 
   if (!isLatLng(start) || !isLatLng(end)) {
     return (
       <AlertSection>
-        <div>Something went wrong.</div>
-        <div className="text-xs">Start end locations not set.</div>
+        <div>{t('message.something-wrong')}</div>
+        <div className="text-xs">
+          {t('message.start-end-locations-not-set')}
+        </div>
       </AlertSection>
     )
   }

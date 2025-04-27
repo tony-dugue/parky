@@ -4,12 +4,15 @@ import {
   namedOperations,
 } from '@parky/network/src/gql/generated'
 import { Button } from '../atoms/Button'
+import { useTranslation } from 'react-i18next'
 
 export const CreateVerificationButton = ({
   garageId,
 }: {
   garageId: number
 }) => {
+  const { t } = useTranslation()
+
   const [createVerification, { loading }] = useMutation(
     CreateVerificationDocument,
     {
@@ -35,7 +38,7 @@ export const CreateVerificationButton = ({
         })
       }}
     >
-      Verify
+      {t('button.verification')}
     </Button>
   )
 }

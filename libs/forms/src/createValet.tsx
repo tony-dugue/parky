@@ -1,17 +1,30 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useTranslation } from 'react-i18next'
 
-export const schemaCreateValet = z.object({
-  uid: z.string().min(1, { message: 'Valet uid is required' }),
-  displayName: z.string().min(1, { message: 'Valet name is required' }),
-  licenceID: z.string().min(1, { message: 'Valet licence is required' }),
-  image: z.any().optional(),
-})
+type Translator = (key: string) => string
 
-export type FormTypeCreateValet = z.infer<typeof schemaCreateValet>
-
-export const useFormCreateValet = () =>
-  useForm<FormTypeCreateValet>({
-    resolver: zodResolver(schemaCreateValet),
+export const schemaCreateValet = (t: Translator) =>
+  z.object({
+    uid: z
+      .string()
+      .min(1, { message: t('form.validation.valet-uid-required') }),
+    displayName: z
+      .string()
+      .min(1, { message: t('form.validation.valet-name-required') }),
+    licenceID: z
+      .string()
+      .min(1, { message: t('form.validation.valet-licence-required') }),
+    image: z.any().optional(),
   })
+
+export type FormTypeCreateValet = z.infer<ReturnType<typeof schemaCreateValet>>
+
+export const useFormCreateValet = () => {
+  const { t } = useTranslation()
+
+  return useForm<FormTypeCreateValet>({
+    resolver: zodResolver(schemaCreateValet(t)),
+  })
+}

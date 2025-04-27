@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { LoaderPanel } from '../molecules/Loader'
 import { AlertSection } from '../molecules/AlertSection'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 type RenderPropChild = (uid: string) => ReactNode
 
@@ -15,9 +16,10 @@ export const IsLoggedIn = ({
   notLoggedIn?: ReactNode
 }) => {
   const { status, data } = useSession()
+  const { t } = useTranslation()
 
   if (status === 'loading') {
-    return <LoaderPanel text="Loading user..." />
+    return <LoaderPanel text={t('message.loading-user')} />
   }
 
   if (!data?.user?.uid) {
@@ -25,8 +27,8 @@ export const IsLoggedIn = ({
       return <>{notLoggedIn}</>
     } else {
       return (
-        <AlertSection title="You are not logged in.">
-          <Link href="/login">Login</Link>
+        <AlertSection title={t('auth.not-logged-in')}>
+          <Link href="/login">{t('auth.login')}</Link>
         </AlertSection>
       )
     }

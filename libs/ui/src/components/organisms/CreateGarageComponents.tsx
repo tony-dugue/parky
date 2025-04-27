@@ -9,6 +9,7 @@ import { SlotType } from '@parky/network/src/gql/generated'
 import { HtmlLabel } from '../atoms/HtmlLabel'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { HtmlSelect } from '../atoms/HtmlSelect'
+import { useTranslation } from 'react-i18next'
 
 export const GarageMapMarker = () => {
   const { location } = useWatch<FormTypeCreateGarage>()
@@ -37,6 +38,8 @@ export const AddSlots = () => {
     register,
     formState: { errors },
   } = useFormContext<FormTypeCreateGarage>()
+
+  const { t } = useTranslation()
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -69,16 +72,16 @@ export const AddSlots = () => {
                 remove(slotIndex)
               }}
             >
-              remove slot type
+              {t('button.remove-slot-type')}
             </Button>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <HtmlLabel
-              title="Vehicle type"
+              title={t('form.title.vehicle-type')}
               error={errors.slotTypes?.[slotIndex]?.type?.toString()}
             >
               <HtmlSelect
-                placeholder="vehicle type"
+                placeholder={t('form.placeholder.vehicle-type')}
                 {...register(`slotTypes.${slotIndex}.type`)}
               >
                 {Object.values(SlotType).map((type) => (
@@ -89,13 +92,13 @@ export const AddSlots = () => {
               </HtmlSelect>
             </HtmlLabel>
             <HtmlLabel
-              title="Price/hr"
+              title={t('form.title.price-per-hour')}
               optional
               error={errors.slotTypes?.[slotIndex]?.pricePerHour?.message}
             >
               <HtmlInput
                 type="number"
-                placeholder="Price per hour"
+                placeholder={t('form.placeholder.price-per-hour')}
                 {...register(`slotTypes.${slotIndex}.pricePerHour`, {
                   valueAsNumber: true,
                 })}
@@ -103,13 +106,13 @@ export const AddSlots = () => {
             </HtmlLabel>
 
             <HtmlLabel
-              title="Number of slots"
+              title={t('form.title.number-slots')}
               optional
               error={errors.slotTypes?.[slotIndex]?.count?.message}
             >
               <HtmlInput
                 type="number"
-                placeholder="Enter the number of slots"
+                placeholder={t('form.placeholder.number-slots')}
                 {...register(`slotTypes.${slotIndex}.count`, {
                   valueAsNumber: true,
                 })}
@@ -117,39 +120,39 @@ export const AddSlots = () => {
             </HtmlLabel>
 
             <HtmlLabel
-              title="Length"
+              title={t('form.title.length')}
               optional
               error={errors.slotTypes?.[slotIndex]?.length?.message}
             >
               <HtmlInput
                 type="number"
-                placeholder="Enter the description"
+                placeholder={t('form.placeholder.length')}
                 {...register(`slotTypes.${slotIndex}.length`, {
                   valueAsNumber: true,
                 })}
               />
             </HtmlLabel>
             <HtmlLabel
-              title="Width"
+              title={t('form.title.width')}
               optional
               error={errors.slotTypes?.[slotIndex]?.width?.message}
             >
               <HtmlInput
                 type="number"
-                placeholder="Enter the description"
+                placeholder={t('form.placeholder.width')}
                 {...register(`slotTypes.${slotIndex}.width`, {
                   valueAsNumber: true,
                 })}
               />
             </HtmlLabel>
             <HtmlLabel
-              title="Height"
+              title={t('form.title.height')}
               optional
               error={errors.slotTypes?.[slotIndex]?.height?.message}
             >
               <HtmlInput
                 type="number"
-                placeholder="Enter the description"
+                placeholder={t('form.placeholder.height')}
                 {...register(`slotTypes.${slotIndex}.height`, {
                   valueAsNumber: true,
                 })}
@@ -173,7 +176,7 @@ export const AddSlots = () => {
           })
         }}
       >
-        <IconPlus className="w-4 h-4" /> Add slots
+        <IconPlus className="w-4 h-4" /> {t('button.add-slots')}
       </Button>
     </div>
   )

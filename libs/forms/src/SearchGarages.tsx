@@ -5,41 +5,50 @@ import { ReactNode } from 'react'
 import { DefaultValues, useForm, FormProvider, Form } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { isEndTimeValid, isStartTimeValid } from './util'
+import { useTranslation } from 'react-i18next'
+
+type Translator = (key: string) => string
 
 const minMaxTuple = z.tuple([z.number(), z.number()])
 
-export const formSchemaSearchGarage = z
-  .object({
-    startTime: z.string(),
-    endTime: z.string(),
+export const formSchemaSearchGarage = (t: Translator) =>
+  z
+    .object({
+      startTime: z.string(),
+      endTime: z.string(),
 
-    locationFilter: z.object({
-      ne_lat: z.number(),
-      ne_lng: z.number(),
-      sw_lat: z.number(),
-      sw_lng: z.number(),
-    }),
+      locationFilter: z.object({
+        ne_lat: z.number(),
+        ne_lng: z.number(),
+        sw_lat: z.number(),
+        sw_lng: z.number(),
+      }),
 
-    types: z.nativeEnum(SlotType).array(),
+      types: z.nativeEnum(SlotType).array(),
 
-    pricePerHour: minMaxTuple.optional(),
-    height: minMaxTuple.optional(),
-    width: minMaxTuple.optional(),
-    length: minMaxTuple.optional(),
+      pricePerHour: minMaxTuple.optional(),
+      height: minMaxTuple.optional(),
+      width: minMaxTuple.optional(),
+      length: minMaxTuple.optional(),
 
-    skip: z.number().optional(),
-    take: z.number().optional(),
-  })
-  .refine(({ startTime }) => isStartTimeValid(startTime), {
-    message: 'Start time should be greater than current time',
-    path: ['startTime'],
-  })
-  .refine(({ endTime, startTime }) => isEndTimeValid({ endTime, startTime }), {
-    message: 'End time should be greater than start time',
-    path: ['endTime'],
-  })
+      skip: z.number().optional(),
+      take: z.number().optional(),
+    })
+    .refine(({ startTime }) => isStartTimeValid(startTime), {
+      message: t('form.validation.start-time-invalid'),
+      path: ['startTime'],
+    })
+    .refine(
+      ({ endTime, startTime }) => isEndTimeValid({ endTime, startTime }),
+      {
+        message: t('form.validation.end-time-invalid'),
+        path: ['endTime'],
+      },
+    )
 
-export type FormTypeSearchGarage = z.infer<typeof formSchemaSearchGarage>
+export type FormTypeSearchGarage = z.infer<
+  ReturnType<typeof formSchemaSearchGarage>
+>
 
 export const getCurrentTimeAndOneHourLater = () => {
   const startTime = new Date()
@@ -76,8 +85,10 @@ export const FormProviderSearchGarage = ({
   children: ReactNode
 }) => {
   const { startTime, endTime } = getCurrentTimeAndOneHourLater()
+  const { t } = useTranslation()
+
   const methods = useForm<FormTypeSearchGarage>({
-    resolver: zodResolver(formSchemaSearchGarage),
+    resolver: zodResolver(formSchemaSearchGarage(t)),
     defaultValues: {
       ...formDefaultValuesSearchGarages,
       startTime,

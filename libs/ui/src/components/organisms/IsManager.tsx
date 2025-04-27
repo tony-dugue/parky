@@ -5,6 +5,7 @@ import { LoaderPanel } from '../molecules/Loader'
 import { AlertSection } from '../molecules/AlertSection'
 import { CreateCompany } from './CreateCompany'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type RenderPropChild = (id: number) => ReactNode
 
@@ -13,16 +14,18 @@ export const IsManager = ({
 }: {
   children: RenderPropChild | ReactNode
 }) => {
+  const { t } = useTranslation()
+
   const { data, loading } = useQuery(MyCompanyDocument)
 
   if (loading) {
-    return <LoaderPanel text="Loading company..." />
+    return <LoaderPanel text={t('message.loading-company')} />
   }
 
   if (!data?.myCompany)
     return (
       <AlertSection>
-        <div>You don&apos;t have a company yet.</div>
+        <div>{t('message.no-company')}</div>
         <CreateCompany />
       </AlertSection>
     )

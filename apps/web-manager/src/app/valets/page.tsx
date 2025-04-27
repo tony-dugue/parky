@@ -3,8 +3,10 @@ import { IsLoggedIn } from '@parky/ui/src/components/organisms/IsLoggedIn'
 
 export default function Page() {
   return (
-    <IsLoggedIn>
-      <ManageValets />
-    </IsLoggedIn>
+    <main className=" p-8">
+      <IsLoggedIn>
+        <ManageValets />
+      </IsLoggedIn>
+    </main>
   )
 }

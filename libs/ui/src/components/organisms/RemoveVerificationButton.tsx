@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client'
+import { useTranslation } from 'react-i18next'
 import {
   RemoveVerificationDocument,
   namedOperations,
@@ -10,6 +11,8 @@ export const RemoveVerificationButton = ({
 }: {
   garageId: number
 }) => {
+  const { t } = useTranslation()
+
   const [removeVerification, { loading }] = useMutation(
     RemoveVerificationDocument,
     {
@@ -34,7 +37,7 @@ export const RemoveVerificationButton = ({
         })
       }}
     >
-      Unlist
+      {t('button.unlist')}
     </Button>
   )
 }

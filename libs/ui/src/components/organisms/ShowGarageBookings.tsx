@@ -10,6 +10,7 @@ import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { ShowData } from './ShowData'
 import { ManageBookingCard } from './ManageBookingCard'
 import { CheckInOutButton } from './CheckInOutButtons'
+import { useTranslation } from 'react-i18next'
 
 export const ShowGarageBookings = ({
   garageId,
@@ -22,6 +23,8 @@ export const ShowGarageBookings = ({
   showCheckIn?: boolean
   showCheckOut?: boolean
 }) => {
+  const { t } = useTranslation()
+
   const [searchTerm, setSearchTerm] = useState('')
   const { take, setTake, skip, setSkip } = useTakeSkip()
 
@@ -52,7 +55,7 @@ export const ShowGarageBookings = ({
         <div className="flex justify-start items-center gap-2 w-full max-w-xl  rounded-full shadow-xl bg-white px-4">
           <IconSearch />
           <input
-            placeholder="Search vehicle number"
+            placeholder={t('form.placeholder.search-vehicle')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="flex-grow py-4 bg-transparent"
@@ -76,14 +79,14 @@ export const ShowGarageBookings = ({
             {showCheckIn ? (
               <CheckInOutButton
                 status={BookingStatus.CheckedIn}
-                buttonText="CHECK IN"
+                buttonText={t('button.check-in')}
                 bookingId={booking.id}
               />
             ) : null}
             {showCheckOut ? (
               <CheckInOutButton
                 status={BookingStatus.CheckedOut}
-                buttonText="CHECK OUT"
+                buttonText={t('button.check-in')}
                 bookingId={booking.id}
               />
             ) : null}

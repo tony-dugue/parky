@@ -13,8 +13,11 @@ import { HtmlSelect } from '../atoms/HtmlSelect'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { Form } from '../atoms/Form'
 import { toast } from '../molecules/Toast'
+import { useTranslation } from 'react-i18next'
 
 export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
+  const { t } = useTranslation()
+
   const [open, setOpen] = useState(false)
 
   const {
@@ -28,10 +31,10 @@ export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
     refetchQueries: [namedOperations.Query.Garages],
     onCompleted() {
       setOpen(false)
-      toast('Slots created successfully.')
+      toast(t('toast.slots-created-successful'))
     },
     onError() {
-      toast('Action failed.')
+      toast(t('toast.action-failed'))
     },
   })
 
@@ -47,7 +50,7 @@ export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
           +
         </div>
       </Button>
-      <Dialog open={open} setOpen={setOpen} title={'Create slots'}>
+      <Dialog open={open} setOpen={setOpen} title={t('button.create-slots')}>
         <Form
           onSubmit={handleSubmit(async ({ count, ...data }) => {
             await createManySlots({
@@ -56,8 +59,14 @@ export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
           })}
         >
           <div className="grid grid-cols-2 gap-2">
-            <HtmlLabel title="Slot type" error={errors.type?.toString()}>
-              <HtmlSelect placeholder="Slot type" {...register(`type`)}>
+            <HtmlLabel
+              title={t('form.title.slot-type')}
+              error={errors.type?.toString()}
+            >
+              <HtmlSelect
+                placeholder={t('form.placeholder.slot-type')}
+                {...register(`type`)}
+              >
                 {Object.values(SlotType).map((type) => (
                   <option key={type} value={type}>
                     {type}
@@ -65,43 +74,61 @@ export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
                 ))}
               </HtmlSelect>
             </HtmlLabel>
-            <HtmlLabel title="Price/hr" error={errors.pricePerHour?.message}>
+            <HtmlLabel
+              title={t('form.title.price-hr')}
+              error={errors.pricePerHour?.message}
+            >
               <HtmlInput
                 type="number"
-                placeholder="Price per hour"
+                placeholder={t('form.placeholder.price-per-hour')}
                 {...register(`pricePerHour`, { valueAsNumber: true })}
               />
             </HtmlLabel>
-            <HtmlLabel title="Number of slots" error={errors.count?.message}>
+            <HtmlLabel
+              title={t('form.title.number-slots')}
+              error={errors.count?.message}
+            >
               <HtmlInput
                 type="number"
-                placeholder="Enter the number of slots"
+                placeholder={t('form.placeholder.number-slots')}
                 {...register(`count`, { valueAsNumber: true })}
               />
             </HtmlLabel>
-            <HtmlLabel title="Length" error={errors.length?.message}>
+
+            <HtmlLabel
+              title={t('form.title.length')}
+              error={errors.length?.message}
+            >
               <HtmlInput
                 type="number"
-                placeholder="Enter the length in ft"
+                placeholder={t('form.placeholder.length')}
                 {...register('length', { valueAsNumber: true })}
               />
             </HtmlLabel>
-            <HtmlLabel title="Width" error={errors.width?.message}>
+
+            <HtmlLabel
+              title={t('form.title.width')}
+              error={errors.width?.message}
+            >
               <HtmlInput
                 type="number"
-                placeholder="Enter the width in ft"
+                placeholder={t('form.placeholder.width')}
                 {...register(`width`, { valueAsNumber: true })}
               />
             </HtmlLabel>
-            <HtmlLabel title="Height" error={errors.height?.message}>
+
+            <HtmlLabel
+              title={t('form.title.height')}
+              error={errors.height?.message}
+            >
               <HtmlInput
                 type="number"
-                placeholder="Enter the height in ft"
+                placeholder={t('form.placeholder.height')}
                 {...register(`height`, { valueAsNumber: true })}
               />
             </HtmlLabel>
             <Button type="submit" loading={loading}>
-              Submit
+              {t('button.create')}
             </Button>
           </div>
         </Form>

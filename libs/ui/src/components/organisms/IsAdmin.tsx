@@ -4,18 +4,21 @@ import { useQuery } from '@apollo/client'
 import { LoaderPanel } from '../molecules/Loader'
 import { AlertSection } from '../molecules/AlertSection'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const IsAdmin = ({ children }: { children: ReactNode }) => {
+  const { t } = useTranslation()
+
   const { data, loading } = useQuery(AdminMeDocument)
 
   if (loading) {
-    return <LoaderPanel text="Loading company..." />
+    return <LoaderPanel text={t('message.loading-company')} />
   }
 
   if (!data?.adminMe?.uid)
     return (
       <AlertSection>
-        <div>You are not an admin.</div>
+        <div>{t('auth.not-an-admin')}</div>
       </AlertSection>
     )
 

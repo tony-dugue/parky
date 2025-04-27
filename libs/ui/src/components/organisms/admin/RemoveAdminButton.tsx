@@ -7,8 +7,11 @@ import { Button } from '../../atoms/Button'
 import { IconTrash } from '@tabler/icons-react'
 import { Dialog } from '../../atoms/Dialog'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const RemoveAdminButton = ({ uid }: { uid: string }) => {
+  const { t } = useTranslation()
+
   const [removeAdmin, { loading }] = useMutation(RemoveAdminDocument, {
     awaitRefetchQueries: true,
     refetchQueries: [namedOperations.Query.admins],
@@ -26,15 +29,12 @@ export const RemoveAdminButton = ({ uid }: { uid: string }) => {
       >
         <IconTrash className="w-8 h-8 p-2 bg-red-50" />
       </Button>
-      <Dialog open={open} setOpen={setOpen} title={'Delete'}>
-        <div>
-          Are you sure you want to delete this innocent soul from the admin
-          realm?
-        </div>
+      <Dialog open={open} setOpen={setOpen} title={t('admin.delete')}>
+        <div>{t('admin.remove-admin')}</div>
         <div className="my-2 text-xs text-gray">{uid}</div>
         <div className="grid w-full grid-cols-2 gap-2 mt-4">
           <Button variant="outlined" onClick={() => setOpen(false)}>
-            No.
+            {t('button.cancel')}
           </Button>
           <Button
             loading={loading}
@@ -42,7 +42,7 @@ export const RemoveAdminButton = ({ uid }: { uid: string }) => {
               await removeAdmin({ variables: { where: { uid } } })
             }}
           >
-            Yes.
+            {t('button.confirm')}
           </Button>
         </div>
       </Dialog>

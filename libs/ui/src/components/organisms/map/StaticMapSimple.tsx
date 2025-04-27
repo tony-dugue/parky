@@ -1,5 +1,4 @@
 'use client'
-
 import Map, { Marker } from 'react-map-gl/maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
 

@@ -8,6 +8,7 @@ import { Button } from '../atoms/Button'
 import { NavSidebar } from './NavSidebar'
 import { Menus } from './Menus'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
 
 export type IHeaderProps = {
   type?: Role
@@ -16,6 +17,7 @@ export type IHeaderProps = {
 
 export const Header = ({ type, menuItems }: IHeaderProps) => {
   const session = useSession()
+  const { t } = useTranslation()
   const uid = session?.data?.user?.uid
 
   return (
@@ -40,11 +42,11 @@ export const Header = ({ type, menuItems }: IHeaderProps) => {
               <>
                 <Link href="/register">
                   <Button variant="outlined" className="hidden md:block">
-                    Register
+                    {t('button.register')}
                   </Button>
                 </Link>
                 <Link href="/login">
-                  <Button>Log in</Button>
+                  <Button>{t('button.login')}</Button>
                 </Link>
               </>
             )}

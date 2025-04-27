@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Tab, TabPanel, Tabs } from '../molecules/Tabs'
 import { ShowGarageBookings } from '../organisms/ShowGarageBookings'
 import { BookingStatus } from '@parky/network/src/gql/generated'
@@ -9,6 +10,8 @@ export interface IListBookingsProps {
 }
 
 export const ListGarageBookings = ({ garageId }: IListBookingsProps) => {
+  const { t } = useTranslation()
+
   const [value, setValue] = useState<0 | 1 | 2>(0)
 
   return (
@@ -16,11 +19,11 @@ export const ListGarageBookings = ({ garageId }: IListBookingsProps) => {
       <Tabs
         value={value}
         onChange={(e, v) => setValue(v)}
-        aria-label="bookings"
+        aria-label={t('message.bookings')}
       >
-        <Tab label={'IN'} />
-        <Tab label={'OUT'} />
-        <Tab label={'RESOLVED'} />
+        <Tab label={t('status.in')} />
+        <Tab label={t('status.out')} />
+        <Tab label={t('status.resolved')} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <ShowGarageBookings

@@ -4,6 +4,7 @@ import {
   IconChevronLeft,
   IconChevronRight,
 } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
 
 export interface IAutoImageChangerProps {
   images: string[]
@@ -18,6 +19,8 @@ export const AutoImageChanger = ({
   aspectRatio = 'aspect-square',
   noAutoChange = false,
 }: IAutoImageChangerProps) => {
+  const { t } = useTranslation()
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export const AutoImageChanger = ({
   if (images.length === 0)
     return (
       <div className="flex items-center justify-center w-full h-48 gap-2 text-sm bg-white border select-none border-gray-50 text-gray">
-        <IconPhotoCancel /> No images.
+        <IconPhotoCancel /> {t('message.no-images')}
       </div>
     )
 

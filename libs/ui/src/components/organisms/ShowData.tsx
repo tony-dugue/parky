@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { AlertSection } from '../molecules/AlertSection'
 import { LoaderPanel } from '../molecules/Loader'
 import { NoResults } from '../molecules/NoResults'
@@ -27,6 +28,8 @@ export const ShowData = ({
   children,
   childrenClassName = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3',
 }: ShowDataProps) => {
+  const { t } = useTranslation()
+
   const { setSkip, skip, take, resultCount, totalCount } = pagination
 
   const handlePageChange = (
@@ -46,7 +49,7 @@ export const ShowData = ({
 
       {error && (
         <AlertSection>
-          Oops. Something went wrong.{' '}
+          {t('message.something-wrong')}{' '}
           <span className="text-xs">Psst. {error}</span>
         </AlertSection>
       )}

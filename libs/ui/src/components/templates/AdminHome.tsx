@@ -1,4 +1,5 @@
 'use client'
+import { useTranslation } from 'react-i18next'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { useQuery } from '@apollo/client'
 import { GaragesDocument } from '@parky/network/src/gql/generated'
@@ -12,6 +13,8 @@ export const AdminHome = () => {
 }
 
 export const ShowGarages = () => {
+  const { t } = useTranslation()
+
   const { setSkip, setTake, skip, take } = useTakeSkip()
   const { loading, data, error } = useQuery(GaragesDocument, {
     variables: { skip, take },
@@ -20,7 +23,7 @@ export const ShowGarages = () => {
   return (
     <ShowData
       error={error?.message}
-      title="Garages"
+      title={t('message.garages')}
       loading={loading}
       pagination={{
         resultCount: data?.garages.length || 0,

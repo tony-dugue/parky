@@ -5,9 +5,9 @@ import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvi
 import { ApolloProvider } from '@parky/network/src/config/apollo'
 import { MenuItem } from '@parky/util/types'
 import { ToastContainer } from '@parky/ui/src/components/molecules/Toast'
-import { Header } from '@parky/ui/src/components/organisms/Header'
 import { Container } from '@parky/ui/src/components/atoms/Container'
 import { Providers } from './providers'
+import HeaderWithTranslation from './HeaderWithTranslation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 }
 
 const MENUITEMS: MenuItem[] = [
-  { label: 'Search', href: '/search' },
-  { label: 'Bookings', href: '/bookings' },
+  { label: 'search-label', href: '/search' },
+  { label: 'bookings-label', href: '/bookings' },
 ]
 
 export default function RootLayout({
@@ -32,7 +32,7 @@ export default function RootLayout({
         <SessionProvider>
           <ApolloProvider>
             <body className={`${inter.className} bg-gray-25`}>
-              <Header menuItems={MENUITEMS} />
+              <HeaderWithTranslation menuItems={MENUITEMS} />
               <Container>{children}</Container>
               <ToastContainer />
             </body>
