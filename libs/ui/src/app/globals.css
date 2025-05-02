@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, :root {
+  height: 100%;
+}
+
 .Toastify__toast {
   @apply rounded-none;
 }

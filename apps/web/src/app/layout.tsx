@@ -1,5 +1,6 @@
+import { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Lexend } from 'next/font/google'
 import '@parky/ui/src/app/globals.css'
 import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvider'
 import { ApolloProvider } from '@parky/network/src/config/apollo'
@@ -9,7 +10,12 @@ import { Container } from '@parky/ui/src/components/atoms/Container'
 import { Providers } from './providers'
 import HeaderWithTranslation from './HeaderWithTranslation'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Lexend({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font',
+})
 
 export const metadata: Metadata = {
   title: 'Parky',
@@ -21,17 +27,17 @@ const MENUITEMS: MenuItem[] = [
   { label: 'bookings-label', href: '/bookings' },
 ]
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+type RootLayoutProps = {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
       <Providers>
         <SessionProvider>
           <ApolloProvider>
-            <body className={`${inter.className} bg-gray-25`}>
+            <body className={`${font.variable} font-sans`}>
               <HeaderWithTranslation menuItems={MENUITEMS} />
               <Container>{children}</Container>
               <ToastContainer />

@@ -124,7 +124,7 @@
     "unlist": "Retirer de la liste",
     "check-in": "PRISE EN CHARGE",
     "check-out": "RESTITUTION",
-    "create-one": "Crée un",
+    "create-one": "Crée un compte ",
     "now": "maintenant.",
     "register-account": "Créer le compte"
   },
@@ -228,7 +228,7 @@
     "not-logged-in": "Vous n'êtes pas connecté",
     "login": "Se connecter",
     "login-failed": "Echec de l'authentification. Réessayez plus tard.",
-    "not-account": "Vous n'avez pas encore de compte sur Parky ?",
+    "not-account": "Pas encore inscrit sur Parky ?",
     "already-account": "Vous avez déjà un compte sur Parky ?"
   },
   "message": {
