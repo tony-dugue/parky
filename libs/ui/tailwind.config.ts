@@ -12,10 +12,12 @@ const config: Config = {
 
   theme: {
     screens: {
-      sm: '20rem', // 320px
-      md: '48rem', // 768px
-      lg: '60rem', // 960px
-      xl: '75rem', // 1200px
+      sm: '23.4375rem', // 375px
+      md: '40rem', // 640px
+      lg: '64rem', // 1024px
+      xl: '80rem', // 1280px
+      '2xl': '96rem', // 1536px
+      '3xl': '120rem', // 1920px
     },
     colors: colorsConfig,
     fontFamily: {

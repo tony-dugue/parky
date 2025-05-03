@@ -1,6 +1,7 @@
-import { CanvasTexture, Euler, Vector3 } from 'three'
-import { radians } from '../util'
 import { useMemo } from 'react'
+import { CanvasTexture, Euler, Vector3 } from 'three'
+
+import { radians } from '../util'
 import { roadColor } from '../util/constants'
 
 export const GradientPlane = ({

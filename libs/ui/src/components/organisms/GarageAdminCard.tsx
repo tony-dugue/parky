@@ -1,8 +1,9 @@
-import { GaragesQuery } from '@parky/network/src/gql/generated'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { GaragesQuery } from '@parky/network/src/gql/generated'
 import { MapLink } from '../molecules/MapLink'
 import { IconTypes } from '../molecules/IconTypes'
-import { useTranslation } from 'react-i18next'
 
 export const GarageAdminCard = ({
   children,

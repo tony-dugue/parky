@@ -1,6 +1,9 @@
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import * as jwt from 'jsonwebtoken'
+import { JWT } from 'next-auth/jwt'
+
 import {
   AuthProviderType,
   GetAuthProviderDocument,
@@ -8,8 +11,6 @@ import {
   RegisterWithProviderDocument,
 } from '@parky/network/src/gql/generated'
 import { fetchGraphQL } from '../fetch'
-import * as jwt from 'jsonwebtoken'
-import { JWT } from 'next-auth/jwt'
 
 const MAX_AGE = 1 * 24 * 60 * 60
 

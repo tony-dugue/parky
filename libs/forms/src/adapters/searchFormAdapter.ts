@@ -1,11 +1,12 @@
-import { SearchGaragesQueryVariables } from '@parky/network/src/gql/generated'
-import { FormTypeSearchGarage } from '../searchGarages'
 import { useState, useEffect } from 'react'
 import {
   FieldNamesMarkedBoolean,
   useFormContext,
   useWatch,
 } from 'react-hook-form'
+
+import { SearchGaragesQueryVariables } from '@parky/network/src/gql/generated'
+import { FormTypeSearchGarage } from '../searchGarages'
 import { useDebounce } from '@parky/util/hooks/async'
 import { intFilter } from './util'
 

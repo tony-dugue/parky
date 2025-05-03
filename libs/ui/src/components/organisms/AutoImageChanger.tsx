@@ -45,7 +45,7 @@ export const AutoImageChanger = ({
       <img
         src={process.env.NEXT_PUBLIC_API_URL_UPLOAD + images[currentImageIndex]}
         alt="Garage"
-        className="object-cover h-full w-full"
+        className="object-cover h-full w-full rounded-xl"
       />
       <div className="absolute bottom-0 left-0 right-0 flex justify-center p-1 space-x-2">
         {images.map((_, index) => (

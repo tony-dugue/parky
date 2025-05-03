@@ -1,12 +1,13 @@
+import { useState } from 'react'
+import { useWatch } from 'react-hook-form'
+
 import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
 import { useKeypress } from '@parky/util/hooks/keys'
-import { useState } from 'react'
+import { FormTypeSearchGarage } from '@parky/forms/src/searchGarages'
+import { FormProviderBookSlot } from '@parky/forms/src/bookSlot'
 import { Marker } from '../map/MapMarker'
 import { Dialog } from '../../atoms/Dialog'
 import { ParkingIcon } from '../../atoms/ParkingIcon'
-import { FormProviderBookSlot } from '@parky/forms/src/bookSlot'
-import { useWatch } from 'react-hook-form'
-import { FormTypeSearchGarage } from '@parky/forms/src/searchGarages'
 import { BookSlotPopup } from '../BookSlotPopup'
 
 export const GarageMarker = ({

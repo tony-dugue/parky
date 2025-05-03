@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Lexend } from 'next/font/google'
+
 import '@parky/ui/src/app/globals.css'
 import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvider'
 import { ApolloProvider } from '@parky/network/src/config/apollo'
@@ -36,7 +37,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <Providers>
           <SessionProvider>
             <ApolloProvider>
-              <HeaderWithTranslation menuItems={MENUITEMS} />
+              <HeaderWithTranslation menuItems={MENUITEMS} type="valet" />
               <Container>{children}</Container>
             </ApolloProvider>
           </SessionProvider>

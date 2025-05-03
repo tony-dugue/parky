@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useMemo, useRef } from 'react'
 import Map, { Marker, Source, Layer, MapRef } from 'react-map-gl/maplibre'
-import type { LatLng } from '@parky/util/types'
 import 'maplibre-gl/dist/maplibre-gl.css'
+
+import type { LatLng } from '@parky/util/types'
 
 export const StaticMapDirections = ({
   start,

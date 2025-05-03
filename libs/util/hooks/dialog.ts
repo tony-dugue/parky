@@ -1,5 +1,5 @@
-import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export const useDialogState = (defaultState = false) => {
   const [open, setOpen] = useState(defaultState)

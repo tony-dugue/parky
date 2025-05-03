@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 import { Role } from '@parky/util/types'
 import { BrandIcon } from './BrandIcon'
-import { useTranslation } from 'react-i18next'
 
 export interface IBrandProps {
   className?: string

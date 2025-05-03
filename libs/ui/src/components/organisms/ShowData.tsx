@@ -1,8 +1,9 @@
+import { Pagination } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+
 import { AlertSection } from '../molecules/AlertSection'
 import { LoaderPanel } from '../molecules/Loader'
 import { NoResults } from '../molecules/NoResults'
-import { Pagination } from '@mui/material'
 
 interface ShowDataProps {
   error?: string
@@ -43,7 +44,7 @@ export const ShowData = ({
 
   return (
     <div>
-      <h2 className="text-lg mb-1 font-semibold mt-2">{title}</h2>
+      <h1 className="text-lg mb-1 font-semibold mt-10">{title}</h1>
       {loading && <LoaderPanel />}
       {!loading && !error && resultCount === 0 && <NoResults />}
 
@@ -55,6 +56,7 @@ export const ShowData = ({
       )}
 
       <div className={childrenClassName}>{children}</div>
+
       <div className="flex justify-center mt-8">
         <Pagination
           count={totalPages}

@@ -1,5 +1,5 @@
-import { Switch as HUISwitch, SwitchGroup, Label } from '@headlessui/react'
 import { ReactNode } from 'react'
+import { Switch as HUISwitch, SwitchGroup, Label } from '@headlessui/react'
 
 export interface Switch2Props {
   label: ReactNode

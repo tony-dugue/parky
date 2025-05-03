@@ -1,11 +1,12 @@
 'use client'
-import { MyCompanyDocument } from '@parky/network/src/gql/generated'
+import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useQuery } from '@apollo/client'
+
+import { MyCompanyDocument } from '@parky/network/src/gql/generated'
 import { LoaderPanel } from '../molecules/Loader'
 import { AlertSection } from '../molecules/AlertSection'
 import { CreateCompany } from './CreateCompany'
-import { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 
 type RenderPropChild = (id: number) => ReactNode
 

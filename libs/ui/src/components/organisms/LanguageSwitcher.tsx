@@ -1,6 +1,9 @@
 'use client'
 import { useTranslation } from 'react-i18next'
 
+import FlagFR from '../atoms/flags/FlagFR'
+import FlagEN from '../atoms/flags/FlagEN'
+
 export function LanguageSwitcher() {
   const { i18n } = useTranslation()
 
@@ -15,13 +18,13 @@ export function LanguageSwitcher() {
         onClick={() => changeLanguage('fr')}
         className={`px-2 py-1 ${i18n.language === 'fr' ? 'font-bold' : ''}`}
       >
-        🇫🇷
+        <FlagFR width="23" height="23" />
       </button>
       <button
         onClick={() => changeLanguage('en')}
         className={`px-2 py-1 ${i18n.language === 'en' ? 'font-bold' : ''}`}
       >
-        🇬🇧
+        <FlagEN width="23" height="23" />
       </button>
     </div>
   )

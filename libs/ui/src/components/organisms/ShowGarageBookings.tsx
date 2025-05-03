@@ -1,16 +1,17 @@
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { IconSearch } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
+
 import {
   BookingStatus,
   BookingsForGarageDocument,
   QueryMode,
 } from '@parky/network/src/gql/generated'
-import { IconSearch } from '@tabler/icons-react'
-import { useState } from 'react'
-import { useQuery } from '@apollo/client'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { ShowData } from './ShowData'
 import { ManageBookingCard } from './ManageBookingCard'
 import { CheckInOutButton } from './CheckInOutButtons'
-import { useTranslation } from 'react-i18next'
 
 export const ShowGarageBookings = ({
   garageId,
@@ -52,7 +53,7 @@ export const ShowGarageBookings = ({
   return (
     <div className="mt-4">
       <div className="flex justify-center">
-        <div className="flex justify-start items-center gap-2 w-full max-w-xl  rounded-full shadow-xl bg-white px-4">
+        <div className="flex justify-start items-center gap-2 w-full max-w-xl rounded-full shadow-lg bg-white border border-gray-25 px-4">
           <IconSearch />
           <input
             placeholder={t('form.placeholder.search-vehicle')}

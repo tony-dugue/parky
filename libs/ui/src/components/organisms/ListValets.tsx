@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client'
+
 import { CompanyValetsDocument } from '@parky/network/src/gql/generated'
-import { ShowData } from './ShowData'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
+import { ShowData } from './ShowData'
 import { ValetCard } from './ValetCard'
 
 export const ListValets = () => {

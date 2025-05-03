@@ -1,14 +1,15 @@
+import { useTranslation } from 'react-i18next'
+import Link from 'next/link'
+import { useQuery } from '@apollo/client'
+
 import {
   GaragesDocument,
   MyCompanyQuery,
 } from '@parky/network/src/gql/generated'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
-import { useQuery } from '@apollo/client'
 import { ShowData } from './ShowData'
-import Link from 'next/link'
-import { IconPlus } from '@tabler/icons-react'
 import { GarageCard } from './GarageCard'
-import { useTranslation } from 'react-i18next'
+import { Button } from '../atoms/Button'
 
 export const ListGarages = ({
   companyId,
@@ -35,15 +36,12 @@ export const ListGarages = ({
         setSkip,
         setTake,
       }}
-      childrenClassName="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3"
+      childrenClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 gap-8"
       title={
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between mb-10">
           <div>{t('message.garages')}</div>
-          <Link
-            href="/new-garage"
-            className="rounded-full border border-black p-0.5"
-          >
-            <IconPlus />
+          <Link href="/new-garage">
+            <Button>{t('button.add-garage')}</Button>
           </Link>
         </div>
       }

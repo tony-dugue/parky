@@ -1,13 +1,14 @@
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation } from '@apollo/client'
+import { IconTrash } from '@tabler/icons-react'
+
 import {
   RemoveAdminDocument,
   namedOperations,
 } from '@parky/network/src/gql/generated'
 import { Button } from '../../atoms/Button'
-import { IconTrash } from '@tabler/icons-react'
 import { Dialog } from '../../atoms/Dialog'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 export const RemoveAdminButton = ({ uid }: { uid: string }) => {
   const { t } = useTranslation()

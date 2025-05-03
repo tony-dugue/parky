@@ -1,8 +1,9 @@
-import { AdminsQuery } from '@parky/network/src/gql/generated'
 import { ReactNode } from 'react'
 import { useSession } from 'next-auth/react'
 import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
+
+import { AdminsQuery } from '@parky/network/src/gql/generated'
 
 type AdminCardProps = {
   admin: AdminsQuery['admins'][number]

@@ -1,6 +1,7 @@
-import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
-import { useWatch } from 'react-hook-form'
 import { useState, useEffect } from 'react'
+import { useWatch } from 'react-hook-form'
+
+import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
 import { differenceInTime } from '../date'
 import { VALET_CHARGE_PER_METER } from '../constants'
 

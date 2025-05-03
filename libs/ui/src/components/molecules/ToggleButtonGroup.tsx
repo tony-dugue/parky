@@ -1,8 +1,8 @@
+import { forwardRef, JSX } from 'react'
 import ToggleButtonMui, { ToggleButtonProps } from '@mui/material/ToggleButton'
 import ToggleButtonGroupMui, {
   ToggleButtonGroupProps,
 } from '@mui/material/ToggleButtonGroup'
-import { forwardRef, JSX } from 'react'
 
 export const ToggleButtonGroup = forwardRef<
   JSX.Element,

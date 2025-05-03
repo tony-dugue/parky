@@ -1,11 +1,14 @@
-import { useFormCreateManySlots } from '@parky/forms/src/createSlots'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { IconPlus } from '@tabler/icons-react'
 import { useMutation } from '@apollo/client'
+
 import {
   CreateManySlotsDocument,
   SlotType,
   namedOperations,
 } from '@parky/network/src/gql/generated'
-import { useState } from 'react'
+import { useFormCreateManySlots } from '@parky/forms/src/createSlots'
 import { Button } from '../atoms/Button'
 import { Dialog } from '../atoms/Dialog'
 import { HtmlLabel } from '../atoms/HtmlLabel'
@@ -13,7 +16,6 @@ import { HtmlSelect } from '../atoms/HtmlSelect'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { Form } from '../atoms/Form'
 import { toast } from '../molecules/Toast'
-import { useTranslation } from 'react-i18next'
 
 export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
   const { t } = useTranslation()
@@ -40,15 +42,8 @@ export const CreateManySlotsDialog = ({ garageId }: { garageId: number }) => {
 
   return (
     <>
-      <Button
-        variant="text"
-        size="none"
-        onClick={() => setOpen(true)}
-        className="w-16 h-10 border-2 group border-primary"
-      >
-        <div className="transition-transform duration-300 group-hover:scale-150">
-          +
-        </div>
+      <Button size="none" onClick={() => setOpen(true)} className="h-10">
+        <IconPlus className="w-7 h-7 p-1.5 text-black" />
       </Button>
       <Dialog open={open} setOpen={setOpen} title={t('button.create-slots')}>
         <Form

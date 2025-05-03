@@ -1,7 +1,8 @@
-import { LatLng } from '@parky/util/types'
+import { ReactNode } from 'react'
 import { IconMap2 } from '@tabler/icons-react'
 import Link from 'next/link'
-import { ReactNode } from 'react'
+
+import { LatLng } from '@parky/util/types'
 
 export interface IMapLinkProps {
   waypoints: LatLng[]

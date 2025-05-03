@@ -1,17 +1,18 @@
-import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
 import { useState } from 'react'
-import { toast } from '../molecules/Toast'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { IconUser } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
+
+import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
 import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
+import { toast } from '../molecules/Toast'
 import { Switch } from '../atoms/Switch'
 import { Marker } from './map/MapMarker'
 import { Map } from './map/Map'
 import { ParkingIcon } from '../atoms/ParkingIcon'
-import { IconUser } from '@tabler/icons-react'
 import { Directions } from './Directions'
 import { Panel } from './map/Panel'
 import { DefaultZoomControls } from './map/ZoomControls'
-import { useTranslation } from 'react-i18next'
 
 export const ManageValets = ({
   garage,

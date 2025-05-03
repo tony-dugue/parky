@@ -1,6 +1,7 @@
-import { BaseComponent } from '@parky/util/types'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
+
+import { BaseComponent } from '@parky/util/types'
 
 export const UserInfo = ({ children, className }: BaseComponent) => {
   const session = useSession()

@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 import { BookingsForCustomerQuery } from '@parky/network/src/gql/generated'
 import { StartEndDateCard } from './DateCard'
 import { MapLink } from '../molecules/MapLink'
@@ -5,7 +7,6 @@ import { StaticMapSimple } from './map/StaticMapSimple'
 import { TitleStrongValue, TitleValue } from '../atoms/TitleValue'
 import { Reveal } from '../molecules/Reveal'
 import { Accordion } from '../atoms/Accordion'
-import { format } from 'date-fns'
 
 export interface IBookingCardProps {
   booking: NonNullable<BookingsForCustomerQuery['bookingsForCustomer']>[number]

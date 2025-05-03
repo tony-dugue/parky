@@ -1,9 +1,10 @@
 'use client'
-import { useTranslation } from 'react-i18next'
-import { Tab, Tabs, TabPanel } from '../molecules/Tabs'
 import { useState } from 'react'
-import { ShowCustomerBookings } from '../organisms/ShowCustomerBookings'
+import { useTranslation } from 'react-i18next'
+
 import { BookingStatus } from '@parky/network/src/gql/generated'
+import { Tab, Tabs, TabPanel } from '../molecules/Tabs'
+import { ShowCustomerBookings } from '../organisms/ShowCustomerBookings'
 
 export const ListCustomerBookings = () => {
   const { t } = useTranslation()

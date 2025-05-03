@@ -1,3 +1,4 @@
+import { Dispatch, Fragment, ReactNode, SetStateAction } from 'react'
 import {
   Dialog as HeadlessUIDialog,
   DialogPanel,
@@ -5,7 +6,6 @@ import {
   TransitionChild,
 } from '@headlessui/react'
 import { IconX } from '@tabler/icons-react'
-import { Dispatch, Fragment, ReactNode, SetStateAction } from 'react'
 
 interface IMyDialogProps {
   open: boolean

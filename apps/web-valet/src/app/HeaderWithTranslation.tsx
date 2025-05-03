@@ -1,11 +1,14 @@
 'use client'
 import { useTranslation } from 'react-i18next'
+
 import { Header } from '@parky/ui/src/components/organisms/Header'
-import { MenuItem } from '@parky/util/types'
+import { MenuItem, Role } from '@parky/util/types'
 
 export default function HeaderWithTranslation({
+  type,
   menuItems,
 }: {
+  type: Role | undefined
   menuItems: MenuItem[]
 }) {
   const { t } = useTranslation()
@@ -15,5 +18,5 @@ export default function HeaderWithTranslation({
     label: t(`web-valet.general.menu-items.${item.label}`),
   }))
 
-  return <Header menuItems={translatedMenuItems} />
+  return <Header menuItems={translatedMenuItems} type={type} />
 }

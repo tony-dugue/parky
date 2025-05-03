@@ -1,9 +1,10 @@
+import { useMutation } from '@apollo/client'
+
 import {
   BookingStatus,
   CreateBookingTimelineDocument,
   namedOperations,
 } from '@parky/network/src/gql/generated'
-import { useMutation } from '@apollo/client'
 import { Button } from '../atoms/Button'
 
 export const CheckInOutButton = ({

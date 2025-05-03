@@ -1,11 +1,13 @@
+import { useState } from 'react'
+import { useFormContext, Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { IconFilter } from '@tabler/icons-react'
+
 import {
   FormTypeSearchGarage,
   formDefaultValuesSearchGarages,
 } from '@parky/forms/src/searchGarages'
-import { useState } from 'react'
-import { useFormContext, Controller } from 'react-hook-form'
 import { Button } from '../../atoms/Button'
-import { IconFilter } from '@tabler/icons-react'
 import { PulsingDot } from '../../atoms/Dot'
 import { Sidebar } from '../Sidebar'
 import { RangeSlider } from '../../molecules/RangeSlider'
@@ -15,7 +17,6 @@ import {
 } from '../../molecules/ToggleButtonGroup'
 import { FilterHeading } from '../../molecules/FilterHeading'
 import { IconTypes } from '../../molecules/IconTypes'
-import { useTranslation } from 'react-i18next'
 
 export const FilterSidebar = () => {
   const { t } = useTranslation()

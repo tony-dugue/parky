@@ -1,14 +1,15 @@
 'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
+
 import { useFormLogin } from '@parky/forms/src/login'
 import { Form } from '../atoms/Form'
 import { HtmlLabel } from '../atoms/HtmlLabel'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { Button } from '../atoms/Button'
-import Link from 'next/link'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 
 export interface ILoginFormProps {
   className?: string
@@ -28,6 +29,7 @@ export const LoginForm = ({}: ILoginFormProps) => {
 
   return (
     <Form
+      className="flex flex-col gap-6"
       onSubmit={handleSubmit(async (data) => {
         const { email, password } = data
         setLoading(true)
@@ -54,6 +56,7 @@ export const LoginForm = ({}: ILoginFormProps) => {
           placeholder={t('form.placeholder.email')}
         />
       </HtmlLabel>
+
       <HtmlLabel
         title={t('form.title.password')}
         error={errors.password?.message}
@@ -65,6 +68,7 @@ export const LoginForm = ({}: ILoginFormProps) => {
           placeholder={t('form.placeholder.password')}
         />
       </HtmlLabel>
+
       <Button type="submit" loading={loading}>
         {t('button.submit')}
       </Button>

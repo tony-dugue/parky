@@ -1,6 +1,7 @@
-import { CompanyValetsQuery } from '@parky/network/src/gql/generated'
 import { format } from 'date-fns'
 import Image from 'next/image'
+
+import { CompanyValetsQuery } from '@parky/network/src/gql/generated'
 
 export interface IValetCardProps {
   valet: CompanyValetsQuery['companyValets'][0]

@@ -1,15 +1,16 @@
-import { FormTypeCreateGarage } from '@parky/forms/src/createGarage'
+import { useTranslation } from 'react-i18next'
 import { useWatch, useFormContext, useFieldArray } from 'react-hook-form'
+import { IconPlus } from '@tabler/icons-react'
+
+import { SlotType } from '@parky/network/src/gql/generated'
+import { FormTypeCreateGarage } from '@parky/forms/src/createGarage'
 import { Marker } from '../organisms/map/MapMarker'
 import { ParkingIcon } from '../atoms/ParkingIcon'
 import { Accordion } from '../atoms/Accordion'
 import { Button } from '../atoms/Button'
-import { IconPlus } from '@tabler/icons-react'
-import { SlotType } from '@parky/network/src/gql/generated'
 import { HtmlLabel } from '../atoms/HtmlLabel'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { HtmlSelect } from '../atoms/HtmlSelect'
-import { useTranslation } from 'react-i18next'
 
 export const GarageMapMarker = () => {
   const { location } = useWatch<FormTypeCreateGarage>()

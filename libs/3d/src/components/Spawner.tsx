@@ -1,8 +1,9 @@
-import * as THREE from 'three'
 import { ReactNode, useState, useRef } from 'react'
+import * as THREE from 'three'
+import { useFrame } from '@react-three/fiber'
+
 import { WORLD_DURATION } from '../util/constants'
 import { SpawnedElement } from '../util/types'
-import { useFrame } from '@react-three/fiber'
 
 interface SpawnerProps {
   startPosition: THREE.Vector3

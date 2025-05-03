@@ -1,6 +1,6 @@
 'use client'
-import { Dialog, Transition, TransitionChild } from '@headlessui/react'
 import { Fragment, ReactNode } from 'react'
+import { Dialog, Transition, TransitionChild } from '@headlessui/react'
 import { IconX } from '@tabler/icons-react'
 
 export interface ISidebarProps {

@@ -1,5 +1,6 @@
-import { IconArrowRightCircle } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
+import { IconArrowRightCircle } from '@tabler/icons-react'
+
 import {
   differenceInTime,
   formatDate,

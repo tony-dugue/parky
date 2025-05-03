@@ -1,12 +1,13 @@
 'use client'
-import { CarScene } from '@parky/3d/src/scenes/CarScene'
-import { RotatingCamera } from '@parky/3d/src/components/camera/Rotating'
+import { ReactNode } from 'react'
 import { IconArrowBack } from '@tabler/icons-react'
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { CarScene } from '@parky/3d/src/scenes/CarScene'
+import { RotatingCamera } from '@parky/3d/src/components/camera/Rotating'
 import { BrandIcon } from '../atoms/BrandIcon'
 import { GoogleButton } from './GoogleButton'
-import { useTranslation } from 'react-i18next'
 
 export interface IAuthLayoutProps {
   children: ReactNode
@@ -24,9 +25,9 @@ export const AuthLayout = ({ title, children }: IAuthLayoutProps) => {
         hideAllComments
       />
       <div className=" flex flex-col justify-center items-center absolute top-0 bg-black/20 backdrop-blur-sm bottom-0">
-        <div className="p-4 text-white ">
+        <div className="p-20 text-white">
           <div className="w-full max-w-lg mx-auto">
-            <h1 className="flex items-center gap-2 mb-2 text-2xl">
+            <h1 className="flex items-center gap-2 mb-2 text-2xl mb-6">
               <BrandIcon /> <div>{title}</div>
             </h1>
             {children}
@@ -35,7 +36,7 @@ export const AuthLayout = ({ title, children }: IAuthLayoutProps) => {
                 <div className="mb-1 text-xs">{t('auth.continue-with')}</div>
                 <GoogleButton />
               </div>
-              <Link href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2 mt-6">
                 <IconArrowBack className="w-4 h-4" /> {t('auth.back-home')}
               </Link>
             </div>

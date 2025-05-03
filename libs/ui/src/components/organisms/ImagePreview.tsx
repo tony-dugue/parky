@@ -1,7 +1,8 @@
-import { BaseComponent } from '@parky/util/types'
 import { IconTrash } from '@tabler/icons-react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+
+import { BaseComponent } from '@parky/util/types'
 
 export interface IImageUploadProps extends BaseComponent {
   srcs?: FileList

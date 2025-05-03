@@ -1,9 +1,10 @@
+import { useQuery } from '@apollo/client'
+
 import {
   BookingStatus,
   BookingsForCustomerDocument,
 } from '@parky/network/src/gql/generated'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
-import { useQuery } from '@apollo/client'
 import { ShowData } from './ShowData'
 import { CustomerBookingCard } from './CustomerBookingCard'
 

@@ -1,10 +1,10 @@
+import { ReactNode } from 'react'
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
 import { IconChevronDown } from '@tabler/icons-react'
-import { ReactNode } from 'react'
 
 export interface IAccordionProps {
   title: ReactNode

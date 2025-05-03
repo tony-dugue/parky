@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { yellowColor } from '../util/constants'
 import { Square, SquareProps } from './Square'
-import { useEffect, useState } from 'react'
 
 interface BlinkingParkingSlotProps extends SquareProps {
   blinkDuration?: number

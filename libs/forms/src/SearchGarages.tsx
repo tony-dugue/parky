@@ -1,11 +1,12 @@
-import { SlotType } from '@parky/network/src/gql/generated'
-import { z } from 'zod'
-import { toLocalISOString } from '@parky/util/date'
 import { ReactNode } from 'react'
 import { DefaultValues, useForm, FormProvider, Form } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { isEndTimeValid, isStartTimeValid } from './util'
 import { useTranslation } from 'react-i18next'
+import { z } from 'zod'
+
+import { SlotType } from '@parky/network/src/gql/generated'
+import { toLocalISOString } from '@parky/util/date'
+import { isEndTimeValid, isStartTimeValid } from './util'
 
 type Translator = (key: string) => string
 

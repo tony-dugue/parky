@@ -1,9 +1,10 @@
-import { LocationInfo, ViewState } from '@parky/util/types'
+import { useTranslation } from 'react-i18next'
 import { useMap } from 'react-map-gl/maplibre'
-import { Autocomplete } from '../../atoms/Autocomplete'
+
+import { LocationInfo, ViewState } from '@parky/util/types'
 import { useSearchLocation } from '@parky/util/hooks/location'
 import { majorCitiesLocationInfo } from '@parky/util/constants'
-import { useTranslation } from 'react-i18next'
+import { Autocomplete } from '../../atoms/Autocomplete'
 
 export const SearchPlaceBox = ({
   onLocationChange,

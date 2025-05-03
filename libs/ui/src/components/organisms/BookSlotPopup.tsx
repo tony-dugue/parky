@@ -1,30 +1,31 @@
 'use client'
+import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { Controller, useFormContext, useWatch } from 'react-hook-form'
+import { loadStripe } from '@stripe/stripe-js'
+import { Radio, RadioGroup } from '@headlessui/react'
+import { useTranslation } from 'react-i18next'
+
 import {
   CreateBookingInput,
   SearchGaragesQuery,
 } from '@parky/network/src/gql/generated'
-import { Controller, useFormContext, useWatch } from 'react-hook-form'
+import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
+import { toLocalISOString } from '@parky/util/date'
+import { TotalPrice } from '@parky/util/types'
+import { useTotalPrice } from '@parky/util/hooks/price'
 import { Form } from '../atoms/Form'
 import { Badge } from '../atoms/Badge'
 import { AutoImageChanger } from './AutoImageChanger'
 import { DateRangeBookingInfo } from '../molecules/DateRangeBookingInfo'
-import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
-import { loadStripe } from '@stripe/stripe-js'
 import { HtmlLabel } from '../atoms/HtmlLabel'
-import { Radio, RadioGroup } from '@headlessui/react'
 import { IconTypes } from '../molecules/IconTypes'
 import { FormError } from '../atoms/FormError'
 import { HtmlInput } from '../atoms/HtmlInput'
-import { toLocalISOString } from '@parky/util/date'
 import { CostTitleValue } from '../molecules/CostTitleValue'
-import { useTotalPrice } from '@parky/util/hooks/price'
 import { Button } from '../atoms/Button'
-import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { TotalPrice } from '@parky/util/types'
 import { ManageValets } from './ManageValets'
 import { toast } from '../molecules/Toast'
-import { useTranslation } from 'react-i18next'
 
 export const BookSlotPopup = ({
   garage,

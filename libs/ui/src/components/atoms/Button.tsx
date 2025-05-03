@@ -70,7 +70,7 @@ export const Button = ({
     <button
       type={type}
       disabled={disabled || loading}
-      className={`rounded relative font-medium ${sizeCls} ${fwCls} ${variantCls} ${disCls}  ${className} `}
+      className={`relative rounded-lg font-medium ${sizeCls} ${fwCls} ${variantCls} ${disCls}  ${className} `}
       {...props}
     >
       {loading ? (

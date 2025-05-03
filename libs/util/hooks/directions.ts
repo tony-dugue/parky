@@ -1,5 +1,5 @@
-import { LatLng } from '../types'
 import { useEffect, useState } from 'react'
+import { LatLng } from '../types'
 
 export const useMapDirections = (
   start?: Partial<LatLng> | null,

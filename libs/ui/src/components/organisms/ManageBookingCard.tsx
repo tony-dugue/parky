@@ -1,10 +1,11 @@
+import { format } from 'date-fns'
+import { useTranslation } from 'react-i18next'
+
 import { BookingsForGarageQuery } from '@parky/network/src/gql/generated'
 import { TitleStrongValue, TitleValue } from '../atoms/TitleValue'
 import { Reveal } from '../molecules/Reveal'
 import { StartEndDateCard } from './DateCard'
 import { Accordion } from '../atoms/Accordion'
-import { format } from 'date-fns'
-import { useTranslation } from 'react-i18next'
 
 export interface IManageBookingCardProps {
   booking: BookingsForGarageQuery['bookingsForGarage'][0]

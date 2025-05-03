@@ -1,4 +1,3 @@
-import { SlotType } from '@parky/network/src/gql/generated'
 import {
   IconBike,
   IconMotorbike,
@@ -9,6 +8,8 @@ import {
   IconSun,
   IconSunrise,
 } from '@tabler/icons-react'
+
+import { SlotType } from '@parky/network/src/gql/generated'
 
 export const IconTypes = {
   [SlotType.Bicycle]: <IconBike className="w-6 h-6 " />,

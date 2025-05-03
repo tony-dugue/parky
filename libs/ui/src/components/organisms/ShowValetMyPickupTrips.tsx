@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { useQuery } from '@apollo/client'
+
 import {
   BookingStatus,
   MyPickupTripsDocument,

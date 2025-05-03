@@ -1,5 +1,6 @@
-import { MenuItem } from '@parky/util/types'
 import Link from 'next/link'
+
+import { MenuItem } from '@parky/util/types'
 
 export interface IMenuItemProps {
   menuItems: MenuItem[]

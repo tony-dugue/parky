@@ -1,8 +1,9 @@
 'use client'
-import { CarScene } from '@parky/3d/src/scenes/CarScene'
 import { IconSearch } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
+
+import { CarScene } from '@parky/3d/src/scenes/CarScene'
 
 export default function Home() {
   const { t } = useTranslation()

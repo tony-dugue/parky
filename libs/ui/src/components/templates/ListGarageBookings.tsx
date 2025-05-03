@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { BookingStatus } from '@parky/network/src/gql/generated'
 import { Tab, TabPanel, Tabs } from '../molecules/Tabs'
 import { ShowGarageBookings } from '../organisms/ShowGarageBookings'
-import { BookingStatus } from '@parky/network/src/gql/generated'
 
 export interface IListBookingsProps {
   garageId: number

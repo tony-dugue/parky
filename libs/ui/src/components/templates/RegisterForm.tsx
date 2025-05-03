@@ -1,15 +1,16 @@
 'use client'
 import { useTranslation } from 'react-i18next'
+import { useMutation } from '@apollo/client'
+import { signIn } from 'next-auth/react'
+import Link from 'next/link'
+
 import { Role } from '@parky/util/types'
 import { useFormRegister } from '@parky/forms/src/register'
-import { useMutation } from '@apollo/client'
 import { RegisterWithCredentialsDocument } from '@parky/network/src/gql/generated'
 import { Form } from '../atoms/Form'
-import { signIn } from 'next-auth/react'
 import { HtmlLabel } from '../atoms/HtmlLabel'
 import { HtmlInput } from '../atoms/HtmlInput'
 import { Button } from '../atoms/Button'
-import Link from 'next/link'
 
 export interface ISignupFormProps {
   className?: string
@@ -30,6 +31,7 @@ export const RegisterForm = ({}: ISignupFormProps) => {
 
   return (
     <Form
+      className="flex flex-col gap-6"
       onSubmit={handleSubmit(async (formData) => {
         const { data, errors } = await registerWithCredentials({
           variables: { registerWithCredentialsInput: formData },

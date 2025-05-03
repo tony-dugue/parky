@@ -1,15 +1,16 @@
+import { useEffect, useRef } from 'react'
 import { useLazyQuery } from '@apollo/client'
+import { IconInfoCircle } from '@tabler/icons-react'
+import { useTranslation } from 'react-i18next'
+
 import {
   SearchGaragesDocument,
   SearchGaragesQueryVariables,
 } from '@parky/network/src/gql/generated'
-import { useEffect, useRef } from 'react'
-import { GarageMarker } from './GarageMarker'
 import { useConvertSearchFormToVariables } from '@parky/forms/src/adapters/searchFormAdapter'
+import { GarageMarker } from './GarageMarker'
 import { Panel } from '../map/Panel'
 import { Loader } from '../../molecules/Loader'
-import { IconInfoCircle } from '@tabler/icons-react'
-import { useTranslation } from 'react-i18next'
 
 export const ShowGarages = () => {
   const { t } = useTranslation()

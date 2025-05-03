@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors'
 const brandHue = 52
 
 const primaryPallete = {
-  DEFAULT: `hsl(${brandHue}, 100%, 50%)`, // #ffdd00
+  DEFAULT: `hsl(${brandHue}, 100%, 50%)`,
   25: `hsl(${brandHue}, 100%, 98%)`, // #fffdf0
   50: `hsl(${brandHue}, 100%, 92%)`, // #fff6cd
   100: `hsl(${brandHue}, 100%, 84%)`, // #ffec99

@@ -1,8 +1,9 @@
 'use client'
 import { IconDoorExit } from '@tabler/icons-react'
-import { signOut } from 'next-auth/react'
-import { Button } from '../atoms/Button'
 import { useTranslation } from 'react-i18next'
+import { signOut } from 'next-auth/react'
+
+import { Button } from '../atoms/Button'
 
 export const LogoutButton = () => {
   const { t } = useTranslation()
@@ -13,7 +14,7 @@ export const LogoutButton = () => {
       onClick={() => {
         signOut()
       }}
-      className="flex gap-2"
+      className="flex items-center gap-2"
     >
       <IconDoorExit /> {t('auth.logout')}
     </Button>

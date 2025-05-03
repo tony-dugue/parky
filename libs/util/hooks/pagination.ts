@@ -1,5 +1,6 @@
-import { TAKE_COUNT } from '../constants'
 import { useState } from 'react'
+
+import { TAKE_COUNT } from '../constants'
 
 export const useTakeSkip = (initialSkip = 0, initialTake = TAKE_COUNT) => {
   const [skip, setSkip] = useState(() => initialSkip)

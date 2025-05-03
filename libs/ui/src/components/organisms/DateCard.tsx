@@ -1,6 +1,7 @@
-import { differenceInTime, getTimeUnits } from '@parky/util/date'
 import { IconArrowRightRhombus } from '@tabler/icons-react'
 import { format } from 'date-fns'
+
+import { differenceInTime, getTimeUnits } from '@parky/util/date'
 
 export interface IDateCardProps {
   startTime: string

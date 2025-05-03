@@ -25,6 +25,7 @@
   "web-manager": {
     "general": {
       "menu-items": {
+        "garages-label": "Garages",
         "new-garage-label": "New garage",
         "valets-label": "Valets"
       }
@@ -117,6 +118,7 @@
     "book-now": "Book now",
     "remove-slot-type": "Remove slot type",
     "add-slots": "Add slots",
+    "add-garage": "Add garage",
     "verification": "Verify",
     "bookings": "Bookings",
     "register": "Register",
@@ -197,7 +199,7 @@
       "vehicule-type": "Vehicle type",
       "number-slots": "Number of slots",
       "garage-name": "Garage name",
-      "Address": "Address",
+      "address": "Address",
       "email": "Email",
       "password": "Password",
       "username": "Username"
@@ -228,6 +230,7 @@
     "not-an-admin": "You are not an admin.",
     "not-logged-in": "You are not logged in.",
     "login": "Login",
+    "register": "Register",
     "login-failed": "Login failed. Try again.",
     "not-account": "Do not have an parky account?",
     "already-account": "Already have an autospace account?"
@@ -244,7 +247,7 @@
     "no-company": "You don't have a company yet.",
     "not-a-valet-1": "You are not a valet.",
     "not-a-valet-2": "Please contact the company's managers with your ID.",
-    "garages": "Garages",
+    "garages": "Your garages",
     "vehicle-number": "Vehicle number",
     "slot": "Slot",
     "status": "Status",
@@ -259,7 +262,8 @@
     "open-main-menu": "Open main menu",
     "start-end-locations-not-set": "Start end locations not set.",
     "bookings": "bookings",
-    "fix-errors": "  Please fix the above errors : "
+    "fix-errors": "  Please fix the above errors : ",
+    "address": "Address:"
   },
   "status": {
     "past": "PAST",

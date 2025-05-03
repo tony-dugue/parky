@@ -1,9 +1,7 @@
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { PerspectiveCamera } from '@react-three/drei'
-
 import { useFrame } from '@react-three/fiber'
-import { MathUtils } from 'three'
 
 export const RotatingCamera = ({
   speed = 0.003,
@@ -11,8 +9,8 @@ export const RotatingCamera = ({
   maxFov = 60,
   radius = 80,
 }) => {
-  const [angle, setAngle] = useState(() => MathUtils.randInt(0, radius))
-  const [fov, setFov] = useState(() => MathUtils.randInt(minFov, maxFov))
+  const [angle, setAngle] = useState(() => THREE.MathUtils.randInt(0, radius))
+  const [fov, setFov] = useState(() => THREE.MathUtils.randInt(minFov, maxFov))
 
   const cameraRef = useRef<THREE.PerspectiveCamera>(null)
 

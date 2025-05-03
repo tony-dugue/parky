@@ -25,6 +25,7 @@
   "web-manager": {
     "general": {
       "menu-items": {
+        "garages-label": "Parkings",
         "new-garage-label": "Nouveau parking",
         "valets-label": "Voituriers"
       }
@@ -117,6 +118,7 @@
     "book-now": "Réserver maintenant",
     "remove-slot-type": "Supprimer un type d'emplacement",
     "add-slots": "Ajouter des emplacements",
+    "add-garage": "Ajouter un parking",
     "verification": "Vérifier",
     "bookings": "Réservations",
     "register": "S'inscrire",
@@ -169,7 +171,7 @@
       "height": "Entrez la hauteur en pieds",
       "slot-type": "Type d'emplacement",
       "search-vehicle": "Rechercher une immatriculation de véhicule",
-      "garage-name": "Nom du garage",
+      "garage-name": "Nom du parking",
       "address": "123, rue ...",
       "email": "Saisir votre email",
       "password": "******",
@@ -195,8 +197,8 @@
       "manager-name": "Nom du manager",
       "vehicule-type": "Type de véhicule",
       "number-slots": "Nombre d'emplacements",
-      "garage-name": "Nom du garage",
-      "Address": "Adresse",
+      "garage-name": "Nom du parking",
+      "address": "Adresse",
       "email": "Email",
       "password": "Mot de passe",
       "username": "Nom d'utilisateur"
@@ -227,6 +229,7 @@
     "not-an-admin": "Vous n'êtes pas administrateur.",
     "not-logged-in": "Vous n'êtes pas connecté",
     "login": "Se connecter",
+    "register": "Créer un compte",
     "login-failed": "Echec de l'authentification. Réessayez plus tard.",
     "not-account": "Pas encore inscrit sur Parky ?",
     "already-account": "Vous avez déjà un compte sur Parky ?"
@@ -244,7 +247,7 @@
     "not-an-admin": "Vous n'êtes pas administrateur.",
     "not-a-valet-1": "Vous n'êtes pas un voiturier.",
     "not-a-valet-2": "Veuillez contacter les managers de l'entreprise avec votre identifiant.",
-    "garages": "Parkings",
+    "garages": "Vos parkings",
     "vehicle-number": "Immatriculation du véhicule",
     "slot": "Emplacement",
     "status": "Statut",
@@ -259,7 +262,8 @@
     "open-main-menu": "Ouvrir le menu principal",
     "start-end-locations-not-set": "Les lieux de départ et d'arrivée ne sont pas définis.",
     "bookings": "réservations",
-    "fix-errors": " Veuillez corriger les erreurs suivantes : "
+    "fix-errors": " Veuillez corriger les erreurs suivantes : ",
+    "address": "Adresse :"
   },
   "status": {
     "past": "PASSÉ",

@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react'
 import { Color } from '@react-three/fiber'
 import { Euler, MathUtils, Vector3 } from 'three'
-import { useEffect, useState } from 'react'
 import { Box, Html } from '@react-three/drei'
+import { useTranslation } from 'react-i18next'
+
 import { radians } from '../util'
 import { BlinkingParkingSlot } from './BlinkingParkingSlot'
 import { GradientPlane } from './GradientPlane'
-import { useTranslation } from 'react-i18next'
 
 interface CarProps {
   color?: Color

@@ -1,5 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Plane, PerspectiveCamera } from '@react-three/drei'
+import * as THREE from 'three'
+
 import { radians } from '../util'
 import { Spawner } from '../components/Spawner'
 import {
@@ -8,8 +10,6 @@ import {
   WORLD_END,
   WORLD_START,
 } from '../util/constants'
-import * as THREE from 'three'
-import { Square } from '../components/Square'
 import { Car } from '../components/Car'
 import { BuildingSet } from '../components/BuildingSet'
 
