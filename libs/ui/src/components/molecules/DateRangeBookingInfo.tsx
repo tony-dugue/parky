@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { IconArrowRightCircle } from '@tabler/icons-react'
+import { TbArrowRightCircle } from 'react-icons/tb'
 
 import {
   differenceInTime,
@@ -44,7 +44,7 @@ export const DateRangeBookingInfo = ({
           <div className="text-xs text-gray-600">{formatDate(startTime)}</div>
         </div>
         <div className="flex flex-col items-center justify-end">
-          <IconArrowRightCircle />
+          <TbArrowRightCircle />
           <div className="-mt-1 text-xs text-center text-gray-600">
             {duration ? duration : 'Select date'}
           </div>

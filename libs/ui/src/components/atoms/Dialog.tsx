@@ -5,7 +5,7 @@ import {
   Transition,
   TransitionChild,
 } from '@headlessui/react'
-import { IconX } from '@tabler/icons-react'
+import { TbX } from 'react-icons/tb'
 
 interface IMyDialogProps {
   open: boolean
@@ -58,14 +58,14 @@ export const Dialog = ({
               leaveTo="opacity-0 scale-95"
             >
               <DialogPanel
-                className={`w-full  p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl ${widthClassName}`}
+                className={`w-full p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md ${widthClassName}`}
               >
                 <button
                   type="button"
                   className="absolute top-0 right-0 flex items-center justify-center w-8 h-8 hover:bg-black/10"
                   onClick={() => setOpen(false)}
                 >
-                  <IconX className="text-gray-600" />
+                  <TbX className="text-gray-600" />
                 </button>
                 <HeadlessUIDialog.Title
                   as="h3"

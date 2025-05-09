@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { IconUser } from '@tabler/icons-react'
+import { TbUser } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 
 import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
@@ -120,7 +120,7 @@ export const ManageValets = ({
                   }}
                 >
                   <div className="flex flex-col items-center">
-                    <IconUser />
+                    <TbUser />
                     <span>
                       Pickup {!valet.differentLocations ? '& drop off' : null}
                     </span>
@@ -156,7 +156,7 @@ export const ManageValets = ({
                   }}
                 >
                   <div className="flex flex-col items-center">
-                    <IconUser />
+                    <TbUser />
                     <span>{t('message.dropoff')}</span>
                   </div>
                 </Marker>

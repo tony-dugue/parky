@@ -1,5 +1,5 @@
 import MuiAutocomplete, { AutocompleteProps } from '@mui/material/Autocomplete'
-import { IconSearch } from '@tabler/icons-react'
+import { TbSearch } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 
 type AutocompleteSimplifiedProps<T> = Omit<
@@ -40,7 +40,7 @@ export const Autocomplete = <T,>({
             className="w-full py-2 pl-3 text-sm pr-8 shadow-none focus:ring-0  border border-white"
             placeholder={t(placeholder)}
           />
-          <IconSearch className="w-4 h-4 text-gray-800 stroke-2 -ml-7" />
+          <TbSearch className="w-4 h-4 text-gray-800 stroke-2 -ml-7" />
         </div>
       )}
       {...props}

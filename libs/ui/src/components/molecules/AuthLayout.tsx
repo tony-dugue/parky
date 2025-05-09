@@ -1,6 +1,6 @@
 'use client'
 import { ReactNode } from 'react'
-import { IconArrowBack } from '@tabler/icons-react'
+import { TbArrowBack } from 'react-icons/tb'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -37,7 +37,7 @@ export const AuthLayout = ({ title, children }: IAuthLayoutProps) => {
                 <GoogleButton />
               </div>
               <Link href="/" className="flex items-center gap-2 mt-6">
-                <IconArrowBack className="w-4 h-4" /> {t('auth.back-home')}
+                <TbArrowBack className="w-4 h-4" /> {t('auth.back-home')}
               </Link>
             </div>
           </div>

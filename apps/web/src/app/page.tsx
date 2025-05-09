@@ -1,5 +1,5 @@
 'use client'
-import { IconSearch } from '@tabler/icons-react'
+import { TbSearch } from 'react-icons/tb'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -25,7 +25,7 @@ export default function Home() {
           href="/search"
           className="z-10 flex items-center gap-2 px-3 py-2 text-xl font-medium text-black underline underline-offset-4 bg-primary"
         >
-          <IconSearch />
+          <TbSearch />
           {t('button.search-now')}
         </Link>
       </div>

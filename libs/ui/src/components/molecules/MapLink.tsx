@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { IconMap2 } from '@tabler/icons-react'
+import { TbMap2 } from 'react-icons/tb'
 import Link from 'next/link'
 
 import { LatLng } from '@parky/util/types'
@@ -12,7 +12,7 @@ export interface IMapLinkProps {
 
 export const MapLink = ({
   waypoints,
-  children = <IconMap2 />,
+  children = <TbMap2 />,
   className,
 }: IMapLinkProps) => {
   if (waypoints.length === 0) {

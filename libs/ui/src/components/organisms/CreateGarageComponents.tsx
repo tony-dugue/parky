@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useWatch, useFormContext, useFieldArray } from 'react-hook-form'
-import { IconPlus } from '@tabler/icons-react'
+import { TbPlus } from 'react-icons/tb'
 
 import { SlotType } from '@parky/network/src/gql/generated'
 import { FormTypeCreateGarage } from '@parky/forms/src/createGarage'
@@ -177,7 +177,7 @@ export const AddSlots = () => {
           })
         }}
       >
-        <IconPlus className="w-4 h-4" /> {t('button.add-slots')}
+        <TbPlus className="w-4 h-4" /> {t('button.add-slots')}
       </Button>
     </div>
   )

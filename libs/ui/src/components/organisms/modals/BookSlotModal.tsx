@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { loadStripe } from '@stripe/stripe-js'
@@ -14,31 +14,39 @@ import { FormTypeBookSlot } from '@parky/forms/src/bookSlot'
 import { toLocalISOString } from '@parky/util/date'
 import { TotalPrice } from '@parky/util/types'
 import { useTotalPrice } from '@parky/util/hooks/price'
-import { Form } from '../atoms/Form'
-import { Badge } from '../atoms/Badge'
-import { AutoImageChanger } from './AutoImageChanger'
-import { DateRangeBookingInfo } from '../molecules/DateRangeBookingInfo'
-import { HtmlLabel } from '../atoms/HtmlLabel'
-import { IconTypes } from '../molecules/IconTypes'
-import { FormError } from '../atoms/FormError'
-import { HtmlInput } from '../atoms/HtmlInput'
-import { CostTitleValue } from '../molecules/CostTitleValue'
-import { Button } from '../atoms/Button'
-import { ManageValets } from './ManageValets'
-import { toast } from '../molecules/Toast'
+import { Form } from '../../atoms/Form'
+import { Badge } from '../../atoms/Badge'
+import { AutoImageChanger } from '../AutoImageChanger'
+import { DateRangeBookingInfo } from '../../molecules/DateRangeBookingInfo'
+import { HtmlLabel } from '../../atoms/HtmlLabel'
+import { IconTypes } from '../../molecules/IconTypes'
+import { FormError } from '../../atoms/FormError'
+import { HtmlInput } from '../../atoms/HtmlInput'
+import { CostTitleValue } from '../../molecules/CostTitleValue'
+import { ManageValets } from '../ManageValets'
+import { toast } from '../../molecules/Toast'
+import { Modal } from '../../atoms/Modal'
 
-export const BookSlotPopup = ({
+export const BookSlotModal = ({
   garage,
+  showPopup,
+  setShowPopup,
 }: {
   garage: SearchGaragesQuery['searchGarages'][0]
+  showPopup: boolean
+  setShowPopup: Dispatch<SetStateAction<boolean>>
 }) => {
   const session = useSession()
+
   const { t } = useTranslation()
+
   const uid = session.data?.user?.uid
+
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useFormContext<FormTypeBookSlot>()
 
@@ -59,48 +67,55 @@ export const BookSlotPopup = ({
 
   const [booking, setBooking] = useState(false)
 
-  return (
-    <div className="flex gap-2 text-left border-t-2 border-white bg-white/50 backdrop-blur-sm">
-      <Form
-        onSubmit={handleSubmit(async (data) => {
-          if (!uid) {
-            toast(t('toast.not-loggin'))
-            return
-          }
-          const bookingData: CreateBookingInput = {
-            phoneNumber: data.phoneNumber,
-            customerId: uid,
-            endTime: data.endTime,
-            startTime: data.startTime,
-            type: data.type,
-            garageId: garage.id,
-            vehicleNumber: data.vehicleNumber,
-            totalPrice,
-            pricePerHour,
-            ...(data.valet?.pickupInfo && data.valet?.dropoffInfo
-              ? {
-                  valetAssignment: {
-                    pickupLat: data.valet?.pickupInfo?.lat,
-                    pickupLng: data.valet?.pickupInfo?.lng,
-                    returnLat: data.valet?.dropoffInfo?.lat,
-                    returnLng: data.valet?.dropoffInfo?.lng,
-                  },
-                }
-              : null),
-          }
+  useEffect(() => {
+    if (!showPopup) {
+      reset()
+    }
+  }, [showPopup, reset])
 
-          try {
-            setBooking(true)
-            // Create booking session
-            await createBookingSession(uid!, totalPriceObj, bookingData)
-          } catch (err) {
-            console.log('err', err)
-            toast(t('toast.error-creating-booking'))
-          } finally {
-            setBooking(false)
+  const onSubmit = handleSubmit(async (data) => {
+    if (!uid) {
+      toast(t('toast.not-loggin'))
+      return
+    }
+
+    const bookingData: CreateBookingInput = {
+      phoneNumber: data.phoneNumber,
+      customerId: uid,
+      endTime: data.endTime,
+      startTime: data.startTime,
+      type: data.type,
+      garageId: garage.id,
+      vehicleNumber: data.vehicleNumber,
+      totalPrice,
+      pricePerHour,
+      ...(data.valet?.pickupInfo && data.valet?.dropoffInfo
+        ? {
+            valetAssignment: {
+              pickupLat: data.valet?.pickupInfo?.lat,
+              pickupLng: data.valet?.pickupInfo?.lng,
+              returnLat: data.valet?.dropoffInfo?.lat,
+              returnLng: data.valet?.dropoffInfo?.lng,
+            },
           }
-        })}
-      >
+        : null),
+    }
+
+    try {
+      setBooking(true)
+      // Create booking session
+      await createBookingSession(uid!, totalPriceObj, bookingData)
+    } catch (err) {
+      console.log('err', err)
+      toast(t('toast.error-creating-booking'))
+    } finally {
+      setBooking(false)
+    }
+  })
+
+  const bodyContent = (
+    <div className="flex gap-2 text-left border-t-2 border-white bg-white/50 backdrop-blur-sm">
+      <Form>
         <div className="flex items-start gap-2">
           <div className="mb-2 text-lg font-bold">{garage.displayName}</div>
           {garage.verification?.verified ? (
@@ -253,12 +268,22 @@ export const BookSlotPopup = ({
             />
           </div>
         ) : null}
-
-        <Button loading={booking} type="submit" className="w-full mt-2">
-          {t('button.book-now')}
-        </Button>
       </Form>
     </div>
+  )
+
+  return (
+    <Modal
+      isOpen={showPopup}
+      onClose={() => setShowPopup(false)}
+      onSubmit={onSubmit}
+      loading={booking}
+      actionLabel={t('button.book-now')}
+      secondaryActionLabel={t('button.cancel')}
+      secondaryAction={() => setShowPopup(false)}
+      title={t('message.booking')}
+      body={bodyContent}
+    />
   )
 }
 

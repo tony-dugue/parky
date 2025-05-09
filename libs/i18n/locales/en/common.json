@@ -244,7 +244,7 @@
     "clear-all": "Clear all",
     "loading-user": "Loading user...",
     "loading-company": "Loading company...",
-    "no-company": "You don't have a company yet.",
+    "no-company": "Don't have an account for your company yet ?",
     "not-a-valet-1": "You are not a valet.",
     "not-a-valet-2": "Please contact the company's managers with your ID.",
     "garages": "Your garages",
@@ -263,7 +263,8 @@
     "start-end-locations-not-set": "Start end locations not set.",
     "bookings": "bookings",
     "fix-errors": "  Please fix the above errors : ",
-    "address": "Address:"
+    "address": "Address:",
+    "booking": "Booking"
   },
   "status": {
     "past": "PAST",

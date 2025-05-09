@@ -1,5 +1,5 @@
 'use client'
-import { IconDoorExit } from '@tabler/icons-react'
+import { TbDoorExit } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 import { signOut } from 'next-auth/react'
 
@@ -11,12 +11,13 @@ export const LogoutButton = () => {
   return (
     <Button
       variant="outlined"
+      fullWidth
       onClick={() => {
         signOut()
       }}
-      className="flex items-center gap-2"
+      className="flex items-center justify-center gap-2"
     >
-      <IconDoorExit /> {t('auth.logout')}
+      <TbDoorExit /> {t('auth.logout')}
     </Button>
   )
 }

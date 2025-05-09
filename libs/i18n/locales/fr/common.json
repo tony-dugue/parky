@@ -180,6 +180,7 @@
     "title": {
       "vehicle-type": "Type de véhicule",
       "price-per-hour": "Prix par heure",
+      "price-hr": "Prix/hr",
       "width": "Largeur",
       "height": "Hauteur",
       "length": "Longueur",
@@ -241,9 +242,9 @@
     "no-parking": "Aucun emplacement de parking trouvé dans cette zone.",
     "no-images": "Aucune images.",
     "clear-all": "Tout effacer",
-    "loading-user": "Chargement utilisateur...",
-    "loading-company": "Chargement entreprise...",
-    "no-company": "Vous n'avez pas encore d'entreprise.",
+    "loading-user": "Chargement des informations de l'utilisateur",
+    "loading-company": "Chargement des informations de votre entreprise",
+    "no-company": "Vous n'avez pas encore de compte pour votre société ?",
     "not-an-admin": "Vous n'êtes pas administrateur.",
     "not-a-valet-1": "Vous n'êtes pas un voiturier.",
     "not-a-valet-2": "Veuillez contacter les managers de l'entreprise avec votre identifiant.",
@@ -263,7 +264,8 @@
     "start-end-locations-not-set": "Les lieux de départ et d'arrivée ne sont pas définis.",
     "bookings": "réservations",
     "fix-errors": " Veuillez corriger les erreurs suivantes : ",
-    "address": "Adresse :"
+    "address": "Adresse :",
+    "booking": "Réservation"
   },
   "status": {
     "past": "PASSÉ",

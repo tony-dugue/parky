@@ -18,8 +18,8 @@ export const IsAdmin = ({ children }: { children: ReactNode }) => {
 
   if (!data?.adminMe?.uid)
     return (
-      <AlertSection>
-        <div>{t('auth.not-an-admin')}</div>
+      <AlertSection title={t('auth.not-logged-in')}>
+        <></>
       </AlertSection>
     )
 

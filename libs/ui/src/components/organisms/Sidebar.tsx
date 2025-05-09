@@ -1,7 +1,7 @@
 'use client'
 import { Fragment, ReactNode } from 'react'
 import { Dialog, Transition, TransitionChild } from '@headlessui/react'
-import { IconX } from '@tabler/icons-react'
+import { TbX } from 'react-icons/tb'
 
 export interface ISidebarProps {
   open: boolean
@@ -57,7 +57,7 @@ export const Sidebar = ({
                   className="absolute top-0 right-0 z-10 m-2 ml-auto rounded-full"
                   onClick={() => setOpen(false)}
                 >
-                  <IconX className="w-6 h-6 p-1" aria-hidden="true" />
+                  <TbX className="w-6 h-6 p-1" aria-hidden="true" />
                 </button>
                 {children}
               </div>

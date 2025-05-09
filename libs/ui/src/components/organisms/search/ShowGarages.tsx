@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import { IconInfoCircle } from '@tabler/icons-react'
+import { TbInfoCircle } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -8,7 +8,7 @@ import {
   SearchGaragesQueryVariables,
 } from '@parky/network/src/gql/generated'
 import { useConvertSearchFormToVariables } from '@parky/forms/src/adapters/searchFormAdapter'
-import { GarageMarker } from './GarageMarker'
+import { GarageMarker } from '../GarageMarker'
 import { Panel } from '../map/Panel'
 import { Loader } from '../../molecules/Loader'
 
@@ -44,7 +44,7 @@ export const ShowGarages = () => {
         className="bg-white/50 shadow border-white border backdrop-blur-sm"
       >
         <div className="flex items-center justify-center gap-2 ">
-          <IconInfoCircle /> <div>{error.message}</div>
+          <TbInfoCircle /> <div>{error.message}</div>
         </div>
       </Panel>
     )
@@ -57,7 +57,7 @@ export const ShowGarages = () => {
         className="bg-white/50 shadow border-white border backdrop-blur-sm"
       >
         <div className="flex items-center justify-center gap-2 ">
-          <IconInfoCircle />
+          <TbInfoCircle />
           <div>{t('message.no-parking')}</div>
         </div>
       </Panel>

@@ -4,11 +4,10 @@ import { useWatch } from 'react-hook-form'
 import { SearchGaragesQuery } from '@parky/network/src/gql/generated'
 import { useKeypress } from '@parky/util/hooks/keys'
 import { FormTypeSearchGarage } from '@parky/forms/src/searchGarages'
+import { Marker } from './map/MapMarker'
+import { ParkingIcon } from '../atoms/ParkingIcon'
+import { BookSlotModal } from './modals/BookSlotModal'
 import { FormProviderBookSlot } from '@parky/forms/src/bookSlot'
-import { Marker } from '../map/MapMarker'
-import { Dialog } from '../../atoms/Dialog'
-import { ParkingIcon } from '../../atoms/ParkingIcon'
-import { BookSlotPopup } from '../BookSlotPopup'
 
 export const GarageMarker = ({
   marker,
@@ -16,6 +15,7 @@ export const GarageMarker = ({
   marker: SearchGaragesQuery['searchGarages'][number]
 }) => {
   const [showPopup, setShowPopup] = useState(false)
+
   useKeypress(['Escape'], () => setShowPopup(false))
 
   const { endTime, startTime } = useWatch<FormTypeSearchGarage>()
@@ -26,16 +26,13 @@ export const GarageMarker = ({
 
   return (
     <>
-      <Dialog
-        title="Booking"
-        widthClassName="max-w-3xl"
-        open={showPopup}
-        setOpen={setShowPopup}
-      >
-        <FormProviderBookSlot defaultValues={{ endTime, startTime }}>
-          <BookSlotPopup garage={marker} />
-        </FormProviderBookSlot>
-      </Dialog>
+      <FormProviderBookSlot defaultValues={{ endTime, startTime }}>
+        <BookSlotModal
+          garage={marker}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+        />
+      </FormProviderBookSlot>
 
       <Marker
         latitude={marker.address.lat}

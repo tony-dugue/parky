@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { GaragesQuery } from '@parky/network/src/gql/generated'
 import { AutoImageChanger } from './AutoImageChanger'
 import { IconTypes } from '../molecules/IconTypes'
-import { CreateManySlotsDialog } from './CreateManySlotsDialog'
+import { CreateManySlotsModal } from './modals/CreateManySlotsModal'
 
 export interface IGarageCardProps {
   garage: GaragesQuery['garages'][number]
@@ -22,16 +22,16 @@ export const GarageCard = ({ garage }: IGarageCardProps) => {
           <div className="flex justify-between ">
             <h3 className="font-semibold text-md">{garage.displayName}</h3>
             <Link
-              className="text-sm underline underline-offset-4"
+              className="text-md underline underline-offset-4"
               href={{ pathname: 'bookings', query: { garageId: garage.id } }}
             >
               {t('button.bookings')}
             </Link>
           </div>
-          <p className="text-sm text-gray-400 mt-2 mb-4">
+          <p className="text-md font-light text-gray-400 mt-2 mb-3">
             {garage.address?.address}
           </p>
-          <p className="text-gray-500 text-sm my-2 line-clamp-2 ">
+          <p className="text-gray-500 text-md font-light my-1 line-clamp-2 ">
             {garage.description}
           </p>
         </div>
@@ -46,7 +46,7 @@ export const GarageCard = ({ garage }: IGarageCardProps) => {
                 <div className="text-sm">{slotType.count}</div>
               </div>
             ))}
-            <CreateManySlotsDialog garageId={garage.id} />
+            <CreateManySlotsModal garageId={garage.id} />
           </>
         </div>
       </div>

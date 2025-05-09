@@ -1,4 +1,4 @@
-import { IconTrash } from '@tabler/icons-react'
+import { TbTrash } from 'react-icons/tb'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 
@@ -23,7 +23,7 @@ export const ImagePreview = ({
           onClick={() => clearImage()}
           className="absolute z-10 p-2 text-white bg-red/80 flex gap-2 items-center rounded left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
-          <IconTrash /> {t('message.clear-all')}
+          <TbTrash /> {t('message.clear-all')}
         </button>
         {Array.from(srcs)?.map((src, index) => (
           <Image

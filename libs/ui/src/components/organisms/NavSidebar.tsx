@@ -1,5 +1,5 @@
 'use client'
-import { IconMenu2 } from '@tabler/icons-react'
+import { AiOutlineMenu } from 'react-icons/ai'
 import { useTranslation } from 'react-i18next'
 
 import { useDialogState } from '@parky/util/hooks/dialog'
@@ -26,7 +26,7 @@ export const NavSidebar = ({ menuItems }: INavSidebarProps) => {
         className="p-2"
         aria-label={t('message.open-main-menu')}
       >
-        <IconMenu2 className="w-5 h-5" />
+        <AiOutlineMenu className="w-5 h-5" />
       </button>
       <Sidebar open={open} setOpen={setOpen}>
         <div className="flex flex-col items-start space-y-1">

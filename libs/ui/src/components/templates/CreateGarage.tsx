@@ -90,6 +90,7 @@ const CreateGarageContent = () => {
           <HtmlLabel
             error={errors.displayName?.message}
             title={t('form.title.garage-name')}
+            className="mb-3"
           >
             <HtmlInput
               {...register('displayName')}
@@ -100,6 +101,7 @@ const CreateGarageContent = () => {
           <HtmlLabel
             title={t('form.title.description')}
             error={errors.description?.message}
+            className="mb-3"
           >
             <HtmlTextArea
               cols={5}

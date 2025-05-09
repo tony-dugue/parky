@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 import { ViewStateChangeEvent } from 'react-map-gl/maplibre'
 import { useFormContext } from 'react-hook-form'
-import { IconArrowDown } from '@tabler/icons-react'
+import { TbArrowDown } from 'react-icons/tb'
 
 import { toLocalISOString } from '@parky/util/date'
 import { initialViewState } from '@parky/util/constants'
@@ -24,7 +24,6 @@ export const SearchPage = () => {
     formState: { errors },
     trigger,
   } = useFormContext<FormTypeSearchGarage>()
-  console.log('errors ', errors)
 
   const formData = watch()
 
@@ -55,7 +54,7 @@ export const SearchPage = () => {
           <SearchPlaceBox />
           <div className="flex relative pl-1 flex-col mt-1 bg-white/40 items-center gap-1 backdrop-blur-sm">
             <div className=" absolute left-[1px] top-1/2 -translate-y-1/2 ">
-              <IconArrowDown className="p-1" />
+              <TbArrowDown className="p-1" />
             </div>
             <div className="flex gap-1 items-center">
               <IconType time={formData.startTime} />

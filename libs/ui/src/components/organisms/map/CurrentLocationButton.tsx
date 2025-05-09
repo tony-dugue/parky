@@ -1,4 +1,4 @@
-import { IconCurrentLocation } from '@tabler/icons-react'
+import { TbCurrentLocation } from 'react-icons/tb'
 import { useMap } from 'react-map-gl/maplibre'
 
 import { Button } from '../../atoms/Button'
@@ -22,7 +22,7 @@ export const CurrentLocationButton = () => {
         )
       }}
     >
-      <IconCurrentLocation className="stroke-1.5" />
+      <TbCurrentLocation className="stroke-1.5" />
     </Button>
   )
 }

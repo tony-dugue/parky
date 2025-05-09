@@ -1,12 +1,12 @@
 'use client'
-import { AddValet } from '../organisms/AddValet'
 import { ListValets } from '../organisms/ListValets'
+import { CreateValetModal } from '../organisms/modals/CreateValetModal'
 
 export const ManageValets = () => {
   return (
     <div>
       <div className="flex justify-end">
-        <AddValet />
+        <CreateValetModal />
       </div>
       <ListValets />
     </div>

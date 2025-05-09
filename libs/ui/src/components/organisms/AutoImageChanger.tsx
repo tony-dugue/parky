@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  IconPhotoCancel,
-  IconChevronLeft,
-  IconChevronRight,
-} from '@tabler/icons-react'
+import { TbPhotoCancel, TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 
 export interface IAutoImageChangerProps {
@@ -36,7 +32,7 @@ export const AutoImageChanger = ({
   if (images.length === 0)
     return (
       <div className="flex items-center justify-center w-full h-48 gap-2 text-sm bg-white border select-none border-gray-50 text-gray">
-        <IconPhotoCancel /> {t('message.no-images')}
+        <TbPhotoCancel /> {t('message.no-images')}
       </div>
     )
 
@@ -68,7 +64,7 @@ export const AutoImageChanger = ({
               )
             }
           >
-            <IconChevronLeft className="w-6 h-6 text-black rounded-full bg-white/40 hover:bg-white" />
+            <TbChevronLeft className="w-6 h-6 text-black rounded-full bg-white/40 hover:bg-white" />
           </button>
           <button
             type="button"
@@ -79,7 +75,7 @@ export const AutoImageChanger = ({
               )
             }
           >
-            <IconChevronRight className="w-6 h-6 text-black rounded-full bg-white/40 hover:bg-white" />
+            <TbChevronRight className="w-6 h-6 text-black rounded-full bg-white/40 hover:bg-white" />
           </button>
         </>
       )}

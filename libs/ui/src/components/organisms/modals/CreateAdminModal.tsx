@@ -8,40 +8,53 @@ import {
 } from '@parky/network/src/gql/generated'
 import { useFormUid } from '@parky/forms/src/createUid'
 import { Button } from '../../atoms/Button'
-import { Dialog } from '../../atoms/Dialog'
 import { Form } from '../../atoms/Form'
 import { HtmlLabel } from '../../atoms/HtmlLabel'
 import { HtmlInput } from '../../atoms/HtmlInput'
+import { Modal } from '../../atoms/Modal'
 
-export const CreateAdmin = () => {
+export const CreateAdminModal = () => {
   const { t } = useTranslation()
+
   const [open, setOpen] = useState(false)
+
   const { register, handleSubmit } = useFormUid()
+
   const [createAdmin, { loading }] = useMutation(CreateAdminDocument, {
     awaitRefetchQueries: true,
     refetchQueries: [namedOperations.Query.admins],
   })
+
+  const onSubmit = handleSubmit(async ({ uid }) => {
+    await createAdmin({
+      variables: { createAdminInput: { uid } },
+    })
+    setOpen(false)
+  })
+
+  const bodyContent = (
+    <Form>
+      <HtmlLabel title={t('form.input.uid')}>
+        <HtmlInput placeholder={t('form.input.uid')} {...register('uid')} />
+      </HtmlLabel>
+    </Form>
+  )
+
   return (
     <>
       <Button onClick={() => setOpen(true)}>{t('button.create-admin')}</Button>
-      <Dialog open={open} setOpen={setOpen} title={t('button.create-admin')}>
-        <Form
-          onSubmit={handleSubmit(async ({ uid }) => {
-            await createAdmin({
-              variables: { createAdminInput: { uid } },
-            })
-            setOpen(false)
-          })}
-        >
-          <HtmlLabel title={t('form.input.uid')}>
-            <HtmlInput placeholder={t('form.input.uid')} {...register('uid')} />
-          </HtmlLabel>
 
-          <Button loading={loading} type="submit">
-            {t('button.create')}
-          </Button>
-        </Form>
-      </Dialog>
+      <Modal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onSubmit={onSubmit}
+        actionLabel={t('button.create')}
+        secondaryActionLabel={t('button.cancel')}
+        secondaryAction={() => setOpen(false)}
+        title={t('button.create-admin')}
+        loading={loading}
+        body={bodyContent}
+      />
     </>
   )
 }

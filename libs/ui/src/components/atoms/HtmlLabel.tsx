@@ -9,10 +9,10 @@ export type HtmlLabelProps = HTMLProps<HTMLLabelElement> & {
 
 export const HtmlLabel = React.forwardRef<HTMLLabelElement, HtmlLabelProps>(
   ({ children, title, optional, error, className }, ref) => (
-    <label ref={ref} className={` text-sm block select-none ${className}`}>
+    <label ref={ref} className={`text-md block select-none ${className}`}>
       <div className="flex items-baseline justify-between">
-        <div className="mb-1 font-semibold capitalize">{title}</div>
-        <div className="text-xs text-gray-600 ">
+        <div className="mb-1 capitalize">{title}</div>
+        <div className="text-sm text-gray-600 ">
           {optional ? '(optional)' : null}
         </div>
       </div>

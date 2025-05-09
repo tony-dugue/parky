@@ -1,4 +1,4 @@
-import { IconArrowRightRhombus } from '@tabler/icons-react'
+import { TbArrowRightRhombus } from 'react-icons/tb'
 import { format } from 'date-fns'
 
 import { differenceInTime, getTimeUnits } from '@parky/util/date'
@@ -16,7 +16,7 @@ export const StartEndDateCard = ({ startTime, endTime }: IDateCardProps) => {
     <div className="flex items-center justify-between gap-2 p-2">
       <DateCard dateTime={startTime} />
       <div className="flex flex-col items-center">
-        <IconArrowRightRhombus />
+        <TbArrowRightRhombus />
         <div className="text-xs">{numOfHours}</div>
       </div>
       <DateCard dateTime={endTime} justify="right" />

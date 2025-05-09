@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { IconFilter } from '@tabler/icons-react'
+import { TbFilter } from 'react-icons/tb'
 
 import {
   FormTypeSearchGarage,
@@ -36,7 +36,7 @@ export const FilterSidebar = () => {
         onClick={() => setOpen(true)}
         className=" hover:bg-gray-200"
       >
-        <IconFilter className="stroke-1.5 text-black" />
+        <TbFilter className="stroke-1.5 text-black" />
         {Object.values(dirtyFields).length ? <PulsingDot /> : null}
       </Button>
       <Sidebar open={open} setOpen={setOpen}>

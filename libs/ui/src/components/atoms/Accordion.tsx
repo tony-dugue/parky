@@ -4,7 +4,7 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
-import { IconChevronDown } from '@tabler/icons-react'
+import { TbChevronDown } from 'react-icons/tb'
 
 export interface IAccordionProps {
   title: ReactNode
@@ -30,7 +30,7 @@ export const Accordion = ({
           >
             {title}
           </span>
-          <IconChevronDown
+          <TbChevronDown
             className={` ${
               open ? 'transform rotate-180' : 'text-gray-500'
             } w-5 h-5 `}

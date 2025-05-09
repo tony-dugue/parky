@@ -4,9 +4,9 @@ import { useQuery } from '@apollo/client'
 import { AdminsDocument } from '@parky/network/src/gql/generated'
 import { useTakeSkip } from '@parky/util/hooks/pagination'
 import { ShowData } from '../organisms/ShowData'
-import { AdminCard } from '../organisms/admin/AdminCard'
-import { CreateAdmin } from '../organisms/admin/CreateAdmin'
-import { RemoveAdminButton } from '../organisms/admin/RemoveAdminButton'
+import { AdminCard } from '../organisms/AdminCard'
+import { CreateAdminModal } from '../organisms/modals/CreateAdminModal'
+import { RemoveAdminButtonModal } from '../organisms/modals/RemoveAdminButtonModal'
 
 export const ManageAdmins = () => {
   const { setSkip, setTake, skip, take } = useTakeSkip(0)
@@ -18,7 +18,7 @@ export const ManageAdmins = () => {
   return (
     <>
       <div className="flex justify-end">
-        <CreateAdmin />
+        <CreateAdminModal />
       </div>
       <ShowData
         loading={loading}
@@ -36,7 +36,7 @@ export const ManageAdmins = () => {
           <div key={admin.uid} className="pl-0.5 border-l-2  border-primary">
             <AdminCard key={admin.uid} admin={admin}>
               <div className="flex justify-end">
-                <RemoveAdminButton uid={admin.uid} />
+                <RemoveAdminButtonModal uid={admin.uid} />
               </div>
             </AdminCard>
           </div>

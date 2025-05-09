@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactNode } from 'react'
-import { IconMinus, IconParking, IconPlus } from '@tabler/icons-react'
+import { TbMinus, TbParking, TbPlus } from 'react-icons/tb'
 import { useMap } from 'react-map-gl/maplibre'
 
 const MapControls = ({ children }: { children: ReactNode }) => (
@@ -29,7 +29,7 @@ const ZoomIn = () => {
 
   return (
     <ZoomControlButton onClick={() => map?.zoomIn()}>
-      <IconPlus className="w-8 h-8 p-1.5 text-black" />
+      <TbPlus className="w-8 h-8 p-1.5 text-black" />
     </ZoomControlButton>
   )
 }
@@ -38,17 +38,17 @@ const ZoomOut = () => {
   const { current: map } = useMap()
   return (
     <ZoomControlButton onClick={() => map?.zoomOut()}>
-      <IconMinus className="w-8 h-8 p-1.5 text-black" />
+      <TbMinus className="w-8 h-8 p-1.5 text-black" />
     </ZoomControlButton>
   )
 }
 
 export const CenterOfMap = ({
   onClick,
-  Icon = IconParking,
+  Icon = TbParking,
 }: {
   onClick: (latLng: { lng: number; lat: number }) => void
-  Icon?: typeof IconParking
+  Icon?: typeof TbParking
 }) => {
   const { current: map } = useMap()
   return (

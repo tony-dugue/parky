@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Lexend } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 
 import '@parky/ui/src/app/globals.css'
 import { SessionProvider } from '@parky/ui/src/components/molecules/SessionProvider'
@@ -11,7 +11,7 @@ import { Providers } from './providers'
 import HeaderWithTranslation from './HeaderWithTranslation'
 import { MenuItem } from '@parky/util/types'
 
-const font = Lexend({
+const font = Nunito({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',

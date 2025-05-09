@@ -6,12 +6,12 @@ import { ContainerMain } from '@parky/ui/src/components/atoms/ContainerMain'
 
 export default function Home() {
   return (
-    <IsLoggedIn>
-      <ContainerMain>
+    <ContainerMain>
+      <IsLoggedIn>
         <IsManager>
           {(companyId) => <ListGarages companyId={companyId} />}
         </IsManager>
-      </ContainerMain>
-    </IsLoggedIn>
+      </IsLoggedIn>
+    </ContainerMain>
   )
 }

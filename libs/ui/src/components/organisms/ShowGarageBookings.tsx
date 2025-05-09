@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { IconSearch } from '@tabler/icons-react'
+import { TbSearch } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -54,7 +54,7 @@ export const ShowGarageBookings = ({
     <div className="mt-4">
       <div className="flex justify-center">
         <div className="flex justify-start items-center gap-2 w-full max-w-xl rounded-full shadow-lg bg-white border border-gray-25 px-4">
-          <IconSearch />
+          <TbSearch className="text-2xl" />
           <input
             placeholder={t('form.placeholder.search-vehicle')}
             value={searchTerm}

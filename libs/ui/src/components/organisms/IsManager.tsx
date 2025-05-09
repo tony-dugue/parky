@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client'
 import { MyCompanyDocument } from '@parky/network/src/gql/generated'
 import { LoaderPanel } from '../molecules/Loader'
 import { AlertSection } from '../molecules/AlertSection'
-import { CreateCompany } from './CreateCompany'
+import { CreateCompanyModal } from './modals/CreateCompanyModal'
 
 type RenderPropChild = (id: number) => ReactNode
 
@@ -25,9 +25,8 @@ export const IsManager = ({
 
   if (!data?.myCompany)
     return (
-      <AlertSection>
-        <div>{t('message.no-company')}</div>
-        <CreateCompany />
+      <AlertSection title={t('message.no-company')}>
+        <CreateCompanyModal />
       </AlertSection>
     )
 
